@@ -1,14 +1,14 @@
-  *Sistema de Gestión - Distribuidora de Tecnología*
+  **Sistema de Gestión - Distribuidora de Tecnología**
 
   Este proyecto es una solución integral de backend desarrollada para gestionar las operaciones comerciales de una distribuidora de productos tecnológicos. Permite administrar el flujo completo desde el abastecimiento con proveedores hasta la entrega final al cliente.
  
-  Tecnologías Utilizadas:*
+  **Tecnologías Utilizadas:**
 * Java con Spring Boot (Framework principal)
 * JPA / Hibernate (Persistencia de datos)
 * MySQL (Base de datos relacional)
 * Maven (Gestión de dependencias)
 
-  *Requisitos Funcionales*
+  **Requisitos Funcionales**
 
 -RF 1: El sistema debe permitir el registro y gestión de "Clientes", almacenando nombre, apellido, tipo de cliente, teléfono, email, dirección y CUIT.
 
@@ -35,6 +35,5 @@
 -RF 12: El sistema debe registrar el "Detalle de Compra", especificando la cantidad y el precio de los productos adquiridos. 
 
 
-*Arquitectura de Datos*
-  
+**Arquitectura de Datos**
   El sistema utiliza un modelo relacional que asegura la integridad de la información entre los módulos de ventas, inventario y compras. 
