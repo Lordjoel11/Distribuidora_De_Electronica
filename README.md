@@ -8,43 +8,39 @@
 * MySQL (Base de datos relacional)
 * Maven (Gestión de dependencias)
 
-  **Requisitos Funcionales**
+ **Requisitos Funcionales:**
+RF 1: El sistema debe permitir al Administrador registrar y gestionar clientes, almacenando nombre, apellido, tipo de cliente, teléfono, email, dirección y CUIT.
+RF 2: El sistema debe permitir al Cliente crear pedidos asociados a su cuenta, registrando la fecha y el estado del mismo.
+RF 3: El sistema debe permitir al Cliente visualizar el detalle de su pedido.
+RF 4: El sistema debe permitir al Administrador gestionar el detalle de los pedidos, vinculando productos con cantidades y precios unitarios.
+RF 5: El sistema debe permitir al Administrador gestionar el catálogo de productos, incluyendo nombre, descripción y niveles de stock.
+RF 6: El sistema debe permitir al Administrador clasificar los productos mediante categorías y tipos de producto.
+RF 7: El sistema debe permitir al Administrador administrar los precios de los productos según el tipo de cliente.
+RF 8: El sistema debe permitir al Administrador generar una factura por cada pedido, detallando número, fecha y monto total.
+RF 9: El sistema debe permitir al Cliente, Administrador visualizar las facturas de los pedidos.
+RF 10: El sistema debe permitir al Cliente registrar pagos, incluyendo el método utilizado, el monto y la fecha de la transacción.
+RF 11: El sistema debe permitir al Administrador gestionar los pagos registrados.
+RF 12: El sistema debe permitir al Administrador gestionar el envío de los pedidos, registrando método de entrega, fecha de envío y estado.
+RF 13: El sistema debe permitir al Cliente, Administrador consultar el estado del envío de los pedidos.
+RF 14: El sistema debe permitir al Administrador registrar y gestionar proveedores junto con sus datos de contacto.
+RF 15: El sistema debe permitir al Administrador gestionar las compras realizadas, registrando la fecha de la operación.
+RF 16: El sistema debe permitir al Administrador registrar el detalle de compra, especificando la cantidad y el precio de los productos adquiridos.
 
--RF 1: El sistema debe permitir el registro y gestión de "Clientes", almacenando nombre, apellido, tipo de cliente, teléfono, email, dirección y CUIT.
+**Requisitos no Funcionales:**
+RNF 1: El sistema debe implementar autenticación obligatoria para el acceso de usuarios.
+RNF 2: El sistema debe aplicar control de acceso basado en roles (Cliente y Administrador).
+RNF 3: El sistema debe cifrar la información sensible almacenada y transmitida.
+RNF 4: El sistema debe responder a las solicitudes en un tiempo menor a 3 segundos en condiciones normales de operación.
+RNF 5: El sistema debe soportar múltiples usuarios concurrentes sin degradación significativa del rendimiento.
+RNF 6: El sistema debe garantizar una disponibilidad mínima del 99% del tiempo.
+RNF 7: El sistema debe asegurar la integridad de los datos en todas las transacciones.
+RNF 8: El sistema debe realizar copias de seguridad automáticas de forma periódica.
+RNF 9: El sistema debe contar con una interfaz web intuitiva y fácil de usar.
+RNF 10: El sistema debe ser compatible con los principales navegadores web modernos.
+RNF 11: El sistema debe ser accesible desde distintos dispositivos (PC, tablet y móvil).
+RNF 12: El sistema debe estar desarrollado con una arquitectura modular que facilite su mantenimiento.
+RNF 13: El sistema debe permitir la escalabilidad ante el crecimiento de usuarios y datos sin requerir rediseño completo.
 
--RF 2: El sistema debe permitir la creación de "Pedidos" asociados a un cliente, registrando la fecha y el estado del mismo. 
-
--RF 3: El sistema debe gestionar el "Detalle del Pedido", vinculando productos con cantidades y precios unitarios específicos.
-
--RF 4: El sistema debe permitir la gestión del catálogo de "Productos", incluyendo su nombre, descripción y niveles de stock. 
-
--RF 5: El sistema debe clasificar los productos mediante "Categorías" y "Tipos de Producto". 
-
--RF 6: El sistema debe administrar diferentes "Precios" de productos en función del tipo de cliente. 
-
--RF 7: El sistema debe generar una "Factura" por cada pedido, detallando el número, la fecha y el monto total.
-
--RF 8: El sistema debe registrar los "Pagos", incluyendo el método utilizado, el monto y la fecha de la transacción.
-
--RF 9: El sistema debe gestionar el "Envío" de los pedidos, registrando el método de entrega, la fecha de envío y el estado.
-
--RF 10: El sistema debe permitir el registro de "Proveedores" y sus datos de contacto.
-
--RF 11: El sistema debe gestionar las "Compras" realizadas, registrando la fecha de la operación. 
-
--RF 12: El sistema debe registrar el "Detalle de Compra", especificando la cantidad y el precio de los productos adquiridos. 
-
-**Requisitos No Funcionales (RNF)**
-
--RNF 1: El sistema debe ser capaz de procesar las consultas de stock y precios en un tiempo de respuesta menor a 2 segundos.
-
--RNF 2: Las contraseñas de los usuarios y la información sensible de los clientes deben estar encriptadas en la base de datos MySQL.
-
--RNF 3: El sistema debe estar disponible para la consulta de pedidos y facturación el 99% del tiempo durante el horario comercial.
-
--RNF 4: La arquitectura debe permitir el incremento de la carga de datos sin degradar el rendimiento general.
-
--RNF 5: El sistema debe garantizar la integridad referencial mediante el uso de JPA/Hibernate.
 
 **Arquitectura de Datos**
 
