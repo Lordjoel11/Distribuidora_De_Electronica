@@ -9,6 +9,7 @@
 * Maven (Gestión de dependencias)
 
  **Requisitos Funcionales:**
+ 
 -RF 1: El sistema debe permitir al Administrador registrar y gestionar clientes, almacenando nombre, apellido, tipo de cliente, teléfono, email, dirección y CUIT.
 
 -RF 2: El sistema debe permitir al Cliente crear pedidos asociados a su cuenta, registrando la fecha y el estado del mismo.
