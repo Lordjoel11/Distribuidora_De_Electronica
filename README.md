@@ -10,6 +10,7 @@ Este proyecto es una solución integral de **backend** desarrollada para gestion
 ## 📋 Requisitos Funcionales
 
 A continuación se detallan los requisitos funcionales basados en el diseño del sistema:
+
 *RF 1:** El sistema debe permitir el registro y gestión de **Clientes**, almacenando nombre, apellido, tipo de cliente, teléfono, email, dirección y CUIT.
 
 *RF 2:** El sistema debe permitir la creación de **Pedidos** asociados a un cliente, registrando la fecha y el estado del mismo. 
