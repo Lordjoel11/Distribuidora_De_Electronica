@@ -36,4 +36,5 @@
 
 
 **Arquitectura de Datos**
+
   El sistema utiliza un modelo relacional que asegura la integridad de la información entre los módulos de ventas, inventario y compras. 
