@@ -34,6 +34,13 @@
 
 -RF 12: El sistema debe registrar el "Detalle de Compra", especificando la cantidad y el precio de los productos adquiridos. 
 
+**Requisitos No Funcionales (RNF)**
+
+-RNF 1: El sistema debe ser capaz de procesar las consultas de stock y precios en un tiempo de respuesta menor a 2 segundos.
+-RNF 2: Las contraseñas de los usuarios y la información sensible de los clientes deben estar encriptadas en la base de datos MySQL.
+-RNF 3: El sistema debe estar disponible para la consulta de pedidos y facturación el 99% del tiempo durante el horario comercial.
+-RNF 4: La arquitectura debe permitir el incremento de la carga de datos sin degradar el rendimiento general.
+-RNF 5: El sistema debe garantizar la integridad referencial mediante el uso de JPA/Hibernate.
 
 **Arquitectura de Datos**
 
