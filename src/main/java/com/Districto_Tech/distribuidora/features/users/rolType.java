@@ -1,4 +1,5 @@
 package com.Districto_Tech.distribuidora.features.users;
 
-public class Users {
+public enum rolType {
+    ADMIN, EMPLOYEE, CLIENT;
 }
