@@ -1,7 +1,8 @@
-package com.Districto_Tech.distribuidora.features.clients;
+package com.Districto_Tech.distribuidora.features.clients.entity;
 
+import com.Districto_Tech.distribuidora.features.clients.miscellaneous.Adress;
+import com.Districto_Tech.distribuidora.features.clients.miscellaneous.ClientType;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Objects;
 
