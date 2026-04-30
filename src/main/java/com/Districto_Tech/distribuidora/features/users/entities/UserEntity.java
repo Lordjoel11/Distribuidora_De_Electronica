@@ -1,5 +1,4 @@
-package com.Districto_Tech.distribuidora.features.shipping;
-import java.time.LocalDate;
+package com.Districto_Tech.distribuidora.features.users.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,20 +10,14 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 
-@Table(name = "shipping")
+@Table(name = "users")
 
-public class shippingEntity {
-
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private shippingStatus status;
-    private int idShipping;
-    private LocalDate date;
-
-
-
-    }
-
+    private String password;
+    private rolType rolType;
+}
