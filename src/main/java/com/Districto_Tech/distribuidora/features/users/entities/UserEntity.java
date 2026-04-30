@@ -1,6 +1,5 @@
-package com.Districto_Tech.distribuidora.features.users.Entities;
+package com.Districto_Tech.distribuidora.features.users.entities;
 
-import com.Districto_Tech.distribuidora.features.users.rolType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +12,7 @@ import lombok.*;
 
 @Table(name = "users")
 
-public class Users {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
