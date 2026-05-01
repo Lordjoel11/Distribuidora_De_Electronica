@@ -1,4 +1,4 @@
-package com.Districto_Tech.distribuidora.features.products;
+package com.Districto_Tech.distribuidora.features.products.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
