@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductoDTO {
+public class ProductDTO {
 
     private String publicId;
 
