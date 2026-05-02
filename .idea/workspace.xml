@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Creacion de Repo, Servis, Controller, DTO, Mappers de User">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="nueva_rama" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Lordjoel11&quot;
+  }
+}</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1777598996" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="nueva_rama" />
+                    <option name="lastUsedInstant" value="1777598930" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1777598900" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="Joel_Branch" />
+                    <option name="lastUsedInstant" value="1777583597" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Lordjoel11/Distribuidora_De_Electronica.git&quot;,
+    &quot;accountId&quot;: &quot;17de6afb-cf84-4bfc-8068-a320c60ff4c3&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3Cm4SdLPD3Hm9MSkgVd94b9oqhz" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DistribuidoraApplication.executor": "Run",
+    "git-widget-placeholder": "nueva__rama",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="DistribuidoraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="DB_USER" value="root" />
+        <env name="DB_PASSWORD" value="Qweasdawd123" />
+      </envs>
+      <module name="distribuidora" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Districto_Tech.distribuidora.DistribuidoraApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="" />
+      <created>1776977418134</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776977418134</updated>
+      <workItem from="1776977424343" duration="332000" />
+      <workItem from="1777068477140" duration="89000" />
+      <workItem from="1777085591781" duration="6000" />
+      <workItem from="1777418134761" duration="5457000" />
+      <workItem from="1777503753170" duration="2722000" />
+      <workItem from="1777571801677" duration="14331000" />
+      <workItem from="1777599081982" duration="2216000" />
+    </task>
+    <task id="LOCAL-00001" summary="Prueba commit">
+      <option name="closed" value="true" />
+      <created>1777418791199</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777418791199</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Configuracion de .yaml para poder conectar la base de datos">
+      <option name="closed" value="true" />
+      <created>1777573592656</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777573592656</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Cree Enum de rol de usuarios y entidad Usuario">
+      <option name="closed" value="true" />
+      <created>1777576347793</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777576347793</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Una breve modificacion en shippingEntity.">
+      <option name="closed" value="true" />
+      <created>1777576494520</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777576494520</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Creacion de Repo, Servis, Controller, DTO, Mappers de User">
+      <option name="closed" value="true" />
+      <created>1777581011270</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777581011270</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Prueba commit" />
+    <MESSAGE value="Configuracion de .yaml para poder conectar la base de datos" />
+    <MESSAGE value="Cree Enum de rol de usuarios y entidad Usuario" />
+    <MESSAGE value="Una breve modificacion en shippingEntity." />
+    <MESSAGE value="Creacion de Repo, Servis, Controller, DTO, Mappers de User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creacion de Repo, Servis, Controller, DTO, Mappers de User" />
+  </component>
+</project>
