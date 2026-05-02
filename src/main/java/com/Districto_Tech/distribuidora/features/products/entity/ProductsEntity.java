@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class productsEntity {
+public class ProductsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
