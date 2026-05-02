@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.products.service;
 
 import com.Districto_Tech.distribuidora.features.products.dto.ProductDTO;
-import com.Districto_Tech.distribuidora.features.products.entity.ProductsEntity;
+import com.Districto_Tech.distribuidora.features.products.entity.ProductEntity;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductMapper;
 import com.Districto_Tech.distribuidora.features.products.repository.ProductRepository;
 import com.Districto_Tech.distribuidora.features.products.service.ProductService;
@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO crear(ProductDTO dto) {
-        ProductsEntity entity = ProductMapper.toEntity(dto);
-        ProductsEntity guardado = repository.save(entity);
+        ProductEntity entity = ProductMapper.toEntity(dto);
+        ProductEntity guardado = repository.save(entity);
         return ProductMapper.toDTO(guardado);
     }
 
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO obtenerPorPublicId(String publicId) {
-        ProductsEntity producto = repository.findByPublicId(publicId)
+        ProductEntity producto = repository.findByPublicId(publicId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
         return ProductMapper.toDTO(producto);
@@ -45,20 +45,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO actualizar(String publicId, ProductDTO dto) {
-        ProductsEntity producto = repository.findByPublicId(publicId)
+        ProductEntity producto = repository.findByPublicId(publicId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        // update limpio (sin tocar publicId)
+
         ProductMapper.updateEntity(producto, dto);
 
-        ProductsEntity actualizado = repository.save(producto);
+        ProductEntity actualizado = repository.save(producto);
 
         return ProductMapper.toDTO(actualizado);
     }
 
     @Override
     public void eliminar(String publicId) {
-        ProductsEntity producto = repository.findByPublicId(publicId)
+        ProductEntity producto = repository.findByPublicId(publicId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
         repository.delete(producto);
