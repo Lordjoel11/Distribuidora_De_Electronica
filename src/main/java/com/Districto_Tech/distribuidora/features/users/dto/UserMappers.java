@@ -13,7 +13,6 @@ public class UserMappers implements IMapperConvertGlobalObjects<UserEntity, User
     @Autowired
     private ModelMapper modelMapper;
 
-
     @Override
     public UserEntity toEntityRQ(UserRequestDto requestDto) {
         return modelMapper.map(requestDto, UserEntity.class);
