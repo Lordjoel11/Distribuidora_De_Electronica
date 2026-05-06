@@ -3,6 +3,7 @@ package com.Districto_Tech.distribuidora.features.products.service;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductDTO;
 import com.Districto_Tech.distribuidora.features.products.entity.ProductEntity;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductMapper;
+import com.Districto_Tech.distribuidora.features.products.exception.ProductNotFoundException;
 import com.Districto_Tech.distribuidora.features.products.repository.ProductRepository;
 
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO obtenerPorPublicId(String publicId) {
         ProductEntity producto = repository.findByPublicId(publicId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
 
         return mapper.toResponseDto(producto);
     }
@@ -48,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO actualizar(String publicId, ProductDTO dto) {
         ProductEntity producto = repository.findByPublicId(publicId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
 
         mapper.updateEntity(producto, dto);
 
@@ -60,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void eliminar(String publicId) {
         ProductEntity producto = repository.findByPublicId(publicId)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
 
         repository.delete(producto);
     }
