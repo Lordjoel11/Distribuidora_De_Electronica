@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Creacion de Repo, Servis, Controller, DTO, Mappers de User" />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Creacion de Repo, Servis, Controller, DTO, Mappers de User">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/providers/dto/ProviderDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/providers/ProviderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/providers/entity/ProviderEntity.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +82,6 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="3Cm4SdLPD3Hm9MSkgVd94b9oqhz" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -94,7 +96,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DistribuidoraApplication.executor": "Run",
-    "git-widget-placeholder": "shipping-develop",
+    "git-widget-placeholder": "features__provider__entity",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,14 +121,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
