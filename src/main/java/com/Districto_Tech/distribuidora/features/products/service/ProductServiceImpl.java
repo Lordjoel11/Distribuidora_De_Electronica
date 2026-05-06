@@ -4,7 +4,6 @@ import com.Districto_Tech.distribuidora.features.products.dto.ProductDTO;
 import com.Districto_Tech.distribuidora.features.products.entity.ProductEntity;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductMapper;
 import com.Districto_Tech.distribuidora.features.products.repository.ProductRepository;
-import com.Districto_Tech.distribuidora.features.products.service.ProductService;
 
 import org.springframework.stereotype.Service;
 
@@ -15,23 +14,26 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository repository;
+    private final ProductMapper mapper;
 
-    public ProductServiceImpl(ProductRepository repository) {
+    //Inyeccion de dependencias
+    public ProductServiceImpl(ProductRepository repository, ProductMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Override
     public ProductDTO crear(ProductDTO dto) {
-        ProductEntity entity = ProductMapper.toEntity(dto);
+        ProductEntity entity = mapper.toEntityRQ(dto);
         ProductEntity guardado = repository.save(entity);
-        return ProductMapper.toDTO(guardado);
+        return mapper.toResponseDto(guardado);
     }
 
     @Override
     public List<ProductDTO> listar() {
         return repository.findAll()
                 .stream()
-                .map(ProductMapper::toDTO)
+                .map(mapper::toResponseDto)
                 .collect(Collectors.toList());
     }
 
@@ -40,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity producto = repository.findByPublicId(publicId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        return ProductMapper.toDTO(producto);
+        return mapper.toResponseDto(producto);
     }
 
     @Override
@@ -48,12 +50,11 @@ public class ProductServiceImpl implements ProductService {
         ProductEntity producto = repository.findByPublicId(publicId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-
-        ProductMapper.updateEntity(producto, dto);
+        mapper.updateEntity(producto, dto);
 
         ProductEntity actualizado = repository.save(producto);
 
-        return ProductMapper.toDTO(actualizado);
+        return mapper.toResponseDto(actualizado);
     }
 
     @Override
