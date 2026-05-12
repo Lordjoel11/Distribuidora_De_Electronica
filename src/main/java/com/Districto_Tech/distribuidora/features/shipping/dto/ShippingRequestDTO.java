@@ -21,7 +21,7 @@ public class ShippingRequestDTO {
 
     private int idShipping;
 
-    @FutureOrPresent (message = "Debe ser una fecha validad")
+    @FutureOrPresent (message = "Debe ser una fecha valida.")
 
     LocalDate date;
 

@@ -1,37 +1,38 @@
-package com.Districto_Tech.distribuidora.features.shipping.entity;
-import java.time.LocalDate;
+package com.Districto_Tech.distribuidora.features.payment.entity;
 
-import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
-@Data
-@Builder
+@Table(name = "payment")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@Builder
 
-@Table(name = "shipping")
-
-public class ShippingEntity {
+public class PaymentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id;
 
     @Column(nullable = false, unique = true, updatable = false)
+
     private String publicId;
 
-    private ShippingStatus status;
-    private int idShipping;
-    private LocalDate date;
+    private PaymentType paymentType;
 
+    private int idPayment;
+
+    private double amount;
+
+    private LocalDate date;
 
     @PrePersist
     public void generateUuid() {
         this.publicId = java.util.UUID.randomUUID().toString();
-    }
-    }
-
+}
+}
