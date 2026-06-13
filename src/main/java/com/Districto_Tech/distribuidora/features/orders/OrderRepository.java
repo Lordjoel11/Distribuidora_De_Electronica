@@ -9,8 +9,8 @@ import java.util.UUID;
 
 @Repository
 
-public interface OrderRepository extends JpaRepository <OrderEntity, Long> {
+public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
-Optional<OrderEntity> findByOrderCode (UUID orderCode);
+    Optional<OrderEntity> findByOrderCode(UUID orderCode);
 
 }

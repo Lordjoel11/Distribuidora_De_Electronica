@@ -12,22 +12,21 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table (name = "order")
+@Table(name = "order")
 
 public class OrderEntity {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (name = "order_code", unique = true)
+    @Column(name = "order_code", unique = true)
     private UUID orderCode;
 
 
-
-    @Column (name = "order_date")
+    @Column(name = "order_date")
     private LocalDate orderDate;
 
-    @Column (name = "order_status")
+    @Column(name = "order_status")
     private Status orderStatus;
 
 //    @ManyToOne (fetch = FetchType.LAZY)

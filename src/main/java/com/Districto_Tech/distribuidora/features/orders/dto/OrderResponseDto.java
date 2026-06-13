@@ -14,5 +14,5 @@ import java.time.LocalDate;
 public class OrderResponseDto {
     private LocalDate orderDate;
     private Status orderStatus;
-    
+
 }

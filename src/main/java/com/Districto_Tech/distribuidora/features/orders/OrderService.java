@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -17,22 +18,43 @@ import java.util.NoSuchElementException;
 public class OrderService {
 
 
-private final OrderMapper orderMapper;
-private final OrderRepository orderRepository;
+    private final OrderMapper orderMapper;
+    private final OrderRepository orderRepository;
 
 
-public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
+    public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
 
-OrderEntity ordeer = orderRepository.findByOrderCode(orderRequestDto.getOrderCode()).
-        orElseThrow(()-> new NoSuchElementException("The requested order code was not found."));
-
-
-OrderEntity orderEntity = orderMapper.toEntity(orderRequestDto);
-
-orderEntity.setOrderStatus(Status.PENDING);
-orderEntity.setOrderDate(LocalDate.now());
+        OrderEntity ordeer = orderRepository.findByOrderCode(orderRequestDto.getOrderCode()).
+                orElseThrow(() -> new NoSuchElementException("The requested order code was not found."));
 
 
-return orderMapper.toDto(orderEntity);
-}
+        OrderEntity orderEntity = orderMapper.toEntity(orderRequestDto);
+
+        orderEntity.setOrderStatus(Status.PENDING);
+        orderEntity.setOrderDate(LocalDate.now());
+
+
+        return orderMapper.toDto(orderRepository.save(orderEntity));
+    }
+
+    public OrderResponseDto cancelOrderById(Long id) {
+
+        OrderEntity orderEntity = orderRepository.findById(id).
+                orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
+
+        orderEntity.setOrderStatus(Status.CANCELED);
+        orderRepository.save(orderEntity);
+        return orderMapper.toDto(orderEntity);
+    }
+
+    public OrderResponseDto cancelOrderByCode(UUID orderCode) {
+
+        OrderEntity orderEntity = orderRepository.findByOrderCode(orderCode).
+                orElseThrow(() -> new NoSuchElementException("No order with this code was found."));
+
+        orderEntity.setOrderStatus(Status.CANCELED);
+        orderRepository.save(orderEntity);
+        return orderMapper.toDto(orderEntity);
+    }
+
 }

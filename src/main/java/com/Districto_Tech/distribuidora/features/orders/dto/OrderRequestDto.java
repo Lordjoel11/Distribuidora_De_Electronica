@@ -22,7 +22,7 @@ public class OrderRequestDto {
 //    @NotNull(message = "The order must be related to an existing employee.")
 //    private EmployeeEntity employeeEntity;
 
-    @NotNull (message = "The order must have a valid code")
+    @NotNull(message = "The order must have a valid code")
     private UUID orderCode;
 
 
