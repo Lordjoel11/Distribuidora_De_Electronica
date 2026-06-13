@@ -8,6 +8,7 @@ import org.hibernate.query.Order;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
 @Service
@@ -29,7 +30,7 @@ OrderEntity ordeer = orderRepository.findByOrderCode(orderRequestDto.getOrderCod
 OrderEntity orderEntity = orderMapper.toEntity(orderRequestDto);
 
 orderEntity.setOrderStatus(Status.PENDING);
-
+orderEntity.setOrderDate(LocalDate.now());
 
 
 return orderMapper.toDto(orderEntity);
