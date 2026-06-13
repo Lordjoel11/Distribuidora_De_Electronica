@@ -1,7 +1,8 @@
-package com.Districto_Tech.distribuidora.features.orders.dto;
+package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.common.IMapper;
-import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
+import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
+import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

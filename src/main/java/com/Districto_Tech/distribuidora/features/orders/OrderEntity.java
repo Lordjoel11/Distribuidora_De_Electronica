@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Builder
@@ -18,6 +19,11 @@ public class OrderEntity {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column (name = "order_code", unique = true)
+    private UUID orderCode;
+
+
+
     @Column (name = "order_date")
     private LocalDate orderDate;
 
@@ -31,4 +37,13 @@ public class OrderEntity {
 //    @ManyToOne (fetch = FetchType.LAZY)
 //    @JoinColumn (name = "employee_id")
 //    private EmployeeEntity employeeId;
+
+
+    @PrePersist
+
+    protected void generateRandomCode() {
+
+        this.orderCode = UUID.randomUUID();
+
+    }
 }
