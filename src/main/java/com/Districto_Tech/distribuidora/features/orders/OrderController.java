@@ -6,10 +6,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,5 +24,17 @@ public class OrderController {
 
     }
 
+    @DeleteMapping("/api/orders/{id}")
+    public ResponseEntity<Void> cancelOrderById(@PathVariable Long id) {
 
+        orderService.cancelOrderById(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/api/orders/{order_code}")
+    public ResponseEntity<Void> cancelOrderByCode(@PathVariable UUID orderCode) {
+
+        orderService.cancelOrderByCode(orderCode);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

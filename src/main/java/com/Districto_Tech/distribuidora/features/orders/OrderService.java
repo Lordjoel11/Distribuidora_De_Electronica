@@ -3,12 +3,14 @@ package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.query.Order;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -56,5 +58,18 @@ public class OrderService {
         orderRepository.save(orderEntity);
         return orderMapper.toDto(orderEntity);
     }
+
+    public List<OrderResponseDto> listOrders(UUID orderCode) {
+
+        if (orderCode != null) {
+            return orderRepository.getByOrderCode(orderCode).stream()
+                    .map(orderMapper::toDto).toList();
+        }
+
+        return orderRepository.findAll().stream()
+                .map(orderMapper::toDto)
+                .toList();
+    }
+
 
 }
