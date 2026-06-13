@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Creacion de Repo, Servis, Controller, DTO, Mappers de User">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/providers/dto/ProviderMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/MapperConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/dto/OrderMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/dto/OrderRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/dto/OrderResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +26,7 @@
       <list>
         <option value="Exception" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -68,12 +78,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Lordjoel11/Distribuidora_De_Electronica.git&quot;,
-    &quot;accountId&quot;: &quot;17de6afb-cf84-4bfc-8068-a320c60ff4c3&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Lordjoel11/Distribuidora_De_Electronica.git",
+    "accountId": "b78c14f4-96ab-47ee-bf47-833a4e109263"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -81,6 +91,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="3Cm4SdLPD3Hm9MSkgVd94b9oqhz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -93,9 +106,13 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DistribuidoraApplication.executor": "Run",
-    "git-widget-placeholder": "features__provider__entity",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "pedidos-build",
+    "git.auto.fetch.suggestion.counter": "1",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
