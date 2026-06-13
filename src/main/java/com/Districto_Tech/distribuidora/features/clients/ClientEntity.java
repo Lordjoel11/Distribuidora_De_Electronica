@@ -27,12 +27,12 @@ public class ClientEntity {
     @Enumerated(EnumType.STRING)
     private TypeClient typeClient;
     @Column(nullable = false)
-    private Long telefono;
+    private Long phoneNumber;
     @Column(nullable = false)
-    private String direccion;
+    private String address;
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    private UsuarioEntity idUsuario;
+    private UserEntity idUser;
 
 }

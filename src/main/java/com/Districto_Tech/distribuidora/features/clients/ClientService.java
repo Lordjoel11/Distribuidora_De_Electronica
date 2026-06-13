@@ -1,4 +1,4 @@
 package com.Districto_Tech.distribuidora.features.clients;
 
-public interface ClientService {
+public class ClientService {
 }
