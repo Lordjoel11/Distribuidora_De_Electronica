@@ -3,7 +3,10 @@ package com.Districto_Tech.distribuidora.features.orders.dto;
 import com.Districto_Tech.distribuidora.common.IMapper;
 import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class OrderMapper implements IMapper<OrderEntity, OrderResponseDto, OrderRequestDto> {
     ModelMapper modelMapper;
 

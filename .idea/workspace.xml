@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Creacion de Repo, Servis, Controller, DTO, Mappers de User">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/MapperConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/dto/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/dto/OrderRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/dto/OrderResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,12 +69,22 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Lordjoel11/Distribuidora_De_Electronica.git",
-    "accountId": "b78c14f4-96ab-47ee-bf47-833a4e109263"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Lordjoel11/Distribuidora_De_Electronica.git&quot;,
+    &quot;accountId&quot;: &quot;b78c14f4-96ab-47ee-bf47-833a4e109263&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;Lordjoel11&quot;,
+    &quot;repository&quot;: &quot;Distribuidora_De_Electronica&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -111,7 +112,7 @@
     "Spring Boot.DistribuidoraApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "pedidos-build",
-    "git.auto.fetch.suggestion.counter": "1",
+    "git.auto.fetch.suggestion.counter": "2",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
