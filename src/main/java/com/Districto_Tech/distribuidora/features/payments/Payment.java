@@ -36,6 +36,6 @@ public class Payment {
     private DiscountType discountType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "orders_id", nullable = false)
     private OrderEntity order;
 }
