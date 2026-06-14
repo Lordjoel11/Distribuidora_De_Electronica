@@ -12,28 +12,28 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "Clients")
+@Table(name = "clients")
 public class ClientEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IDClient;
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String local_name;
+
+    @Column(nullable = false, unique = true)
+    private String CUIT;
+
     @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String surname;
-    @Column(unique = true, nullable = false)
-    private String DNI;
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TypeClient typeClient;
-    @Column(nullable = false)
-    private Long phoneNumber;
-    @Column(nullable = false)
+    private boolean isVip;
+
+    @Column(nullable = false, unique = true)
+    private String phoneNumber;
+
+    @Column(nullable = false, unique = true)
     private String address;
 
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private UserEntity idUser;
+    @OneToOne(mappedBy = "user_id")
+    private UserEntity userEntity;
 
 }
