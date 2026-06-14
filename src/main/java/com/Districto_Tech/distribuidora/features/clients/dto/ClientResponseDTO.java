@@ -10,8 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientResponseDTO {
-    private String local_name;
-    private String CUIT;
+    private String nameAndSurname;
+    private String DNI;
     private String phoneNumber;
     private String address;
     private boolean isVip;

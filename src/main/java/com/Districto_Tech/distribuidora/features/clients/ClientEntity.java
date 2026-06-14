@@ -19,10 +19,10 @@ public class ClientEntity {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String local_name;
+    private String nameAndSurname;
 
     @Column(nullable = false, unique = true)
-    private String CUIT;
+    private String DNI;
 
     @Column(nullable = false)
     private boolean isVip;
