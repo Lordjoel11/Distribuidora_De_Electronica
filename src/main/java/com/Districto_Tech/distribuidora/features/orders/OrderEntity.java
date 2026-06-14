@@ -50,6 +50,6 @@ public class OrderEntity {
 
     }
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "orderEntity", fetch = FetchType.LAZY)
     private List<OrderDetails> orderDetailsList;
 }

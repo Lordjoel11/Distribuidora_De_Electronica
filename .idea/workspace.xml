@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="creacion de SupplierResponseDto">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Arreglo en la relacion OrderEntity y OrderDetails." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,8 +117,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DistribuidoraApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "nuevoBranch-Marcos",
-    "git-widget-placeholder": "Clients__Ivan",
+    "git-widget-placeholder": "branchPrueba",
     "git.auto.fetch.suggestion.counter": "3",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -243,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781406727090</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Arreglo en la relacion OrderEntity y OrderDetails.">
+      <option name="closed" value="true" />
+      <created>1781415230423</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781415230423</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +274,7 @@
     <MESSAGE value="Arreglo de clases como OrderRequestDto, OrderResponseDto, se agrego la anotacion repository y se agrego la anotacion configuration." />
     <MESSAGE value="Arreglo de clases como OrderRequestDto, OrderResponseDto, se agrego la anotacion repository y se agrego la anotacion configuration. Se creo OrderService, se creo el metodo para encontrar order mediante orderCode." />
     <MESSAGE value="Corrijo controller y aplico IService en el servicio." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrijo controller y aplico IService en el servicio." />
+    <MESSAGE value="Arreglo en la relacion OrderEntity y OrderDetails." />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglo en la relacion OrderEntity y OrderDetails." />
   </component>
 </project>
