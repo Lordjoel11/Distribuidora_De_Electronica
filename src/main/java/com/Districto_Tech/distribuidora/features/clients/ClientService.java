@@ -19,11 +19,13 @@ public class ClientService {
             return clientMapper.toDto(clientRepository.save(clientEntity));
         }else{
 
-            throw new RuntimeException()
+            throw new ClientAlreadyExistsException("The client already exists");
 
         }
 
     }
+
+
 
 
 
