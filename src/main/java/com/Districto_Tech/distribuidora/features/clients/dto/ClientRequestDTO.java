@@ -11,14 +11,16 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientRequestDTO {
-    @NotBlank(message = "El nombre del local es requerido.")
-    private String local_name;
 
-    @NotBlank(message = "El nombre del local es requerido.")
-    private String CUIT;
+    @NotBlank(message = "El nombre y apellido es requerido.")
+    private String nameAndSurname;
+
+    @NotBlank(message = "El DNI es requerido.")
+    private String DNI;
 
     @NotBlank(message = "El numero del local es requerido.")
     private String phoneNumber;
+
     @NotBlank(message = "La direccion de local es requerido.")
     private String address;
 
