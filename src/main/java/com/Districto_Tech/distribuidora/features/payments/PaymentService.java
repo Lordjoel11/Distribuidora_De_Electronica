@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.payments;
 
 import com.Districto_Tech.distribuidora.common.IService;
-import com.Districto_Tech.distribuidora.common.exceptions.NoEncontradoException;
+import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import com.Districto_Tech.distribuidora.features.orders.OrderRepository;
 import com.Districto_Tech.distribuidora.features.payments.discount.DiscountType;
@@ -10,6 +10,7 @@ import com.Districto_Tech.distribuidora.features.payments.dto.PaymentRequestDto;
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentResponseDto;
 import com.Districto_Tech.distribuidora.features.payments.methods.PaymentMethod;
 import com.Districto_Tech.distribuidora.features.payments.methods.PaymentMethodRepository;
+import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +30,13 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
     @Override
     public PaymentResponseDto save(PaymentRequestDto request) {
         PaymentMethod method = paymentMethodRepository.findById(request.getPaymentMethodId())
-                .orElseThrow(() -> new NoEncontradoException("Método de pago no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Método de pago no encontrado."));
 
         DiscountType discount = discountTypeRepository.findById(request.getDiscountTypeId())
-                .orElseThrow(() -> new NoEncontradoException("Tipo de descuento no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Tipo de descuento no encontrado."));
 
         OrderEntity order = orderRepository.findById(request.getOrderId())
-                .orElseThrow(() -> new NoEncontradoException("Pedido no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         Payment payment = Payment.builder()
                 .amount(request.getAmount())
@@ -59,22 +60,22 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
     @Override
     public PaymentResponseDto getById(Long id) {
         return toResponse(paymentRepository.findById(id)
-                .orElseThrow(() -> new NoEncontradoException("Pago no encontrado.")));
+                .orElseThrow(() -> new ResourceNotFoundException("Pago no encontrado.")));
     }
 
     @Override
     public PaymentResponseDto update(Long id, PaymentRequestDto request) {
         Payment payment = paymentRepository.findById(id)
-                .orElseThrow(() -> new NoEncontradoException("Pago no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Pago no encontrado."));
 
         PaymentMethod method = paymentMethodRepository.findById(request.getPaymentMethodId())
-                .orElseThrow(() -> new NoEncontradoException("Método de pago no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Método de pago no encontrado."));
 
         DiscountType discount = discountTypeRepository.findById(request.getDiscountTypeId())
-                .orElseThrow(() -> new NoEncontradoException("Tipo de descuento no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Tipo de descuento no encontrado."));
 
         OrderEntity order = orderRepository.findById(request.getOrderId())
-                .orElseThrow(() -> new NoEncontradoException("Pedido no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         payment.setAmount(request.getAmount());
         payment.setPaymentMethod(method);
@@ -85,7 +86,7 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         paymentRepository.deleteById(id);
     }
 
