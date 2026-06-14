@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.suppliers;
 
 import com.Districto_Tech.distribuidora.common.IService;
-import com.Districto_Tech.distribuidora.common.exceptions.NoEncontradoException;
+import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.suppliers.dto.SupplierRequestDto;
 import com.Districto_Tech.distribuidora.features.suppliers.dto.SupplierResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -35,14 +35,14 @@ public class SupplierService implements IService<SupplierRequestDto, SupplierRes
     @Override
     public SupplierResponseDto getById(Long id) {
         Supplier supplier = supplierRepository.findById(id)
-                .orElseThrow(() -> new NoEncontradoException("Proveedor no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado."));
         return modelMapper.map(supplier, SupplierResponseDto.class);
     }
 
     @Override
     public SupplierResponseDto update(Long id, SupplierRequestDto request) {
         Supplier supplier = supplierRepository.findById(id)
-                .orElseThrow(() -> new NoEncontradoException("Proveedor no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado."));
 
         supplier.setName(request.getName());
         supplier.setCuit(request.getCuit());
@@ -52,7 +52,7 @@ public class SupplierService implements IService<SupplierRequestDto, SupplierRes
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         supplierRepository.deleteById(id);
     }
 }

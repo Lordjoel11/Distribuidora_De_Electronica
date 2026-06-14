@@ -8,7 +8,7 @@ public interface IService<RQS,RPS,ID> {
     List<RPS> getAll();
     RPS getById(ID id);
     RPS update(ID id, RQS request);
-    void delete(ID id);
+    void deleteById(ID id);
 }
 
 
