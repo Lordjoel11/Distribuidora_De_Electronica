@@ -1,9 +1,11 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "order")
+@Table(name = "orders")
 
 public class OrderEntity {
     @Id
@@ -26,7 +28,9 @@ public class OrderEntity {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
+
     @Column(name = "order_status")
+    @Enumerated (EnumType.STRING)
     private Status orderStatus;
 
 //    @ManyToOne (fetch = FetchType.LAZY)
@@ -45,4 +49,7 @@ public class OrderEntity {
         this.orderCode = UUID.randomUUID();
 
     }
+
+    @OneToMany(mappedBy = "orders")
+    private List<OrderDetails> orderDetailsList;
 }
