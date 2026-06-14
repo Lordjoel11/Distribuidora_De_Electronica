@@ -1,18 +1,17 @@
 package com.Districto_Tech.distribuidora.features.clients;
 
-import com.Districto_Tech.distribuidora.common.IMapper;
+import com.Districto_Tech.distribuidora.common.IModelMapper;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientRequestDTO;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.ModelMap;
 
 @Component
-public class ClientMapper implements IMapper<ClientEntity, ClientResponseDTO, ClientRequestDTO> {
+public class ClientModelMapper implements IModelMapper<ClientEntity, ClientResponseDTO, ClientRequestDTO> {
 
     private ModelMapper modelMapper;
 
-    public ClientMapper(ModelMapper modelMapper) {
+    public ClientModelMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
 

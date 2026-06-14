@@ -1,15 +1,15 @@
 package com.Districto_Tech.distribuidora.features.orders_details;
 
-import com.Districto_Tech.distribuidora.common.IMapper;
-import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
+import com.Districto_Tech.distribuidora.common.IModelMapper;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
-public class OrderDetailsMapper implements IMapper<OrderDetails, OrderDetailsResponseDto, OrderDetailsRequestDto> {
+public class OrderDetailsModelMapper implements IModelMapper<OrderDetails, OrderDetailsResponseDto, OrderDetailsRequestDto> {
     ModelMapper modelMapper;
 
     @Override
