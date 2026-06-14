@@ -20,20 +20,18 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> create (@Valid @RequestBody UserRequestDto request){
+    public ResponseEntity<UserResponseDto> create(@Valid @RequestBody UserRequestDto request) {
         UserResponseDto newUser = userService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDto>> getAll ()
-    {
+    public ResponseEntity<List<UserResponseDto>> getAll() {
         return ResponseEntity.ok(userService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> getById (@PathVariable Long id)
-    {
+    public ResponseEntity<UserResponseDto> getById(@PathVariable Long id) {
         UserResponseDto user = userService.getById(id);
         return ResponseEntity.ok(user);
     }
@@ -42,15 +40,16 @@ public class UserController {
     public ResponseEntity<UserResponseDto> update(
             @PathVariable Long id,
             @Valid @RequestBody UserRequestDto request
-    ){
+    ) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        UserResponseDto userRemover = userService.getById(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+
 
 
 

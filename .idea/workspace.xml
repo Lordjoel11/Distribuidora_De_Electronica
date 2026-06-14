@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="creacion de SupplierResponseDto">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/ErrorDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4299d90b-29b2-4fb6-8cac-e3ddec10e15d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/NoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/ResourceNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/SupplierService.java" afterDir="false" />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Arreglos en problema de pusheo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/payments/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/payments/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/payments/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/payments/PaymentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/common/IService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/common/IService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/dto/ProductRequest$ProductRequestBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/dto/ProductRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/dto/ProductResponse$ProductResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/products/dto/ProductResponse.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +124,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DistribuidoraApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Breanch__User__Create",
+    "git-widget-placeholder": "NewBranch-payments",
     "git.auto.fetch.suggestion.counter": "3",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -264,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781407980635</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Arreglos en problema de pusheo">
+      <option name="closed" value="true" />
+      <created>1781411962755</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1781411962755</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +308,7 @@
     <MESSAGE value="crecion de supplier entity" />
     <MESSAGE value="creacion de SupplierRequestDto" />
     <MESSAGE value="creacion de SupplierResponseDto" />
-    <option name="LAST_COMMIT_MESSAGE" value="creacion de SupplierResponseDto" />
+    <MESSAGE value="Arreglos en problema de pusheo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglos en problema de pusheo" />
   </component>
 </project>

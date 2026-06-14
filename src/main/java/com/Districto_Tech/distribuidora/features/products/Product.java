@@ -22,7 +22,7 @@ public class Product {
 
     private Integer stock;
 
-    private Float unitPrice;
+    private Double unitPrice;
 
     @Enumerated(EnumType.STRING)
     private Category category;
