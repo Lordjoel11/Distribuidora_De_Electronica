@@ -24,7 +24,7 @@ public class ProductRequestDto {
 
     @NotNull(message = "El precio unitario es obligatorio")
     @Positive(message = "El precio unitario debe ser mayor a 0")
-    private Float unitPrice;
+    private Double unitPrice;
 
     @NotNull(message = "La categoría es obligatoria")
     private Category category;

@@ -16,14 +16,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column (name = "name")
     private String name;
 
+    @Column (name = "description")
     private String description;
 
+    @Column (name = "stock")
     private Integer stock;
 
-    private Float unitPrice;
+    @Column (name = "unit_price")
+    private Double unitPrice;
 
+    @Column (name = "category")
     @Enumerated(EnumType.STRING)
     private Category category;
 }

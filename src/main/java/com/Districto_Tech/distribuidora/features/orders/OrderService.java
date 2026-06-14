@@ -26,7 +26,7 @@ public class OrderService {
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
 
-        OrderEntity ordeer = orderRepository.findByOrderCode(orderRequestDto.getOrderCode()).
+        OrderEntity order = orderRepository.findByOrderCode(orderRequestDto.getOrderCode()).
                 orElseThrow(() -> new NoSuchElementException("The requested order code was not found."));
 
 
