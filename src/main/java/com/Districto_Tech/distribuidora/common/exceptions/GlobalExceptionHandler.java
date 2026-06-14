@@ -11,9 +11,9 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ProductoNoEncontradoException.class)
+    @ExceptionHandler(NoEncontradoException.class)
     public ResponseEntity<String> handleProductoNoEncontradoException(
-            ProductoNoEncontradoException ex) {
+            NoEncontradoException ex) {
 
         return new ResponseEntity<>(
                 ex.getMessage(),
@@ -21,9 +21,9 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(DatosProductoInvalidosException.class)
+    @ExceptionHandler(DatoInvalidoException.class)
     public ResponseEntity<String> handleDatosProductoInvalidosException(
-            DatosProductoInvalidosException ex) {
+            DatoInvalidoException ex) {
 
         return new ResponseEntity<>(
                 ex.getMessage(),

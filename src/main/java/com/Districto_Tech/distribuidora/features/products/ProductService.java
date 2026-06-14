@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.products;
 
 import com.Districto_Tech.distribuidora.common.IService;
-import com.Districto_Tech.distribuidora.common.exceptions.ProductoNoEncontradoException;
+import com.Districto_Tech.distribuidora.common.exceptions.NoEncontradoException;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductRequestDto;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,7 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     @Override
     public ProductResponseDto getById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado."));
+                .orElseThrow(() -> new NoEncontradoException("Producto no encontrado."));
 
         return modelMapper.map(product, ProductResponseDto.class);
     }
@@ -45,7 +45,7 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     @Override
     public ProductResponseDto update(Long id, ProductRequestDto request) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado."));
+                .orElseThrow(() -> new NoEncontradoException("Producto no encontrado."));
 
         product.setName(request.getName());
         product.setDescription(request.getDescription());
@@ -59,6 +59,8 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     @Override
     public void delete(Long id){productRepository.deleteById(id);}
 
+
+    
 
 }
 
