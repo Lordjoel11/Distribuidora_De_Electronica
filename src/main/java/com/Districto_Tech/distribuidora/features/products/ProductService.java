@@ -1,8 +1,9 @@
 package com.Districto_Tech.distribuidora.features.products;
 
-import com.Districto_Tech.distribuidora.common.exceptions.ProductoNoEncontradoException;
-import com.Districto_Tech.distribuidora.features.products.dto.ProductRequest;
-import com.Districto_Tech.distribuidora.features.products.dto.ProductResponse;
+import com.Districto_Tech.distribuidora.common.IService;
+import com.Districto_Tech.distribuidora.common.exceptions.NoEncontradoException;
+import com.Districto_Tech.distribuidora.features.products.dto.ProductRequestDto;
+import com.Districto_Tech.distribuidora.features.products.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -12,34 +13,39 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public class ProductService implements IService<ProductRequestDto, ProductResponseDto, Long> {
 
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
 
-    public List<ProductResponse> findAll() {
+
+    @Override
+    public ProductResponseDto save(ProductRequestDto request) {
+        Product product = modelMapper.map(request, Product.class);
+        Product saved = productRepository.save(product);
+        return modelMapper.map(saved, ProductResponseDto.class);
+    }
+
+    @Override
+    public List<ProductResponseDto> getAll() {
         return productRepository.findAll()
                 .stream()
-                .map(product -> modelMapper.map(product, ProductResponse.class))
+                .map(product -> modelMapper.map(product, ProductResponseDto.class))
                 .collect(Collectors.toList());
     }
 
-    public ProductResponse findById(Long id) {
+    @Override
+    public ProductResponseDto getById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado."));
+                .orElseThrow(() -> new NoEncontradoException("Producto no encontrado."));
 
-        return modelMapper.map(product, ProductResponse.class);
+        return modelMapper.map(product, ProductResponseDto.class);
     }
 
-    public ProductResponse save(ProductRequest request) {
-        Product product = modelMapper.map(request, Product.class);
-        Product saved = productRepository.save(product);
-        return modelMapper.map(saved, ProductResponse.class);
-    }
-
-    public ProductResponse update(Long id, ProductRequest request) {
+    @Override
+    public ProductResponseDto update(Long id, ProductRequestDto request) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado."));
+                .orElseThrow(() -> new NoEncontradoException("Producto no encontrado."));
 
         product.setName(request.getName());
         product.setDescription(request.getDescription());
@@ -47,8 +53,14 @@ public class ProductService {
         product.setUnitPrice(request.getUnitPrice());
         product.setCategory(request.getCategory());
 
-        return modelMapper.map(productRepository.save(product), ProductResponse.class);
+        return modelMapper.map(productRepository.save(product), ProductResponseDto.class);
     }
+
+    @Override
+    public void delete(Long id){productRepository.deleteById(id);}
+
+
+    
 
 }
 
