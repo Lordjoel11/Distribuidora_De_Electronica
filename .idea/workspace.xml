@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Arreglos en los controllers. (/api) faltante." />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="creacion de SupplierResponseDto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/ErrorDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4299d90b-29b2-4fb6-8cac-e3ddec10e15d.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/NoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/SupplierService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,8 +22,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -110,7 +117,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DistribuidoraApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "NewBranch-payments",
+    "git-widget-placeholder": "Breanch__User__Create",
     "git.auto.fetch.suggestion.counter": "3",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -257,71 +264,7 @@
       <option name="project" value="LOCAL" />
       <updated>1781407980635</updated>
     </task>
-    <task id="LOCAL-00014" summary="creacion de PaymentMethod y el enum PaymentMethodType">
-      <option name="closed" value="true" />
-      <created>1781410125624</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410125624</updated>
-    </task>
-    <task id="LOCAL-00015" summary="creacion de DiscountCategory y DiscountCategory, Y acomodar mejor en carpetas para mas prolijidad.">
-      <option name="closed" value="true" />
-      <created>1781410286274</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410286274</updated>
-    </task>
-    <task id="LOCAL-00016" summary="creacion de Payment entity.">
-      <option name="closed" value="true" />
-      <created>1781410348933</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410348933</updated>
-    </task>
-    <task id="LOCAL-00017" summary="creacion de los dtos.">
-      <option name="closed" value="true" />
-      <created>1781410410816</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410410816</updated>
-    </task>
-    <task id="LOCAL-00018" summary="creacion de los repositories de methods,discount y payment. Creacion de PaymentService.">
-      <option name="closed" value="true" />
-      <created>1781410657324</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410657324</updated>
-    </task>
-    <task id="LOCAL-00019" summary="creacion de los PaymentController">
-      <option name="closed" value="true" />
-      <created>1781410782244</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410782244</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Arreglos en los controllers. (/api) faltante.">
-      <option name="closed" value="true" />
-      <created>1781410926745</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410926745</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Arreglos en los controllers. (/api) faltante.">
-      <option name="closed" value="true" />
-      <created>1781410932493</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1781410932493</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,13 +293,6 @@
     <MESSAGE value="crecion de supplier entity" />
     <MESSAGE value="creacion de SupplierRequestDto" />
     <MESSAGE value="creacion de SupplierResponseDto" />
-    <MESSAGE value="creacion de PaymentMethod y el enum PaymentMethodType" />
-    <MESSAGE value="creacion de DiscountCategory y DiscountCategory, Y acomodar mejor en carpetas para mas prolijidad." />
-    <MESSAGE value="creacion de Payment entity." />
-    <MESSAGE value="creacion de los dtos." />
-    <MESSAGE value="creacion de los repositories de methods,discount y payment. Creacion de PaymentService." />
-    <MESSAGE value="creacion de los PaymentController" />
-    <MESSAGE value="Arreglos en los controllers. (/api) faltante." />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglos en los controllers. (/api) faltante." />
+    <option name="LAST_COMMIT_MESSAGE" value="creacion de SupplierResponseDto" />
   </component>
 </project>
