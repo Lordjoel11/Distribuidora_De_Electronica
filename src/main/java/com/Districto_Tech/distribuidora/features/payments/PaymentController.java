@@ -41,7 +41,7 @@ public class PaymentController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        paymentService.delete(id);
+        paymentService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }
