@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.clients;
 
+import com.Districto_Tech.distribuidora.common.exceptions.ClientAlreadyExistsException;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientRequestDTO;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientResponseDTO;
 import lombok.RequiredArgsConstructor;
