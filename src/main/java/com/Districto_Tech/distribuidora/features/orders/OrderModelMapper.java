@@ -1,6 +1,6 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
-import com.Districto_Tech.distribuidora.common.IMapper;
+import com.Districto_Tech.distribuidora.common.IModelMapper;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import org.modelmapper.ModelMapper;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class OrderMapper implements IMapper<OrderEntity, OrderResponseDto, OrderRequestDto> {
+public class OrderModelMapper implements IModelMapper<OrderEntity, OrderResponseDto, OrderRequestDto> {
     ModelMapper modelMapper;
 
-    public OrderMapper(ModelMapper modelMapper) {
+    public OrderModelMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
 

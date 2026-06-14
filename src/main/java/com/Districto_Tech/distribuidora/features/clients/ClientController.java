@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientController {
 
-
     private final ClientService clientService;
 
     @PostMapping
@@ -47,6 +46,5 @@ public class ClientController {
         clientService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

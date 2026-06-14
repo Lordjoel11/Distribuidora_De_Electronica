@@ -33,7 +33,8 @@ public class ClientEntity {
     @Column(nullable = false, unique = true)
     private String address;
 
-    @OneToOne(mappedBy = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
 }

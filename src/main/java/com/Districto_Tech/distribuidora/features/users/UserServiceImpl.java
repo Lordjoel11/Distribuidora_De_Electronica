@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto, Long> {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+    private final UserModelMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserModelMapper userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
     }

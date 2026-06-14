@@ -1,17 +1,11 @@
 package com.Districto_Tech.distribuidora.features.orders_details;
 
-import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
-import com.Districto_Tech.distribuidora.features.orders.OrderMapper;
-import com.Districto_Tech.distribuidora.features.orders.OrderRepository;
 import com.Districto_Tech.distribuidora.features.orders.Status;
-import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
-import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -22,13 +16,13 @@ import java.util.UUID;
 public class OrderDetailsService {
 
 
-    private final OrderDetailsMapper orderDetailsMapper;
+    private final OrderDetailsModelMapper orderDetailsMapper;
     private final OrderDetailsRepository orderDetailsRepository;
 
 
     public OrderDetailsResponseDto createOrder(OrderDetailsRequestDto orderDetailsRequestDto) {
 
-        OrderDetails orderDetails = orderDetailsRepository.findByOrderCode(orderDetailsRequestDto.getPublicId()).
+        OrderDetails orderDetails = orderDetailsRepository.findFirstByOrderEntity_OrderCode(orderDetailsRequestDto.getPublicId()).
                 orElseThrow(() -> new NoSuchElementException("The requested order code was not found."));
 
 
@@ -52,7 +46,7 @@ public class OrderDetailsService {
 
     public OrderDetailsResponseDto cancelOrderByCode(UUID publicId) {
 
-        OrderDetails orderDetails = orderDetailsRepository.findByOrderCode(publicId).
+        OrderDetails orderDetails = orderDetailsRepository.findFirstByOrderEntity_OrderCode(publicId).
                 orElseThrow(() -> new NoSuchElementException("No order with this code was found."));
 
         orderDetails.getOrderEntity().setOrderStatus(Status.CANCELED);
@@ -63,7 +57,7 @@ public class OrderDetailsService {
     public List<OrderDetailsResponseDto> listOrders(UUID publicId) {
 
         if (publicId != null) {
-            return orderDetailsRepository.getByOrderCode(publicId).stream()
+            return orderDetailsRepository.findByOrderEntity_OrderCode(publicId).stream()
                     .map(orderDetailsMapper::toDto).toList();
         }
 

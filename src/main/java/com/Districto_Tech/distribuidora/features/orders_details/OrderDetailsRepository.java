@@ -10,7 +10,9 @@ import java.util.UUID;
 
 @Repository
 public interface OrderDetailsRepository extends JpaRepository <OrderDetails, Long> {
-    Optional<OrderDetails> findByOrderCode(UUID publicId);
 
-    List<OrderDetails> getByOrderCode(UUID publicId);
+
+    Optional<OrderDetails> findFirstByOrderEntity_OrderCode(UUID orderCode);
+
+    List<OrderDetails> findByOrderEntity_OrderCode(UUID orderCode);
 }

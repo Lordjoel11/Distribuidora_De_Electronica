@@ -1,12 +1,10 @@
 package com.Districto_Tech.distribuidora.features.clients;
-
 import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientRequestDTO;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +13,7 @@ import java.util.stream.Collectors;
 public class ClientService implements IService<ClientRequestDTO, ClientResponseDTO, Long> {
 
     private final ClientRepository clientRepository;
-    private final ClientMapper clientMapper;
+    private final ClientModelMapper clientMapper;
 
 
     @Override
