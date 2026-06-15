@@ -12,18 +12,19 @@ import lombok.*;
 @AllArgsConstructor
 public class ClientRequestDTO {
 
-    @NotBlank(message = "El nombre y apellido es requerido.")
+    @NotBlank(message = "The name and surname is necessary")
     private String nameAndSurname;
 
-    @NotBlank(message = "El DNI es requerido.")
+    @NotBlank(message = "The DNI is necessary")
     private String DNI;
 
-    @NotBlank(message = "El numero del local es requerido.")
+    @NotBlank(message = "The phone number is necessary")
     private String phoneNumber;
 
-    @NotBlank(message = "La direccion de local es requerido.")
+    @NotBlank(message = "The address is necessary")
     private String address;
 
+    @NotBlank(message = "Whether the client is vip or not is necessary")
     private boolean isVip;
 
 }

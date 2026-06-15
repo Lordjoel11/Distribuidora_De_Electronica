@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.features.users;
 
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,5 +35,8 @@ public class UserEntity {
 
     @OneToOne(mappedBy = "userEntity")
     private ClientEntity client;
+
+    @OneToOne(mappedBy= "userEntity")
+    private EmployeeEntity employee;
 
 }
