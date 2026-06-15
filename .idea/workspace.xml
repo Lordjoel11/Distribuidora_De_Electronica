@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Small changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeModelMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/dtos/EmployeeRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/dtos/EmployeeResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/misc/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserEntity.java" afterDir="false" />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/EmployeeAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/exceptions/EmployeeNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +17,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Exception" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -261,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781476146688</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes.">
+      <option name="closed" value="true" />
+      <created>1781486494407</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1781486494407</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,6 +292,7 @@
     <MESSAGE value="Corrijo controller y aplico IService en el servicio." />
     <MESSAGE value="Changed getAll and getById to findAll and findById for Jira" />
     <MESSAGE value="Small changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small changes" />
+    <MESSAGE value="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes." />
   </component>
 </project>
