@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.common.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -57,4 +58,22 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST
         );
 
-    }}
+    }
+
+    @ExceptionHandler(ShippingAlreadyExistsException.class)
+    public ResponseEntity<String> handleShippingAlreadyExistsException(ShippingAlreadyExistsException ex) {
+        return new ResponseEntity<>(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(ShippingNotFoundException.class)
+    public ResponseEntity<String> handleShippingNotFoundException(ShippingNotFoundException ex) {
+        return new ResponseEntity<>(
+                ex.getMessage(),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+}
