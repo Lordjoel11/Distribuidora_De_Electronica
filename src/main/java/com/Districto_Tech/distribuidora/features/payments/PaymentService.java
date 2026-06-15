@@ -58,7 +58,7 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
     }
 
     @Override
-    public UserResponseDto getById(Long id) {
+    public PaymentResponseDto getById(Long id) {
         return toResponse(paymentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pago no encontrado.")));
     }

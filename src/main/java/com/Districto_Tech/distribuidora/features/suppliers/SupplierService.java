@@ -34,7 +34,7 @@ public class SupplierService implements IService<SupplierRequestDto, SupplierRes
     }
 
     @Override
-    public UserResponseDto getById(Long id) {
+    public SupplierResponseDto getById(Long id) {
         Supplier supplier = supplierRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado."));
         return modelMapper.map(supplier, SupplierResponseDto.class);

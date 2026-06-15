@@ -39,7 +39,7 @@ public class ClientService implements IService<ClientRequestDTO, ClientResponseD
     }
 
     @Override
-    public UserResponseDto getById(Long id) {
+    public ClientResponseDTO getById(Long id) {
         ClientEntity userEntity = clientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado con ID: " + id));
 
