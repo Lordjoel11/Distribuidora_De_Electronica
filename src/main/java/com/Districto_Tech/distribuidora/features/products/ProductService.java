@@ -36,7 +36,7 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     }
 
     @Override
-    public UserResponseDto getById(Long id) {
+    public ProductResponseDto getById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 
