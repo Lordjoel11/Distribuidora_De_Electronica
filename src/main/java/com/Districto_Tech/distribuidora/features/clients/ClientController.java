@@ -23,21 +23,18 @@ public class ClientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ClientResponseDTO>> getAll() {
+    public ResponseEntity<List<ClientResponseDTO>> findAll() {
         return ResponseEntity.ok(clientService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientResponseDTO> getById(@PathVariable Long id) {
+    public ResponseEntity<ClientResponseDTO> findById(@PathVariable Long id) {
         ClientResponseDTO user = clientService.getById(id);
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<ClientResponseDTO> update(
-            @PathVariable Long id,
-            @Valid @RequestBody ClientRequestDTO request
-    ) {
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientResponseDTO> update(@PathVariable Long id, @Valid @RequestBody ClientRequestDTO request){
         return ResponseEntity.status(HttpStatus.CREATED).body(clientService.update(id, request));
     }
 

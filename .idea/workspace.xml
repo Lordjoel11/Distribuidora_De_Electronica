@@ -4,40 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="creacion de SupplierResponseDto">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="2 exceptions for Employee, Employee service done.">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4299d90b-29b2-4fb6-8cac-e3ddec10e15d/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4299d90b-29b2-4fb6-8cac-e3ddec10e15d/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4299d90b-29b2-4fb6-8cac-e3ddec10e15d/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4299d90b-29b2-4fb6-8cac-e3ddec10e15d/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IModelMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/MapperConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/MapperConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientModelMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderModelMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsModelMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserModelMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/common/MapperConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/common/MapperConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity$ClientEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity$ClientEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO$ClientResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO$ClientResponseDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity$UserEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity$UserEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/Misc/TypeClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/Misc/TypeClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeModelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/dtos/EmployeeRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/dtos/EmployeeRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/dtos/EmployeeResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/dtos/EmployeeResponseDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,15 +32,15 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="shippingBranch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -107,7 +90,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Lordjoel11/Distribuidora_De_Electronica.git&quot;,
-    &quot;accountId&quot;: &quot;b78c14f4-96ab-47ee-bf47-833a4e109263&quot;
+    &quot;accountId&quot;: &quot;7450fa01-1d04-49b4-b674-a706acb71ddf&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -133,35 +116,35 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DistribuidoraApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DistribuidoraApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Breanch__User__Create&quot;,
-    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;3&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DistribuidoraApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DistribuidoraApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "#45 on ClientStuff",
+    "git.auto.fetch.suggestion.counter": "3",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="DistribuidoraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
@@ -174,6 +157,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -270,7 +260,39 @@
       <option name="project" value="LOCAL" />
       <updated>1781406727090</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Changed getAll and getById to findAll and findById for Jira">
+      <option name="closed" value="true" />
+      <created>1781473809444</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781473809444</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Small changes">
+      <option name="closed" value="true" />
+      <created>1781476146688</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1781476146688</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes.">
+      <option name="closed" value="true" />
+      <created>1781486494407</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1781486494407</updated>
+    </task>
+    <task id="LOCAL-00014" summary="2 exceptions for Employee, Employee service done.">
+      <option name="closed" value="true" />
+      <created>1781490408674</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1781490408674</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +318,10 @@
     <MESSAGE value="Arreglo de clases como OrderRequestDto, OrderResponseDto, se agrego la anotacion repository y se agrego la anotacion configuration." />
     <MESSAGE value="Arreglo de clases como OrderRequestDto, OrderResponseDto, se agrego la anotacion repository y se agrego la anotacion configuration. Se creo OrderService, se creo el metodo para encontrar order mediante orderCode." />
     <MESSAGE value="Corrijo controller y aplico IService en el servicio." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrijo controller y aplico IService en el servicio." />
+    <MESSAGE value="Changed getAll and getById to findAll and findById for Jira" />
+    <MESSAGE value="Small changes" />
+    <MESSAGE value="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes." />
+    <MESSAGE value="2 exceptions for Employee, Employee service done." />
+    <option name="LAST_COMMIT_MESSAGE" value="2 exceptions for Employee, Employee service done." />
   </component>
 </project>
