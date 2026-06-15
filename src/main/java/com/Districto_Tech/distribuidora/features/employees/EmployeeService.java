@@ -39,12 +39,11 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
     }
 
     @Override
-    public EmployeeResponseDTO update(Long ID, EmployeeRequestDTO request, Long phoneNumber) {
+    public EmployeeResponseDTO update(Long ID, EmployeeRequestDTO request) {
         if(!employeeRepository.existsById(ID)){
             throw new EmployeeNotFoundException("Employee not found, can't be updated");
         }
         EmployeeEntity updatedEmployee=employeeModelMapper.toEntity(request);
-        updatedEmployee.setPhoneNumber(phoneNumber);
         employeeRepository.save(updatedEmployee);
         return employeeModelMapper.toDto(updatedEmployee);
     }
