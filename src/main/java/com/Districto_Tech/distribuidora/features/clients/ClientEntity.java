@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.features.clients;
 
 import com.Districto_Tech.distribuidora.features.clients.Misc.TypeClient;
+import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,28 +12,29 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "Clients")
+@Table(name = "clients")
 public class ClientEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IDClient;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String surname;
-    @Column(unique = true, nullable = false)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String nameAndSurname;
+
+    @Column(nullable = false, unique = true)
     private String DNI;
+
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TypeClient typeClient;
-    @Column(nullable = false)
-    private Long phoneNumber;
-    @Column(nullable = false)
+    private boolean isVip;
+
+    @Column(nullable = false, unique = true)
+    private String phoneNumber;
+
+    @Column(nullable = false, unique = true)
     private String address;
 
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private UserEntity idUser;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
 }

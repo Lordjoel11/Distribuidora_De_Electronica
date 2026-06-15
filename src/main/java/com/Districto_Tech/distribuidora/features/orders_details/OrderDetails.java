@@ -25,9 +25,6 @@ public class OrderDetails {
     @Column(name = "public_id", unique = true)
     private UUID publicId;
 
-    @OneToMany(mappedBy = "orders_details")
-    private List<OrderDetails> orderDetailsList;
-
     @Column(name = "description")
     private String orderDescription;
 

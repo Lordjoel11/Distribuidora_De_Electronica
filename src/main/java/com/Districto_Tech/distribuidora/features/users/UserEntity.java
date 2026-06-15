@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.users;
 
+import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,5 +31,8 @@ public class UserEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
+
+    @OneToOne(mappedBy = "userEntity")
+    private ClientEntity client;
 
 }

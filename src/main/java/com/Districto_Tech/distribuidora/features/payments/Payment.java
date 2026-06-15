@@ -21,8 +21,10 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "amount")
     private Double amount;
 
+    @Column(name = "date")
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +36,6 @@ public class Payment {
     private DiscountType discountType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "orders_id", nullable = false)
     private OrderEntity order;
 }

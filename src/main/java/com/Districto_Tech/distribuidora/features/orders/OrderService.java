@@ -3,10 +3,7 @@ package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
-import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.query.Order;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,7 +17,7 @@ import java.util.UUID;
 public class OrderService {
 
 
-    private final OrderMapper orderMapper;
+    private final OrderModelMapper orderMapper;
     private final OrderRepository orderRepository;
 
 

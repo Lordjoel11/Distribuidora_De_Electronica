@@ -1,10 +1,29 @@
 package com.Districto_Tech.distribuidora.features.clients.dto;
 
-import jakarta.validation.constraints.NotNull;
+import com.Districto_Tech.distribuidora.features.clients.Misc.TypeClient;
 
-public record ClientRequestDTO(String name,
-                               String surname,
-                               String DNI,
-                               Long phoneNumber,
-                               String address) {
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ClientRequestDTO {
+
+    @NotBlank(message = "El nombre y apellido es requerido.")
+    private String nameAndSurname;
+
+    @NotBlank(message = "El DNI es requerido.")
+    private String DNI;
+
+    @NotBlank(message = "El numero del local es requerido.")
+    private String phoneNumber;
+
+    @NotBlank(message = "La direccion de local es requerido.")
+    private String address;
+
+    private boolean isVip;
+
 }

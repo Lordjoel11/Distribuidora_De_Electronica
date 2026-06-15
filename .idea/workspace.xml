@@ -4,8 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Corrijo controller y aplico IService en el servicio." />
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="creacion de SupplierResponseDto" />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="creacion de SupplierResponseDto">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/MapperConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/MapperConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserModelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/users/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/common/MapperConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/common/MapperConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity$ClientEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity$ClientEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/ClientService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientRequestDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO$ClientResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO$ClientResponseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/clients/dto/ClientResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/orders_details/OrderDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity$UserEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity$UserEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Districto_Tech/distribuidora/features/users/UserEntity.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,20 +77,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="Breanch_User_Create" />
+                    <option name="lastUsedInstant" value="1781414160" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1777598996" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="nueva_rama" />
-                    <option name="lastUsedInstant" value="1777598930" />
-                  </RecentBranch>
-                  <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1777598900" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="Joel_Branch" />
-                    <option name="lastUsedInstant" value="1777583597" />
                   </RecentBranch>
                 </list>
               </option>
@@ -104,36 +133,35 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DistribuidoraApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.DistribuidoraApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "nuevoBranch-Marcos",
-    "git-widget-placeholder": "Clients__Ivan",
-    "git.auto.fetch.suggestion.counter": "3",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DistribuidoraApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DistribuidoraApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Breanch__User__Create&quot;,
+    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;3&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="DistribuidoraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
