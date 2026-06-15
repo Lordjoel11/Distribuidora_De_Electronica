@@ -1,15 +1,17 @@
 package com.Districto_Tech.distribuidora.features.users;
 
 import com.Districto_Tech.distribuidora.common.IModelMapper;
-import com.Districto_Tech.distribuidora.common.MapperConfig;
+import com.Districto_Tech.distribuidora.common.config.MapperConfig;
 import com.Districto_Tech.distribuidora.features.users.dto.UserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserModelMapper implements IModelMapper<UserEntity, UserResponseDto, UserRequestDto> {
 
-    private MapperConfig mapperConfig;
+    private final MapperConfig mapperConfig;
 
     @Override
     public UserEntity toEntity(UserRequestDto userRequestDto) {

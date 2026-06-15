@@ -22,7 +22,9 @@ public class UserRequestDto {
     @NotNull(message = "La contraseña no puede ser nulo.")
     private String password;
 
-    @NotBlank(message = "La contraseña es requerido.")
+    @NotNull(message = "El email no puede ser nulo.")
     private RoleType roleType;
+
+
 
 }
