@@ -4,6 +4,7 @@ import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductRequestDto;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductResponseDto;
+import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     }
 
     @Override
-    public ProductResponseDto getById(Long id) {
+    public UserResponseDto getById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 

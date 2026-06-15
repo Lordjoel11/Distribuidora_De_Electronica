@@ -10,7 +10,7 @@ import com.Districto_Tech.distribuidora.features.payments.dto.PaymentRequestDto;
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentResponseDto;
 import com.Districto_Tech.distribuidora.features.payments.methods.PaymentMethod;
 import com.Districto_Tech.distribuidora.features.payments.methods.PaymentMethodRepository;
-import jakarta.persistence.Id;
+import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +58,7 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
     }
 
     @Override
-    public PaymentResponseDto getById(Long id) {
+    public UserResponseDto getById(Long id) {
         return toResponse(paymentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pago no encontrado.")));
     }
