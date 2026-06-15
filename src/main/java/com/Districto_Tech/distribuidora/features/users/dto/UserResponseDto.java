@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class UserResponseDto {
-    private UUID publicID;
+    private UUID publicId;
     private String email;
     private RoleType roleType;
 }

@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.employees;
 
 import com.Districto_Tech.distribuidora.common.IModelMapper;
-import com.Districto_Tech.distribuidora.common.MapperConfig;
+import com.Districto_Tech.distribuidora.common.config.MapperConfig;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeRequestDTO;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeResponseDTO;
 import lombok.AllArgsConstructor;

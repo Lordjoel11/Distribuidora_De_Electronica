@@ -1,4 +1,4 @@
-package com.Districto_Tech.distribuidora.common;
+package com.Districto_Tech.distribuidora.common.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
