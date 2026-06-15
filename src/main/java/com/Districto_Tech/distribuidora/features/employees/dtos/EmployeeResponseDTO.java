@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.employees.dtos;
 
+import com.Districto_Tech.distribuidora.features.employees.misc.Role;
 import lombok.*;
 
 @Getter
@@ -9,6 +10,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class EmployeeResponseDTO {
-    private Long idEmployee;
-    private Long phoneNumber;
+    private String name;
+    private String surname;
+    private String CUIL;
+    private Role role;
 }

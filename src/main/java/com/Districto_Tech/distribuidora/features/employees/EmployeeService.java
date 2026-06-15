@@ -5,10 +5,14 @@ import com.Districto_Tech.distribuidora.common.exceptions.EmployeeAlreadyExistsE
 import com.Districto_Tech.distribuidora.common.exceptions.EmployeeNotFoundException;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeRequestDTO;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeResponseDTO;
-import org.springframework.http.ResponseEntity;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
+@AllArgsConstructor
 public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeResponseDTO, Long> {
 
     private EmployeeRepository employeeRepository;
@@ -17,11 +21,11 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
     @Override
     public EmployeeResponseDTO save(EmployeeRequestDTO request) {
 
-        if(employeeRepository.existsByCUIL(request.getCUIL())){
+        if(employeeRepository.existsById(employeeModelMapper.toEntity(request).getIdEmployee())){
             throw new EmployeeAlreadyExistsException("The employee already exists");
         }
 
-        EmployeeEntity employee=employeeModelMapper.toEntity(request);
+        EmployeeEntity employee = employeeModelMapper.toEntity(request);
         employeeRepository.save(employee);
 
         return employeeModelMapper.toDto(employee);
@@ -29,7 +33,7 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
 
     @Override
     public List<EmployeeResponseDTO> getAll() {
-        return employeeRepository.findAll().stream().map(employeeModelMapper::toDto).toList();
+        return employeeRepository.findAll().stream().map(employeeModelMapper::toDto).collect(Collectors.toList());
     }
 
     @Override

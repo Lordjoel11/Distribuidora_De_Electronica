@@ -4,9 +4,11 @@ import com.Districto_Tech.distribuidora.common.IModelMapper;
 import com.Districto_Tech.distribuidora.common.MapperConfig;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeRequestDTO;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeResponseDTO;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class EmployeeModelMapper implements IModelMapper<EmployeeEntity, EmployeeResponseDTO, EmployeeRequestDTO> {
 
     private MapperConfig mapperConfig;

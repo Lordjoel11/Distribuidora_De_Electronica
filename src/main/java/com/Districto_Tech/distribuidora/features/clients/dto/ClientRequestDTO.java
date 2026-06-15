@@ -1,7 +1,6 @@
 package com.Districto_Tech.distribuidora.features.clients.dto;
 
-import com.Districto_Tech.distribuidora.features.clients.Misc.TypeClient;
-
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -18,13 +17,16 @@ public class ClientRequestDTO {
     @NotBlank(message = "The DNI is necessary")
     private String DNI;
 
+    @NotBlank(message = "The Email is necessary")
+    @Email(message = "El formato debe contener @gmail.com.")
+    private String Email;
+
     @NotBlank(message = "The phone number is necessary")
     private String phoneNumber;
 
     @NotBlank(message = "The address is necessary")
     private String address;
 
-    @NotBlank(message = "Whether the client is vip or not is necessary")
     private boolean isVip;
 
 }
