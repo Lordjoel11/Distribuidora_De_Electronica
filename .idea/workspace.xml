@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Shipping exceptions, Entity, Mapper, Repository, DTOS, Service">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/common/IService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/clients/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/employees/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/payments/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/payments/PaymentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/products/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/shipping/ShippingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/shipping/ShippingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Districto_Tech/distribuidora/features/suppliers/SupplierService.java" afterDir="false" />
+    <list default="true" id="b4e126ea-d5d5-404a-8d94-74e94b87b3ed" name="Changes" comment="Shipping controller finished">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +278,39 @@
       <option name="project" value="LOCAL" />
       <updated>1781499782592</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Shipping Service finished, and a few other fixes">
+      <option name="closed" value="true" />
+      <created>1781501262981</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1781501262981</updated>
+    </task>
+    <task id="LOCAL-00017" summary="FIXESSS">
+      <option name="closed" value="true" />
+      <created>1781501331972</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1781501331972</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Last fix">
+      <option name="closed" value="true" />
+      <created>1781501357777</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1781501357777</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Shipping controller finished">
+      <option name="closed" value="true" />
+      <created>1781501542025</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1781501542025</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +341,10 @@
     <MESSAGE value="Employee DTOS, Employee ModelMapper, Employee Repository, Employee Role, And minor spelling fixes." />
     <MESSAGE value="2 exceptions for Employee, Employee service done." />
     <MESSAGE value="Shipping exceptions, Entity, Mapper, Repository, DTOS, Service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Shipping exceptions, Entity, Mapper, Repository, DTOS, Service" />
+    <MESSAGE value="Shipping Service finished, and a few other fixes" />
+    <MESSAGE value="FIXESSS" />
+    <MESSAGE value="Last fix" />
+    <MESSAGE value="Shipping controller finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Shipping controller finished" />
   </component>
 </project>
