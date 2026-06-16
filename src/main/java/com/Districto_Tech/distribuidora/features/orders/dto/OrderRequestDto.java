@@ -1,12 +1,10 @@
 package com.Districto_Tech.distribuidora.features.orders.dto;
 
-
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
+import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.UUID;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -22,8 +20,11 @@ public class OrderRequestDto {
 //    @NotNull(message = "The order must be related to an existing employee.")
 //    private EmployeeEntity employeeEntity;
 
-    @NotNull(message = "The order must have a valid code")
-    private UUID orderCode;
+    @Valid
+    @NotEmpty(message = "The order must have at least one detail.")
+    private List<OrderDetailsRequestDto> orderDetails;
+
+
 
 
 }
