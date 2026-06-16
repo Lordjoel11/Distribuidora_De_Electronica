@@ -4,6 +4,7 @@ import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.suppliers.dto.SupplierRequestDto;
 import com.Districto_Tech.distribuidora.features.suppliers.dto.SupplierResponseDto;
+import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

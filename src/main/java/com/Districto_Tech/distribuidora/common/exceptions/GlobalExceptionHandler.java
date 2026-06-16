@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.common.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -61,36 +62,20 @@ public class GlobalExceptionHandler {
 
     }
 
-    // Agregar este handler
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<ErrorDetails> noSuchElementException(
-            NoSuchElementException ex,
-            HttpServletRequest request) {
-
-        ErrorDetails errorDetails = new ErrorDetails(
-                LocalDateTime.now(),
-                HttpStatus.NOT_FOUND.value(),
-                HttpStatus.NOT_FOUND.getReasonPhrase(),
+    @ExceptionHandler(ShippingAlreadyExistsException.class)
+    public ResponseEntity<String> handleShippingAlreadyExistsException(ShippingAlreadyExistsException ex) {
+        return new ResponseEntity<>(
                 ex.getMessage(),
-                request.getRequestURI()
+                HttpStatus.BAD_REQUEST
         );
-        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ErrorDetails> handleAccessDeniedException(
-            AccessDeniedException ex,
-            HttpServletRequest request) {
-
-        ErrorDetails errorDetails = new ErrorDetails(
-                LocalDateTime.now(),
-                HttpStatus.FORBIDDEN.value(),
-                HttpStatus.FORBIDDEN.getReasonPhrase(),
-                "No tenés permisos para acceder a este recurso.",
-                request.getRequestURI()
+    @ExceptionHandler(ShippingNotFoundException.class)
+    public ResponseEntity<String> handleShippingNotFoundException(ShippingNotFoundException ex) {
+        return new ResponseEntity<>(
+                ex.getMessage(),
+                HttpStatus.NOT_FOUND
         );
-        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
-
 
 }

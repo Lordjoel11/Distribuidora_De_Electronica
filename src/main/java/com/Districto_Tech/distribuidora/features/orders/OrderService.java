@@ -1,6 +1,10 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
+import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
+import com.Districto_Tech.distribuidora.features.clients.ClientRepository;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeRepository;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
@@ -26,20 +30,37 @@ public class OrderService {
     private final OrderModelMapper orderMapper;
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
-    private final OrderDetailsModelMapper orderDetailsModelMapper;
     private final ProductRepository productRepository;
+    private final ClientRepository clientRepository;
+    private final EmployeeRepository employeeRepository;
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
-        // Crear la orden
+
+        ClientEntity client = clientRepository.findById(orderRequestDto.getClientId())
+                .orElseThrow(() -> new ResourceNotFoundException("Client not found."));
+
+        EmployeeEntity employee = employeeRepository.findById(orderRequestDto.getEmployeeId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found."));
+
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderStatus(Status.PENDING);
         orderEntity.setOrderDate(LocalDate.now());
+        orderEntity.setClientId(client);
+        orderEntity.setEmployeeId(employee);
         OrderEntity savedOrder = orderRepository.save(orderEntity);
 
-        // Crear cada detalle asociado a la orden
         for (OrderDetailsRequestDto detailDto : orderRequestDto.getOrderDetails()) {
             Product product = productRepository.findById(detailDto.getProductId())
                     .orElseThrow(() -> new ResourceNotFoundException("Product not found."));
+
+            if (product.getStock() < detailDto.getOrderQuantity()) {
+                throw new IllegalArgumentException("Insufficient stock for product: " + product.getName()
+                        + ". Available: " + product.getStock()
+                        + ", Requested: " + detailDto.getOrderQuantity());
+            }
+
+            product.setStock(product.getStock() - detailDto.getOrderQuantity());
+            productRepository.save(product);
 
             OrderDetails detail = new OrderDetails();
             detail.setOrderEntity(savedOrder);
@@ -69,14 +90,6 @@ public class OrderService {
         return orderMapper.toDto(orderEntity);
     }
 
-    public List<OrderResponseDto> listOrders(UUID orderCode) {
-        if (orderCode != null) {
-            return orderRepository.getByOrderCode(orderCode).stream()
-                    .map(orderMapper::toDto).toList();
-        }
-        return orderRepository.findAll().stream()
-                .map(orderMapper::toDto).toList();
-    }
 
     public List<OrderResponseDto> findWithFilters(Long clientId, Status status) {
         if (clientId == null && status == null)
@@ -88,7 +101,7 @@ public class OrderService {
         if (status == null)
             return orderRepository.findByClientId(clientId).stream().map(orderMapper::toDto).toList();
 
-        return orderRepository.findByClient_IdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
+        return orderRepository.findByClientIdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
     }
 
     private void validateTransaction(Status currentStatus, Status newStatus) {
