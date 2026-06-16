@@ -15,10 +15,10 @@ import java.util.List;
 @Builder
 public class PurchaseRequestDto {
 
-    @NotNull(message = "The supplier ID is required.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Long supplierId;
 
     @Valid
-    @NotEmpty(message = "The purchase must have at least one detail.")
+    @NotEmpty(message = "Este campo no puede estar vacio.")
     private List<PurchaseDetailsRequestDto> purchaseDetails;
 }

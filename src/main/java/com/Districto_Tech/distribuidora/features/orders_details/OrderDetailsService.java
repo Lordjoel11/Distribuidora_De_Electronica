@@ -32,7 +32,7 @@ public class OrderDetailsService {
     public OrderDetailsResponseDto cancelOrderById(Long id) {
 
         OrderDetails  orderDetails = orderDetailsRepository.findById(id).
-                orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
+                orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
 
         orderDetails.getOrderEntity().setOrderStatus(Status.CANCELED);
         orderDetailsRepository.save(orderDetails);
@@ -42,7 +42,7 @@ public class OrderDetailsService {
     public OrderDetailsResponseDto cancelOrderByCode(UUID publicId) {
 
         OrderDetails orderDetails = orderDetailsRepository.findFirstByOrderEntity_OrderCode(publicId).
-                orElseThrow(() -> new NoSuchElementException("No order with this code was found."));
+                orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
 
         orderDetails.getOrderEntity().setOrderStatus(Status.CANCELED);
         orderDetailsRepository.save(orderDetails);

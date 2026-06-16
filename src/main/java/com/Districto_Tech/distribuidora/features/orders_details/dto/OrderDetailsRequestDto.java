@@ -13,12 +13,12 @@ import java.util.UUID;
 @Setter
 public class OrderDetailsRequestDto {
 
-    @NotNull(message = "The product ID must be provided.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Long productId;
 
-    @NotBlank(message = "A description must be given.")
+    @NotBlank(message = "Este campo no puede estar en blanco.")
     private String orderDescription;
 
-    @NotNull(message = "A quantity must be given.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Integer orderQuantity;
 }

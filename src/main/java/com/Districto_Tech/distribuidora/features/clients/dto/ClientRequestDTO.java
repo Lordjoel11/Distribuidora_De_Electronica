@@ -11,20 +11,20 @@ import lombok.*;
 @AllArgsConstructor
 public class ClientRequestDTO {
 
-    @NotBlank(message = "The name and surname is necessary")
+    @NotBlank(message = "Este campo no puede estar en blanco.")
     private String nameAndSurname;
 
-    @NotBlank(message = "The DNI is necessary")
+    @NotBlank(message = "Este campo no puede estar en blanco.")
     private String DNI;
 
-    @NotBlank(message = "The Email is necessary")
-    @Email(message = "El formato debe contener @gmail.com.")
+    @NotBlank(message = "Este campo no puede estar en blanco.")
+    @Email(message = "El formato debe contener formato mail")
     private String Email;
 
-    @NotBlank(message = "The phone number is necessary")
+    @NotBlank(message = "Este campo no puede estar en blanco.")
     private String phoneNumber;
 
-    @NotBlank(message = "The address is necessary")
+    @NotBlank(message = "Este campo no puede estar en blanco.")
     private String address;
 
     private boolean isVip;

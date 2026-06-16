@@ -17,14 +17,14 @@ import java.util.List;
 
 public class OrderRequestDto {
 
-    @NotNull(message = "The order must be related to an existing client.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Long clientId;
 
-    @NotNull(message = "The order must be related to an existing employee.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Long employeeId;
 
     @Valid
-    @NotEmpty(message = "The order must have at least one detail.")
+    @NotEmpty(message = "Este campo no puede estar vacio.")
     private List<OrderDetailsRequestDto> orderDetails;
 
 

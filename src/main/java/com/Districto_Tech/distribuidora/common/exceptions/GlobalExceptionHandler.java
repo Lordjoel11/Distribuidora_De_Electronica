@@ -1,17 +1,14 @@
 package com.Districto_Tech.distribuidora.common.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.security.access.AccessDeniedException;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -35,9 +32,9 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(DatoInvalidoException.class)
+    @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<String> handleDatosProductoInvalidosException(
-            DatoInvalidoException ex) {
+            InvalidDataException ex) {
 
         return new ResponseEntity<>(
                 ex.getMessage(),

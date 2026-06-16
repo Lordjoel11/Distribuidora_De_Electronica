@@ -16,14 +16,14 @@ import java.util.UUID;
 @Getter
 @Setter
 public class ShippingRequestDTO {
-    @NotNull(message = "The uuid can't be null")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private UUID uuid;
 
-    @NotNull(message = "The sent date is necessary")
+    @NotNull(message = "Este campo no puede ser nulo.")
     @FutureOrPresent(message = "La fecha debe a futura o presente")
     private LocalDate shippingSentDate;
 
-    @NotNull(message = "The delivered date is necessary")
+    @NotNull(message = "Este campo no puede ser nulo.")
     @PastOrPresent(message = "La fecha debe ser del pasado o presente.")
     private LocalDate shippingDeliveredDate;
 }

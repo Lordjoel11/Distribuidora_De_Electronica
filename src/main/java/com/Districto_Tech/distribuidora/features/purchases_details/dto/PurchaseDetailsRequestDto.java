@@ -11,10 +11,10 @@ import lombok.*;
 @Builder
 public class PurchaseDetailsRequestDto {
 
-    @NotNull(message = "The product ID is required.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Long productId;
 
-    @NotNull(message = "The quantity is required.")
-    @Positive(message = "The quantity must be greater than 0.")
+    @NotNull(message = "Este campo no puede ser nulo.")
+    @Positive(message = "Debe ser positivo.")
     private Integer quantity;
 }
