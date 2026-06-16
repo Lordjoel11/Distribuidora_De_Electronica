@@ -29,16 +29,25 @@ public class OrderService {
     private final ProductRepository productRepository;
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
-        // Crear la orden
+
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderStatus(Status.PENDING);
         orderEntity.setOrderDate(LocalDate.now());
         OrderEntity savedOrder = orderRepository.save(orderEntity);
 
-        // Crear cada detalle asociado a la orden
+
         for (OrderDetailsRequestDto detailDto : orderRequestDto.getOrderDetails()) {
             Product product = productRepository.findById(detailDto.getProductId())
                     .orElseThrow(() -> new ResourceNotFoundException("Product not found."));
+
+            if (product.getStock() < detailDto.getOrderQuantity()) {
+                throw new IllegalArgumentException("Insufficient stock for product: " + product.getName()
+                        + ". Available: " + product.getStock()
+                        + ", Requested: " + detailDto.getOrderQuantity());
+            }
+
+            product.setStock(product.getStock() - detailDto.getOrderQuantity());
+            productRepository.save(product);
 
             OrderDetails detail = new OrderDetails();
             detail.setOrderEntity(savedOrder);
