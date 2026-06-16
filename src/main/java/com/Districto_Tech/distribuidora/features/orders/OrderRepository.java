@@ -22,7 +22,7 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findByClientId (Long clientId);
 
     List<OrderEntity> findByOrderStatus(Status orderStatus);
-    List<OrderEntity> findByClient_IdAndOrderStatus(Long clientId, Status status);
+    List<OrderEntity> findByClientIdAndOrderStatus(Long clientId, Status status);
 
     @Query("SELECT o FROM OrderEntity o WHERE o.orderDate >= :fechaInicio AND o.orderDate <= :fechaFin AND o.orderStatus = 'COMPLETED'")
     List<OrderEntity> findByFechaInicioBetween(
