@@ -4,7 +4,8 @@ import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundExcept
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
-import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsMapper;
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsModelMapper;
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsModelMapper;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsRepository;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
 import com.Districto_Tech.distribuidora.features.products.Product;
@@ -24,7 +25,7 @@ public class OrderService {
     private final OrderModelMapper orderMapper;
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
-    private final OrderDetailsMapper orderDetailsMapper;
+    private final OrderDetailsModelMapper orderDetailsModelMapper;
     private final ProductRepository productRepository;
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
