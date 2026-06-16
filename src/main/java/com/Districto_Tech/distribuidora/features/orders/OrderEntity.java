@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
+import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,10 +34,10 @@ public class OrderEntity {
     @Enumerated (EnumType.STRING)
     private Status orderStatus;
 
-//    @ManyToOne (fetch = FetchType.LAZY)
-//    @JoinColumn (name = "client_id")
-//    private ClientEntity clientId;
-//
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "client_id")
+    private ClientEntity clientId;
+
 //    @ManyToOne (fetch = FetchType.LAZY)
 //    @JoinColumn (name = "employee_id")
 //    private EmployeeEntity employeeId;
