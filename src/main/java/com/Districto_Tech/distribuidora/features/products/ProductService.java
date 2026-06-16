@@ -16,21 +16,19 @@ import java.util.stream.Collectors;
 public class ProductService implements IService<ProductRequestDto, ProductResponseDto, Long> {
 
     private final ProductRepository productRepository;
-    private final ModelMapper modelMapper;
-
+    private final ProductMapper productMapper;
 
     @Override
     public ProductResponseDto save(ProductRequestDto request) {
-        Product product = modelMapper.map(request, Product.class);
-        Product saved = productRepository.save(product);
-        return modelMapper.map(saved, ProductResponseDto.class);
+        Product product = productMapper.toEntity(request);
+        return productMapper.toDto(productRepository.save(product));
     }
 
     @Override
     public List<ProductResponseDto> getAll() {
         return productRepository.findAll()
                 .stream()
-                .map(product -> modelMapper.map(product, ProductResponseDto.class))
+                .map(productMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -38,8 +36,7 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     public ProductResponseDto getById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
-
-        return modelMapper.map(product, ProductResponseDto.class);
+        return productMapper.toDto(product);
     }
 
     @Override
@@ -53,14 +50,12 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
         product.setUnitPrice(request.getUnitPrice());
         product.setCategory(request.getCategory());
 
-        return modelMapper.map(productRepository.save(product), ProductResponseDto.class);
+        return productMapper.toDto(productRepository.save(product));
     }
 
     @Override
-    public void deleteById(Long id){productRepository.deleteById(id);}
-
-
-    
-
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
+    }
 }
 
