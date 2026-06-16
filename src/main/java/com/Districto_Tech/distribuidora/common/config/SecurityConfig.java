@@ -31,12 +31,13 @@ public class SecurityConfig {
 
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/h2-console/**").permitAll()
-
-                                // ✅ Rutas reales del proyecto
-                        
+                                .requestMatchers("/api/order-details/**").permitAll()
+                                .requestMatchers("/api/orders/**").permitAll()
+                                .requestMatchers("/api/payments/**").hasRole("CLIENT")
                                 .requestMatchers("/api/clients/**").hasRole("ADMIN")
                                 .requestMatchers("/api/users/**").hasRole("ADMIN")
                                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/api/purchases/**").hasRole("ADMIN")
                                 .requestMatchers("/api/shipping/**").hasAnyRole("ADMIN", "EMPLOYEE")
                                 .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLOYEE")
                                 .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLOYEE")
