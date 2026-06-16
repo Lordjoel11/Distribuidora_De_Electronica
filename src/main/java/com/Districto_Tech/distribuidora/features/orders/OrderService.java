@@ -52,14 +52,6 @@ public class OrderService {
             Product product = productRepository.findById(detailDto.getProductId())
                     .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 
-            if (product.getStock() < detailDto.getOrderQuantity()) {
-                throw new IllegalArgumentException("Insuficiente stock del producto: " + product.getName()
-                        + ". hay: " + product.getStock()
-                        + ", necesario: " + detailDto.getOrderQuantity());
-            }
-
-            product.setStock(product.getStock() - detailDto.getOrderQuantity());
-            productRepository.save(product);
 
             OrderDetails detail = new OrderDetails();
             detail.setOrderEntity(savedOrder);
@@ -110,10 +102,15 @@ public class OrderService {
         if (clientId == null)
             return orderRepository.findByOrderStatus(status).stream().map(orderMapper::toDto).toList();
 
-        if (status == null)
-            return orderRepository.findByClientId(clientId).stream().map(orderMapper::toDto).toList();
+        if (status == null) {
+            ClientEntity client = clientRepository.findById(clientId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado."));
+            return orderRepository.findByClientId(client).stream().map(orderMapper::toDto).toList();
+        }
 
-        return orderRepository.findByClientIdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
+        ClientEntity client = clientRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado."));
+        return orderRepository.findByClientIdAndOrderStatus(client, status).stream().map(orderMapper::toDto).toList();
     }
 
     private void validateTransaction(Status currentStatus, Status newStatus) {

@@ -12,6 +12,7 @@ import lombok.*;
 public class EmployeeResponseDTO {
     private String name;
     private String surname;
+    private String phoneNumber;
     private String CUIL;
     private Role role;
 }

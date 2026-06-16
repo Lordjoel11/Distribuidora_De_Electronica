@@ -17,7 +17,8 @@ public class EmployeeRequestDTO {
     private String name;
     @NotBlank(message = "El apellido es necesario.")
     private String surname;
-
+    @NotBlank(message = "El numero en necesario.")
+    private String phoneNumber;
     @NotBlank(message = "El CUIL es necesario.")
     @Pattern(regexp = "\\d{2}-\\d{8}-\\d{1}", message = "El CUIL debe tener el formato XX-XXXXXXXX-X")
     private String CUIL;

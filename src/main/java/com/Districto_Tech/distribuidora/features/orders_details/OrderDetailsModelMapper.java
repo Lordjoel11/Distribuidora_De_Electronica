@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class OrderDetailsModelMapper implements IModelMapper<OrderDetails, OrderDetailsResponseDto, OrderDetailsRequestDto> {
-    ModelMapper modelMapper;
+   private final ModelMapper modelMapper;
 
     @Override
     public OrderDetails toEntity(OrderDetailsRequestDto orderDetailsRequestDto) {
