@@ -69,4 +69,28 @@ public class PurchaseService {
     public void delete(Long id) {
         purchaseRepository.deleteById(id);
     }
+
+    @Transactional
+    public PurchaseResponseDto completePurchase(Long id) {
+        PurchaseEntity purchase = purchaseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Purchase not found."));
+
+        if (purchase.getPurchaseStatus() == PurchaseStatus.CANCELED) {
+            throw new IllegalStateException("Cannot complete a canceled purchase.");
+        }
+
+        if (purchase.getPurchaseStatus() == PurchaseStatus.COMPLETED) {
+            throw new IllegalStateException("Purchase is already completed.");
+        }
+
+        for (PurchaseDetails detail : purchase.getPurchaseDetails()) {
+            Product product = detail.getProduct();
+            product.setStock(product.getStock() + detail.getQuantity());
+            productRepository.save(product);
+        }
+
+        purchase.setPurchaseStatus(PurchaseStatus.COMPLETED);
+        return purchaseMapper.toDto(purchaseRepository.save(purchase));
+    }
+
 }

@@ -37,4 +37,9 @@ public class PurchaseController {
         purchaseService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/complete")
+    public ResponseEntity<PurchaseResponseDto> completePurchase(@PathVariable Long id) {
+        return ResponseEntity.ok(purchaseService.completePurchase(id));
+    }
 }
