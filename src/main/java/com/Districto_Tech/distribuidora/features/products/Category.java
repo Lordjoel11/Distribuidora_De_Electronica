@@ -1,9 +1,15 @@
 package com.Districto_Tech.distribuidora.features.products;
 
 public enum Category {
-    ELECTRONICS,
-    FOOD,
-    CLOTHING,
-    TOYS,
+    CABLES,
+    CHARGERS,
+    AUDIO,
+    TOOLS,
+    COMPONENTS,
+    SCREENS,
+    BATTERIES,
+    ADAPTERS,
+    NETWORKING,
+    ACCESSORIES,
     OTHER
 }

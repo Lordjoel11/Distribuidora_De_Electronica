@@ -22,13 +22,10 @@ public class OrderDetailsService {
 
     public OrderDetailsResponseDto createOrder(OrderDetailsRequestDto orderDetailsRequestDto) {
 
-        // Convertís el DTO a entidad directo
         OrderDetails orderDetails = orderDetailsMapper.toEntity(orderDetailsRequestDto);
 
-        // Seteás el precio histórico desde el producto en el momento de la creación
         orderDetails.setHistoricalPrice(orderDetails.getProductEntity().getUnitPrice());
 
-        // Guardás y devolvés
         return orderDetailsMapper.toDto(orderDetailsRepository.save(orderDetails));
     }
 
