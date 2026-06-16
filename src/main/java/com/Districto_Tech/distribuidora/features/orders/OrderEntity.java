@@ -3,6 +3,7 @@ package com.Districto_Tech.distribuidora.features.orders;
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
+import com.Districto_Tech.distribuidora.features.shipping.ShippingEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -46,7 +47,10 @@ public class OrderEntity {
     private EmployeeEntity employeeId;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderEntity> orderEntities = new ArrayList<>();
+    private List<ShippingEntity> shippingEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "orderEntity", fetch = FetchType.LAZY)
+    private List<OrderDetails> orderDetailsList;
 
 
     @PrePersist
@@ -57,6 +61,5 @@ public class OrderEntity {
 
     }
 
-    @OneToMany(mappedBy = "orderEntity", fetch = FetchType.LAZY)
-    private List<OrderDetails> orderDetailsList;
+
 }
