@@ -78,14 +78,6 @@ public class OrderService {
         return orderMapper.toDto(orderEntity);
     }
 
-    public List<OrderResponseDto> listOrders(UUID orderCode) {
-        if (orderCode != null) {
-            return orderRepository.getByOrderCode(orderCode).stream()
-                    .map(orderMapper::toDto).toList();
-        }
-        return orderRepository.findAll().stream()
-                .map(orderMapper::toDto).toList();
-    }
 
     public List<OrderResponseDto> findWithFilters(Long clientId, Status status) {
         if (clientId == null && status == null)
