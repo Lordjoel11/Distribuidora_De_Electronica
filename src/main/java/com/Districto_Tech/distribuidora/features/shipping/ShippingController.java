@@ -1,8 +1,5 @@
 package com.Districto_Tech.distribuidora.features.shipping;
 
-
-import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeRequestDTO;
-import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeResponseDTO;
 import com.Districto_Tech.distribuidora.features.shipping.dtos.ShippingRequestDTO;
 import com.Districto_Tech.distribuidora.features.shipping.dtos.ShippingResponseDTO;
 import jakarta.validation.Valid;
@@ -12,14 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/api/shipping")
 @RequiredArgsConstructor
 public class ShippingController {
 
-    private ShippingService shippingService;
+    private final ShippingService shippingService;
 
     @GetMapping
     public ResponseEntity<List<ShippingResponseDTO>> getShipments(){
@@ -27,7 +22,7 @@ public class ShippingController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShippingResponseDTO> getShipmentsById(@PathVariable UUID id){
+    public ResponseEntity<ShippingResponseDTO> getShipmentsById(@PathVariable Long id){
         return ResponseEntity.ok().body(shippingService.getById(id));
     }
 
@@ -37,12 +32,12 @@ public class ShippingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ShippingResponseDTO> updateShipment(@PathVariable UUID id, @Valid @RequestBody ShippingRequestDTO request){
+    public ResponseEntity<ShippingResponseDTO> updateShipment(@PathVariable Long id, @Valid @RequestBody ShippingRequestDTO request){
         return ResponseEntity.ok().body(shippingService.update(id, request));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteShipment(@PathVariable UUID id){
+    public ResponseEntity<Void> deleteShipment(@PathVariable Long id){
         shippingService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
