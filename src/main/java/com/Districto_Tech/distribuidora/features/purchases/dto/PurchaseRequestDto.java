@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.features.purchases.dto;
 
 import com.Districto_Tech.distribuidora.features.purchases.PurchaseStatus;
+import com.Districto_Tech.distribuidora.features.purchases_details.dto.PurchaseDetailsRequestDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
