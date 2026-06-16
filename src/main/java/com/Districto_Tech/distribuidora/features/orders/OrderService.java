@@ -1,6 +1,10 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
+import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
+import com.Districto_Tech.distribuidora.features.clients.ClientRepository;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeRepository;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
@@ -26,16 +30,24 @@ public class OrderService {
     private final OrderModelMapper orderMapper;
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
-    private final OrderDetailsModelMapper orderDetailsModelMapper;
     private final ProductRepository productRepository;
+    private final ClientRepository clientRepository;
+    private final EmployeeRepository employeeRepository;
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
+
+        ClientEntity client = clientRepository.findById(orderRequestDto.getClientId())
+                .orElseThrow(() -> new ResourceNotFoundException("Client not found."));
+
+        EmployeeEntity employee = employeeRepository.findById(orderRequestDto.getEmployeeId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found."));
 
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderStatus(Status.PENDING);
         orderEntity.setOrderDate(LocalDate.now());
+        orderEntity.setClientId(client);
+        orderEntity.setEmployeeId(employee);
         OrderEntity savedOrder = orderRepository.save(orderEntity);
-
 
         for (OrderDetailsRequestDto detailDto : orderRequestDto.getOrderDetails()) {
             Product product = productRepository.findById(detailDto.getProductId())

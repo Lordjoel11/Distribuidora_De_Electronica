@@ -18,10 +18,10 @@ import java.util.List;
 public class OrderRequestDto {
 
     @NotNull(message = "The order must be related to an existing client.")
-    private ClientEntity clientEntity;
+    private Long clientId;
 
     @NotNull(message = "The order must be related to an existing employee.")
-    private EmployeeEntity employeeEntity;
+    private Long employeeId;
 
     @Valid
     @NotEmpty(message = "The order must have at least one detail.")
