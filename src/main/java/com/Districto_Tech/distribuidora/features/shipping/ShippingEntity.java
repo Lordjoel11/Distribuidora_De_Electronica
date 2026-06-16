@@ -36,7 +36,7 @@ public class ShippingEntity {
     private State state;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order", nullable = false)
+    @JoinColumn(name = "id_pedido", nullable = false) // Mantiene la FK de tu DB
     private OrderEntity order;
 
 }

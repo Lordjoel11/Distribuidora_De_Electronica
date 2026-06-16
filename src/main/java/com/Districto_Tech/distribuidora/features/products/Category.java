@@ -11,5 +11,6 @@ public enum Category {
     ADAPTERS,
     NETWORKING,
     ACCESSORIES,
+    ELECTRONICS,
     OTHER
 }
