@@ -1,4 +1,4 @@
-package com.Districto_Tech.distribuidora.features.purchase_details;
+package com.Districto_Tech.distribuidora.features.purchases_details;
 
 import com.Districto_Tech.distribuidora.features.products.Product;
 import com.Districto_Tech.distribuidora.features.purchases.PurchaseEntity;
