@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class ShippingService implements IService<ShippingRequestDTO, ShippingResponseDTO, UUID> {
+public class ShippingService implements IService<ShippingRequestDTO, ShippingResponseDTO, Long> {
 
     private ShippingRepository shippingRepository;
     private ShippingModelMapper shippingModelMapper;
@@ -22,7 +22,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
     @Override
     public ShippingResponseDTO save(ShippingRequestDTO request) {
 
-        if(shippingRepository.existsById(shippingModelMapper.toEntity(request).getUuid())){
+        if(shippingRepository.existsById(shippingModelMapper.toEntity(request).getId())){
             throw new ShippingAlreadyExistsException("Shipment already exists");
         }
 
@@ -39,7 +39,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
 
 
     @Override
-    public ShippingResponseDTO getById(UUID ID) {
+    public ShippingResponseDTO getById(Long ID) {
         ShippingEntity entity = shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Shipment not found"));
         shippingRepository.save(entity);
         return shippingModelMapper.toDto(entity);
@@ -47,7 +47,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
 
 
     @Override
-    public ShippingResponseDTO update(UUID ID, ShippingRequestDTO request) {
+    public ShippingResponseDTO update(Long ID, ShippingRequestDTO request) {
         shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Shipment not found"));
         ShippingEntity entity=shippingModelMapper.toEntity(request);
         shippingRepository.save(entity);
@@ -55,7 +55,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
     }
 
     @Override
-    public void deleteById(UUID ID) {
+    public void deleteById(Long ID) {
         shippingRepository.delete(shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Shipment not found")));
     }
 }
