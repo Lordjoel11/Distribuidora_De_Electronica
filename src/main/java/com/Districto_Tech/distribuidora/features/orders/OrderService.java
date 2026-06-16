@@ -101,7 +101,7 @@ public class OrderService {
         if (status == null)
             return orderRepository.findByClientId(clientId).stream().map(orderMapper::toDto).toList();
 
-        return orderRepository.findByClient_IdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
+        return orderRepository.findByClientIdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
     }
 
     private void validateTransaction(Status currentStatus, Status newStatus) {
