@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.products;
 
+import com.Districto_Tech.distribuidora.features.suppliers.Supplier;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,4 +32,8 @@ public class Product {
     @Column (name = "category")
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 }

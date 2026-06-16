@@ -32,9 +32,9 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(DatoInvalidoException.class)
+    @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<String> handleDatosProductoInvalidosException(
-            DatoInvalidoException ex) {
+            InvalidDataException ex) {
 
         return new ResponseEntity<>(
                 ex.getMessage(),
@@ -57,4 +57,22 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST
         );
 
-    }}
+    }
+
+    @ExceptionHandler(ShippingAlreadyExistsException.class)
+    public ResponseEntity<String> handleShippingAlreadyExistsException(ShippingAlreadyExistsException ex) {
+        return new ResponseEntity<>(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(ShippingNotFoundException.class)
+    public ResponseEntity<String> handleShippingNotFoundException(ShippingNotFoundException ex) {
+        return new ResponseEntity<>(
+                ex.getMessage(),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+}

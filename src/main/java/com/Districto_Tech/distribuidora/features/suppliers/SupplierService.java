@@ -5,7 +5,6 @@ import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundExcept
 import com.Districto_Tech.distribuidora.features.suppliers.dto.SupplierRequestDto;
 import com.Districto_Tech.distribuidora.features.suppliers.dto.SupplierResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,19 +15,19 @@ import java.util.stream.Collectors;
 public class SupplierService implements IService<SupplierRequestDto, SupplierResponseDto, Long> {
 
     private final SupplierRepository supplierRepository;
-    private final ModelMapper modelMapper;
+    private final SupplierMapper supplierMapper;
 
     @Override
     public SupplierResponseDto save(SupplierRequestDto request) {
-        Supplier supplier = modelMapper.map(request, Supplier.class);
-        return modelMapper.map(supplierRepository.save(supplier), SupplierResponseDto.class);
+        Supplier supplier = supplierMapper.toEntity(request);
+        return supplierMapper.toDto(supplierRepository.save(supplier));
     }
 
     @Override
     public List<SupplierResponseDto> getAll() {
         return supplierRepository.findAll()
                 .stream()
-                .map(supplier -> modelMapper.map(supplier, SupplierResponseDto.class))
+                .map(supplierMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -36,7 +35,7 @@ public class SupplierService implements IService<SupplierRequestDto, SupplierRes
     public SupplierResponseDto getById(Long id) {
         Supplier supplier = supplierRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado."));
-        return modelMapper.map(supplier, SupplierResponseDto.class);
+        return supplierMapper.toDto(supplier);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class SupplierService implements IService<SupplierRequestDto, SupplierRes
         supplier.setCuit(request.getCuit());
         supplier.setContact(request.getContact());
 
-        return modelMapper.map(supplierRepository.save(supplier), SupplierResponseDto.class);
+        return supplierMapper.toDto(supplierRepository.save(supplier));
     }
 
     @Override

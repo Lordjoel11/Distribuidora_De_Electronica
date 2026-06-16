@@ -4,8 +4,6 @@ import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import com.Districto_Tech.distribuidora.features.products.Product;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -45,11 +43,8 @@ public class OrderDetails {
 
 
     @PrePersist
-
     protected void generateRandomCode() {
-
-        this.publicId = UUID.randomUUID();
-
+        if(this.publicId == null) this.publicId = UUID.randomUUID();
     }
 
 }

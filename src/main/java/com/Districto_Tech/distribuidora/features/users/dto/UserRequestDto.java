@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -22,7 +21,9 @@ public class UserRequestDto {
     @NotNull(message = "La contraseña no puede ser nulo.")
     private String password;
 
-    @NotBlank(message = "La contraseña es requerido.")
+    @NotNull(message = "El email no puede ser nulo.")
     private RoleType roleType;
+
+
 
 }

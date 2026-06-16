@@ -22,14 +22,9 @@ public class OrderDetailsService {
 
     public OrderDetailsResponseDto createOrder(OrderDetailsRequestDto orderDetailsRequestDto) {
 
-        OrderDetails orderDetails = orderDetailsRepository.findFirstByOrderEntity_OrderCode(orderDetailsRequestDto.getPublicId()).
-                orElseThrow(() -> new NoSuchElementException("The requested order code was not found."));
-
-
-        orderDetails = orderDetailsMapper.toEntity(orderDetailsRequestDto);
+        OrderDetails orderDetails = orderDetailsMapper.toEntity(orderDetailsRequestDto);
 
         orderDetails.setHistoricalPrice(orderDetails.getProductEntity().getUnitPrice());
-
 
         return orderDetailsMapper.toDto(orderDetailsRepository.save(orderDetails));
     }
@@ -37,7 +32,7 @@ public class OrderDetailsService {
     public OrderDetailsResponseDto cancelOrderById(Long id) {
 
         OrderDetails  orderDetails = orderDetailsRepository.findById(id).
-                orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
+                orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
 
         orderDetails.getOrderEntity().setOrderStatus(Status.CANCELED);
         orderDetailsRepository.save(orderDetails);
@@ -47,7 +42,7 @@ public class OrderDetailsService {
     public OrderDetailsResponseDto cancelOrderByCode(UUID publicId) {
 
         OrderDetails orderDetails = orderDetailsRepository.findFirstByOrderEntity_OrderCode(publicId).
-                orElseThrow(() -> new NoSuchElementException("No order with this code was found."));
+                orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
 
         orderDetails.getOrderEntity().setOrderStatus(Status.CANCELED);
         orderDetailsRepository.save(orderDetails);
