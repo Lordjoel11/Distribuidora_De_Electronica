@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.shipping;
 
 import com.Districto_Tech.distribuidora.common.IModelMapper;
-import com.Districto_Tech.distribuidora.common.MapperConfig;
+import com.Districto_Tech.distribuidora.common.config.MapperConfig;
 import com.Districto_Tech.distribuidora.features.shipping.dtos.ShippingRequestDTO;
 import com.Districto_Tech.distribuidora.features.shipping.dtos.ShippingResponseDTO;
 import org.springframework.stereotype.Component;
