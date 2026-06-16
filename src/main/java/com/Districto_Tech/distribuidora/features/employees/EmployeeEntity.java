@@ -35,7 +35,8 @@ public class EmployeeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(mappedBy="employeeEntity")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
 

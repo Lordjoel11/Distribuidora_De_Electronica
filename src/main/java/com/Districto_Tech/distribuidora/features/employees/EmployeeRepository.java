@@ -13,6 +13,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
     Optional<EmployeeEntity> findByCUIL(Long CUIL);
     Optional<EmployeeEntity> findByNameAndSurname(String name, String surname);
     List<EmployeeEntity> findByRole(Role role);
-    Boolean existsByCUIL(Long CUIL);
+    Boolean existsByCUIL(String CUIL);
 
 }

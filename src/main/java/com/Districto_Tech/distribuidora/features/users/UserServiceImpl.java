@@ -4,32 +4,35 @@ import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.users.dto.UserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto, Long> {
 
     private final UserRepository userRepository;
     private final UserModelMapper userMapper;
-
-    public UserServiceImpl(UserRepository userRepository, UserModelMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponseDto save(UserRequestDto dto) {
-        UserEntity userEntity = userRepository.save(userMapper.toEntity(dto));
-
-        if (userEntity.getId() != null && userRepository.existsById(userEntity.getId())) {
-            throw new ResourceNotFoundException("Usuario no encontrado de Gmail: " + dto.getEmail());
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new IllegalArgumentException("Usuario no encontrado de Gmail: " + dto.getEmail());
         }
 
-        UserEntity savedUser = userRepository.save(userEntity);
-        return userMapper.toDto(savedUser);
+        UserEntity userEntity = userMapper.toEntity(dto);
+        userEntity.setRoleType(dto.getRoleType());
+        userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        userEntity = userRepository.save(userEntity);
+        return userMapper.toDto(userEntity);
     }
+
+
 
     @Override
     public List<UserResponseDto> getAll() {

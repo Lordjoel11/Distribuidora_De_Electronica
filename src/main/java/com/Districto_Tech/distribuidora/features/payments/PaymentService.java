@@ -10,7 +10,6 @@ import com.Districto_Tech.distribuidora.features.payments.dto.PaymentRequestDto;
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentResponseDto;
 import com.Districto_Tech.distribuidora.features.payments.methods.PaymentMethod;
 import com.Districto_Tech.distribuidora.features.payments.methods.PaymentMethodRepository;
-import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +25,7 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
     private final PaymentMethodRepository paymentMethodRepository;
     private final DiscountTypeRepository discountTypeRepository;
     private final OrderRepository orderRepository;
+    private final PaymentMapper paymentMapper;
 
     @Override
     public PaymentResponseDto save(PaymentRequestDto request) {
@@ -46,20 +46,20 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
                 .order(order)
                 .build();
 
-        return toResponse(paymentRepository.save(payment));
+        return paymentMapper.toDto(paymentRepository.save(payment));
     }
 
     @Override
     public List<PaymentResponseDto> getAll() {
         return paymentRepository.findAll()
                 .stream()
-                .map(this::toResponse)
+                .map(paymentMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public PaymentResponseDto getById(Long id) {
-        return toResponse(paymentRepository.findById(id)
+        return paymentMapper.toDto(paymentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pago no encontrado.")));
     }
 
@@ -82,23 +82,11 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
         payment.setDiscountType(discount);
         payment.setOrder(order);
 
-        return toResponse(paymentRepository.save(payment));
+        return paymentMapper.toDto(paymentRepository.save(payment));
     }
 
     @Override
     public void deleteById(Long id) {
         paymentRepository.deleteById(id);
-    }
-
-    private PaymentResponseDto toResponse(Payment payment) {
-        return PaymentResponseDto.builder()
-                .id(payment.getId())
-                .amount(payment.getAmount())
-                .date(payment.getDate())
-                .paymentMethod(payment.getPaymentMethod().getName().name())
-                .discountType(payment.getDiscountType().getName().name())
-                .discountPercentage(payment.getDiscountType().getPercentage())
-                .orderId(payment.getOrder().getId())
-                .build();
     }
 }

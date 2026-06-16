@@ -3,7 +3,8 @@ import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientRequestDTO;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientResponseDTO;
-import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
+import com.Districto_Tech.distribuidora.features.orders.OrderModelMapper;
+import com.Districto_Tech.distribuidora.features.orders.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,17 +16,12 @@ public class ClientService implements IService<ClientRequestDTO, ClientResponseD
 
     private final ClientRepository clientRepository;
     private final ClientModelMapper clientMapper;
-
+    private final OrderRepository orderRepository;
+    private final OrderModelMapper orderModelMapper;
 
     @Override
     public ClientResponseDTO save(ClientRequestDTO dto) {
-
-        ClientEntity clientEntity = clientRepository.save(clientMapper.toEntity(dto));
-
-        if (clientEntity.getId() != null && clientRepository.existsById(clientEntity.getId())) {
-            throw new ResourceNotFoundException("Cliente no encontrado de nombre: " + dto.getNameAndSurname());
-        }
-
+        ClientEntity clientEntity = clientMapper.toEntity(dto);
         ClientEntity saved = clientRepository.save(clientEntity);
         return clientMapper.toDto(saved);
     }

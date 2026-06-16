@@ -22,10 +22,9 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
     @Override
     public EmployeeResponseDTO save(EmployeeRequestDTO request) {
 
-        if(employeeRepository.existsById(employeeModelMapper.toEntity(request).getIdEmployee())){
-            throw new EmployeeAlreadyExistsException("The employee already exists");
+        if (employeeRepository.existsByCUIL(request.getCUIL())) {
+            throw new EmployeeAlreadyExistsException("Ya existe un empleado con ese CUIL.");
         }
-
         EmployeeEntity employee = employeeModelMapper.toEntity(request);
         employeeRepository.save(employee);
 
@@ -48,7 +47,9 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
         if(!employeeRepository.existsById(ID)){
             throw new EmployeeNotFoundException("Employee not found, can't be updated");
         }
-        EmployeeEntity updatedEmployee=employeeModelMapper.toEntity(request);
+
+        EmployeeEntity updatedEmployee = employeeModelMapper.toEntity(request);
+        updatedEmployee.setIdEmployee(ID);
         employeeRepository.save(updatedEmployee);
         return employeeModelMapper.toDto(updatedEmployee);
     }
