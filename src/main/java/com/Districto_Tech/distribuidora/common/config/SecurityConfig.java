@@ -29,21 +29,21 @@ public class SecurityConfig {
                 // Configuramos las reglas de los endpoints (Tu matriz de roles de la distribuidora)
                 .authorizeHttpRequests(auth -> auth
 
-
-
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/h2-console/**").permitAll()
 
                                 // ✅ Rutas reales del proyecto
+                        
                                 .requestMatchers("/api/clients/**").hasRole("ADMIN")
                                 .requestMatchers("/api/users/**").hasRole("ADMIN")
-                                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLEADO")
-                                .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLEADO")
-                                .requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "EMPLEADO")
-                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLEADO", "CLIENT")
-                                .requestMatchers("/api/orders/**").hasAnyRole("ADMIN", "EMPLEADO", "CLIENT")
-                                .requestMatchers("/api/order-details/**").hasAnyRole("ADMIN", "EMPLEADO", "CLIENT")
+                                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/api/shipping/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                                .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                                .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                                .requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                                .requestMatchers("/api/orders/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                                .requestMatchers("/api/order-details/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
 
                                 .anyRequest().authenticated()
 

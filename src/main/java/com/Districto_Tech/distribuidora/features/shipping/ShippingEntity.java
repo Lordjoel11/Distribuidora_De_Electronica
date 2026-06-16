@@ -21,18 +21,18 @@ public class ShippingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer shippingId;
+    private Long id;
 
-    @Column(length = 20, name = "Uuid")
-    private UUID uuid;
+    @Column(nullable = false, unique = true)
+    private UUID publicId;
 
-    @Column(name = "SentDate")
+    @Column(nullable = false,name = "sentDate")
     private LocalDate shippingSentDate;
 
-    @Column(name = "DeliveredDate")
+    @Column(nullable = false,name = "deliveredDate")
     private LocalDate shippingDeliveredDate;
 
-    @Column(name = "State",  nullable = false)
+    @Column(nullable = false,name = "state")
     @Enumerated(EnumType.STRING)
     private State state;
 
