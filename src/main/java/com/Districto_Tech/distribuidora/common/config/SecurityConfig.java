@@ -23,10 +23,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // Deshabilitamos CSRF porque usamos tokens JWT (no manejamos cookies/sesiones estatales)
+
                 .csrf(csrf -> csrf.disable())
 
-                // Configuramos las reglas de los endpoints (Tu matriz de roles de la distribuidora)
+
                 .authorizeHttpRequests(auth -> auth
 
                                 .requestMatchers("/api/v1/auth/**").permitAll()
@@ -59,15 +59,15 @@ public class SecurityConfig {
                         })
                 )
 
-                // Política de sesión STATELESS (Sin estado): cada request debe traer su token
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
-                // Le decimos qué proveedor de autenticación usar
+
                 .authenticationProvider(authenticationProvider)
 
-                // Metemos nuestro filtro JWT antes del filtro de autenticación por defecto de Spring
+
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
                  http.headers(headers -> headers.frameOptions(frame -> frame.disable()));

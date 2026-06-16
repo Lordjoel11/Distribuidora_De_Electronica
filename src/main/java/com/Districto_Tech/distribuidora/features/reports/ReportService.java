@@ -1,4 +1,4 @@
-package com.Districto_Tech.distribuidora.features.Reports;
+package com.Districto_Tech.distribuidora.features.reports;
 
 import com.Districto_Tech.distribuidora.features.orders.OrderRepository;
 import com.Districto_Tech.distribuidora.features.orders.OrderEntity;

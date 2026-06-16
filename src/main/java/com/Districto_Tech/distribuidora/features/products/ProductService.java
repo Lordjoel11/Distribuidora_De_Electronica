@@ -25,6 +25,11 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
         return productMapper.toDto(productRepository.save(product));
     }
 
+
+    public List<Product> getLowStockProducts(Integer threshold) {
+        return productRepository.findByStockLessThanEqual(threshold);
+    }
+
     @Override
     public List<ProductResponseDto> getAll() {
         return productRepository.findAll()
