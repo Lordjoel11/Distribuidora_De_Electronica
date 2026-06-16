@@ -52,9 +52,7 @@ public class CredentialsService {
                 .build();
 
         var savedUser = userRepository.save(userEntity);
-
         var jwtToken = jwtService.generateToken(savedUser);
-
         return CredentialsResponse.builder()
                 .token(jwtToken)
                 .build();
