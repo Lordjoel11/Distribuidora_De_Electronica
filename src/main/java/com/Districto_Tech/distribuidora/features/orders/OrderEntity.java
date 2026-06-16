@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import java.util.UUID;
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false ,unique = true)
     private Long id;
 
     @Column(name = "order_code", unique = true)
@@ -36,12 +38,15 @@ public class OrderEntity {
     private Status orderStatus;
 
     @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "client_id")
+    @JoinColumn (name = "client")
     private ClientEntity clientId;
 
     @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "employee_id")
+    @JoinColumn (name = "employee")
     private EmployeeEntity employeeId;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderEntity> orderEntities = new ArrayList<>();
 
 
     @PrePersist
