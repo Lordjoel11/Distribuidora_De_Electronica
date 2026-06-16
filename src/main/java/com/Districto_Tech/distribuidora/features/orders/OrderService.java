@@ -3,6 +3,7 @@ package com.Districto_Tech.distribuidora.features.orders;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
+import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsModelMapper;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsModelMapper;
@@ -75,5 +76,65 @@ public class OrderService {
         }
         return orderRepository.findAll().stream()
                 .map(orderMapper::toDto).toList();
+    }
+
+    public List<OrderResponseDto> findWithFilters(Long clientId, Status status) {
+        if (clientId == null && status == null)
+            return orderRepository.findAll().stream().map(orderMapper::toDto).toList();
+
+        if (clientId == null)
+            return orderRepository.findByOrderStatus(status).stream().map(orderMapper::toDto).toList();
+
+        if (status == null)
+            return orderRepository.findByClientId(clientId).stream().map(orderMapper::toDto).toList();
+
+        return orderRepository.findByClient_IdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
+    }
+
+    private void validateTransaction(Status currentStatus, Status newStatus) {
+
+        if (currentStatus == Status.COMPLETED && newStatus == Status.PENDING) {
+            throw new IllegalStateException("No se puede volver a PENDIENTE desde ENTREGADO.");
+        }
+
+        if (currentStatus == Status.CANCELED) {
+            throw new IllegalStateException("No se puede modificar un pedido CANCELADO.");
+        }
+
+        if (currentStatus == Status.COMPLETED) {
+            throw new IllegalStateException("No se puede modificar un pedido COMPLETADO.");
+        }
+    }
+
+    private void descontarStock(OrderEntity order) {
+        for (OrderDetails detalle : order.getOrderDetailsList()) {
+            Product producto = detalle.getProductEntity();
+            int stockActual = producto.getStock();
+            int cantidad = detalle.getOrderQuantity();
+
+            if (stockActual < cantidad) {
+                throw new IllegalStateException(
+                        "Stock insuficiente para el producto: " + producto.getName()
+                );
+            }
+            producto.setStock(stockActual - cantidad);
+            productRepository.save(producto);
+        }
+    }
+
+    public OrderResponseDto changeStatus(Long id, OrderStatusDto dto) {
+        OrderEntity order = orderRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado: " + id));
+
+
+        validateTransaction(order.getOrderStatus(), dto.getNewStatus());
+
+
+        if (dto.getNewStatus() == Status.CONFIRMED) {
+            descontarStock(order);
+        }
+
+        order.setOrderStatus(dto.getNewStatus());
+        return orderMapper.toDto(orderRepository.save(order));
     }
 }
