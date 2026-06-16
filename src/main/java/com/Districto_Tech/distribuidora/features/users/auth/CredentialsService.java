@@ -3,6 +3,7 @@ package com.Districto_Tech.distribuidora.features.users.auth;
 
 import com.Districto_Tech.distribuidora.common.config.JwtService;
 import com.Districto_Tech.distribuidora.features.users.RoleType;
+import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import com.Districto_Tech.distribuidora.features.users.UserRepository;
 import com.Districto_Tech.distribuidora.features.users.dto.UserRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -39,12 +40,15 @@ public class CredentialsService {
     }
 
     public CredentialsResponse register(UserRequestDto requestUser) {
-        var userEntity = com.Districto_Tech.distribuidora.features.users.UserEntity.builder()
+        if (userRepository.existsByEmail(requestUser.getEmail())) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
+
+        var userEntity = UserEntity.builder()
                 .email(requestUser.getEmail())
                 .password(passwordEncoder.encode(requestUser.getPassword()))
                 .publicId(java.util.UUID.randomUUID())
                 .roleType(requestUser.getRoleType())
-                .roleType(RoleType.CLIENT)
                 .build();
 
         var savedUser = userRepository.save(userEntity);
