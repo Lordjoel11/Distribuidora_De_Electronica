@@ -1,6 +1,5 @@
 package com.Districto_Tech.distribuidora.features.orders_details;
 
-import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

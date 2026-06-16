@@ -4,8 +4,6 @@ import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import com.Districto_Tech.distribuidora.features.products.Product;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 import java.util.UUID;
 
 @Entity

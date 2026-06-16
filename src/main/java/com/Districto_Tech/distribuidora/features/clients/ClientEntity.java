@@ -1,6 +1,4 @@
 package com.Districto_Tech.distribuidora.features.clients;
-
-import com.Districto_Tech.distribuidora.features.clients.Misc.TypeClient;
 import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,5 @@
 package com.Districto_Tech.distribuidora.features.shipping;
 
-import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import com.Districto_Tech.distribuidora.features.shipping.misc.State;
 import jakarta.persistence.*;

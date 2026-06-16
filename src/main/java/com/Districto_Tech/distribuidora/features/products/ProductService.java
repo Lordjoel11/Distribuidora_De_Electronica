@@ -4,9 +4,7 @@ import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductRequestDto;
 import com.Districto_Tech.distribuidora.features.products.dto.ProductResponseDto;
-import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,6 +60,13 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
     @Override
     public void deleteById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    public List<ProductResponseDto> getLowStock(Integer threshold) {
+        return productRepository.findByStockLessThanEqual(threshold)
+                .stream()
+                .map(productMapper::toDto)
+                .toList();
     }
 }
 

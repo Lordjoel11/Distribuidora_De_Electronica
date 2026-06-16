@@ -16,8 +16,6 @@ public class ClientService implements IService<ClientRequestDTO, ClientResponseD
 
     private final ClientRepository clientRepository;
     private final ClientModelMapper clientMapper;
-    private final OrderRepository orderRepository;
-    private final OrderModelMapper orderModelMapper;
 
     @Override
     public ClientResponseDTO save(ClientRequestDTO dto) {

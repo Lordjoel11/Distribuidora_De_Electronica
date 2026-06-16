@@ -5,12 +5,10 @@ import com.Districto_Tech.distribuidora.common.exceptions.ShippingAlreadyExistsE
 import com.Districto_Tech.distribuidora.common.exceptions.ShippingNotFoundException;
 import com.Districto_Tech.distribuidora.features.shipping.dtos.ShippingRequestDTO;
 import com.Districto_Tech.distribuidora.features.shipping.dtos.ShippingResponseDTO;
-import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor

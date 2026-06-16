@@ -5,7 +5,6 @@ import com.Districto_Tech.distribuidora.common.config.MapperConfig;
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentRequestDto;
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 

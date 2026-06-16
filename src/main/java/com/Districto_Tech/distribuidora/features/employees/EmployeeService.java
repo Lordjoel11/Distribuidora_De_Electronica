@@ -5,7 +5,6 @@ import com.Districto_Tech.distribuidora.common.exceptions.EmployeeAlreadyExistsE
 import com.Districto_Tech.distribuidora.common.exceptions.EmployeeNotFoundException;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeRequestDTO;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeResponseDTO;
-import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
