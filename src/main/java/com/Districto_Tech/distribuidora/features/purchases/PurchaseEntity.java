@@ -1,10 +1,12 @@
 package com.Districto_Tech.distribuidora.features.purchases;
 
+import com.Districto_Tech.distribuidora.features.purchase_details.PurchaseDetails;
 import com.Districto_Tech.distribuidora.features.suppliers.Supplier;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
