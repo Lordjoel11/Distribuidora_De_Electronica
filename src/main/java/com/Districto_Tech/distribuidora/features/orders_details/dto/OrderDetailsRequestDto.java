@@ -13,14 +13,12 @@ import java.util.UUID;
 @Setter
 public class OrderDetailsRequestDto {
 
-    @NotBlank (message = "A description of the product must be given.")
-    private String description;
+    @NotNull(message = "The product ID must be provided.")
+    private Long productId;
 
-    @NotNull (message = "The description must have a valid ID")
-    private UUID publicId;
+    @NotBlank(message = "A description must be given.")
+    private String orderDescription;
 
-    @NotNull (message = "A product quantity must be given.")
-    private Integer quantity;
-
-
+    @NotNull(message = "A quantity must be given.")
+    private Integer orderQuantity;
 }
