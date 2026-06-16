@@ -13,15 +13,15 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class EmployeeRequestDTO {
-    @NotBlank(message = "The name is necessary")
+    @NotBlank(message = "El nombre es necesario.")
     private String name;
-    @NotBlank(message = "The surname is necessary")
+    @NotBlank(message = "El apellido es necesario.")
     private String surname;
 
-    @NotBlank(message = "The CUIL is necessary")
+    @NotBlank(message = "El CUIL es necesario.")
     @Pattern(regexp = "\\d{2}-\\d{8}-\\d{1}", message = "El CUIL debe tener el formato XX-XXXXXXXX-X")
     private String CUIL;
 
-    @NotNull(message = "The role is necessary")
+    @NotNull(message = "El rol es necesario.")
     private Role role;
 }

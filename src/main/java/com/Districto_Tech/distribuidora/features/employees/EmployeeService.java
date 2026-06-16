@@ -37,14 +37,14 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
 
     @Override
     public EmployeeResponseDTO getById(Long ID) {
-        EmployeeEntity employee=employeeRepository.findById(ID).orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
+        EmployeeEntity employee=employeeRepository.findById(ID).orElseThrow(() -> new EmployeeNotFoundException("Empleado no encontrado."));
         return employeeModelMapper.toDto(employee);
     }
 
     @Override
     public EmployeeResponseDTO update(Long ID, EmployeeRequestDTO request) {
         if(!employeeRepository.existsById(ID)){
-            throw new EmployeeNotFoundException("Employee not found, can't be updated");
+            throw new EmployeeNotFoundException("Empleado no encontrado.");
         }
 
         EmployeeEntity updatedEmployee = employeeModelMapper.toEntity(request);
@@ -56,7 +56,7 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
     @Override
     public void deleteById(Long ID) {
         if(!employeeRepository.existsById(ID)){
-            throw new EmployeeNotFoundException("Employee not found, can't be deleted");
+            throw new EmployeeNotFoundException("Empleado no encontrado.");
         }
         employeeRepository.deleteById(ID);
     }

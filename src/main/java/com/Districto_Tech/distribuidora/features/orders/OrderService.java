@@ -36,10 +36,10 @@ public class OrderService {
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
 
         ClientEntity client = clientRepository.findById(orderRequestDto.getClientId())
-                .orElseThrow(() -> new ResourceNotFoundException("Client not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado."));
 
         EmployeeEntity employee = employeeRepository.findById(orderRequestDto.getEmployeeId())
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Empleado no encontrado."));
 
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderStatus(Status.PENDING);
@@ -50,12 +50,12 @@ public class OrderService {
 
         for (OrderDetailsRequestDto detailDto : orderRequestDto.getOrderDetails()) {
             Product product = productRepository.findById(detailDto.getProductId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Product not found."));
+                    .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 
             if (product.getStock() < detailDto.getOrderQuantity()) {
-                throw new IllegalArgumentException("Insufficient stock for product: " + product.getName()
-                        + ". Available: " + product.getStock()
-                        + ", Requested: " + detailDto.getOrderQuantity());
+                throw new IllegalArgumentException("Insuficiente stock del producto: " + product.getName()
+                        + ". hay: " + product.getStock()
+                        + ", necesario: " + detailDto.getOrderQuantity());
             }
 
             product.setStock(product.getStock() - detailDto.getOrderQuantity());
@@ -75,7 +75,7 @@ public class OrderService {
 
     public OrderResponseDto cancelOrderById(Long id) {
         OrderEntity orderEntity = orderRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
+                .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
 
         switch (orderEntity.getOrderStatus()){
             case CANCELED -> throw new ShippingAlreadyExistsException("EL envio esta CANCELADO.");
@@ -90,7 +90,7 @@ public class OrderService {
 
     public OrderResponseDto cancelOrderByCode(UUID orderCode) {
         OrderEntity orderEntity = orderRepository.findByOrderCode(orderCode)
-                .orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
+                .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
 
         switch (orderEntity.getOrderStatus()){
             case CANCELED -> throw new ShippingAlreadyExistsException("EL envio esta CANCELADO.");

@@ -21,7 +21,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
     public ShippingResponseDTO save(ShippingRequestDTO request) {
 
         if(shippingRepository.existsById(shippingModelMapper.toEntity(request).getId())){
-            throw new ShippingAlreadyExistsException("Shipment already exists");
+            throw new ShippingAlreadyExistsException("Envio ya existe.");
         }
 
         ShippingEntity shippingEntity = shippingModelMapper.toEntity(request);
@@ -38,7 +38,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
 
     @Override
     public ShippingResponseDTO getById(Long ID) {
-        ShippingEntity entity = shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Shipment not found"));
+        ShippingEntity entity = shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Envio no encontrado."));
         shippingRepository.save(entity);
         return shippingModelMapper.toDto(entity);
     }
@@ -46,7 +46,7 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
 
     @Override
     public ShippingResponseDTO update(Long ID, ShippingRequestDTO request) {
-        shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Shipment not found"));
+        shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Envio no encontrado."));
         ShippingEntity entity=shippingModelMapper.toEntity(request);
         shippingRepository.save(entity);
         return shippingModelMapper.toDto(entity);
@@ -54,6 +54,6 @@ public class ShippingService implements IService<ShippingRequestDTO, ShippingRes
 
     @Override
     public void deleteById(Long ID) {
-        shippingRepository.delete(shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Shipment not found")));
+        shippingRepository.delete(shippingRepository.findById(ID).orElseThrow(() -> new ShippingNotFoundException("Envio no encontrado.")));
     }
 }

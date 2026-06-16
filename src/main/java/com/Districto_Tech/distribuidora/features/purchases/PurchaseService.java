@@ -30,7 +30,7 @@ public class PurchaseService {
     @Transactional
     public PurchaseResponseDto save(PurchaseRequestDto dto) {
         Supplier supplier = supplierRepository.findById(dto.getSupplierId())
-                .orElseThrow(() -> new ResourceNotFoundException("Supplier not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado."));
 
         PurchaseEntity purchase = PurchaseEntity.builder()
                 .purchaseDate(LocalDate.now())
@@ -42,7 +42,7 @@ public class PurchaseService {
 
         for (PurchaseDetailsRequestDto detailDto : dto.getPurchaseDetails()) {
             Product product = productRepository.findById(detailDto.getProductId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Product not found."));
+                    .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 
             PurchaseDetails detail = PurchaseDetails.builder()
                     .purchase(saved)
@@ -63,7 +63,7 @@ public class PurchaseService {
 
     public PurchaseResponseDto getById(Long id) {
         return purchaseMapper.toDto(purchaseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Purchase not found.")));
+                .orElseThrow(() -> new ResourceNotFoundException("Compra no encontrada.")));
     }
 
     public void delete(Long id) {
@@ -73,14 +73,14 @@ public class PurchaseService {
     @Transactional
     public PurchaseResponseDto completePurchase(Long id) {
         PurchaseEntity purchase = purchaseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Purchase not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Compra no encontrada."));
 
         if (purchase.getPurchaseStatus() == PurchaseStatus.CANCELED) {
-            throw new IllegalStateException("Cannot complete a canceled purchase.");
+            throw new IllegalStateException("No se puede completar una compra cancelada.");
         }
 
         if (purchase.getPurchaseStatus() == PurchaseStatus.COMPLETED) {
-            throw new IllegalStateException("Purchase is already completed.");
+            throw new IllegalStateException("La compra esta actualmete compeltada.");
         }
 
         for (PurchaseDetails detail : purchase.getPurchaseDetails()) {

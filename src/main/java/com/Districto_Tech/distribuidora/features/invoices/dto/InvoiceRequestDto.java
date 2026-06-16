@@ -12,13 +12,13 @@ import lombok.*;
 @Builder
 public class InvoiceRequestDto {
 
-    @NotNull(message = "The invoice type is required.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private InvoiceType invoiceType;
 
-    @NotNull(message = "The order ID is required.")
+    @NotNull(message = "Este campo no puede ser nulo.")
     private Long orderId;
 
-    @NotNull(message = "The total is required.")
-    @Positive(message = "The total must be greater than 0.")
+    @NotNull(message = "Este campo no puede ser nulo.")
+    @Positive(message = "Este campo tiene que ser positivo.")
     private Double total;
 }

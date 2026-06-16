@@ -21,10 +21,10 @@ public class InvoiceService {
 
     public InvoiceResponseDto save(InvoiceRequestDto dto) {
         OrderEntity order = orderRepository.findById(dto.getOrderId())
-                .orElseThrow(() -> new ResourceNotFoundException("Order not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         if (invoiceRepository.findByOrder_Id(dto.getOrderId()).isPresent()) {
-            throw new IllegalStateException("This order already has an invoice.");
+            throw new IllegalStateException("Ya tiene factura este pedido.");
         }
 
         InvoiceEntity invoice = InvoiceEntity.builder()
@@ -44,12 +44,12 @@ public class InvoiceService {
 
     public InvoiceResponseDto getById(Long id) {
         return invoiceMapper.toDto(invoiceRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Invoice not found.")));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada.")));
     }
 
     public InvoiceResponseDto getByOrderId(Long orderId) {
         return invoiceMapper.toDto(invoiceRepository.findByOrder_Id(orderId)
-                .orElseThrow(() -> new ResourceNotFoundException("Invoice not found for this order.")));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada.")));
     }
 
     public void delete(Long id) {
