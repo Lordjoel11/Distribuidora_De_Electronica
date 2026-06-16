@@ -23,10 +23,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // Deshabilitamos CSRF porque usamos tokens JWT (no manejamos cookies/sesiones estatales)
+
                 .csrf(csrf -> csrf.disable())
 
-                // Configuramos las reglas de los endpoints (Tu matriz de roles de la distribuidora)
+
                 .authorizeHttpRequests(auth -> auth
 
 
@@ -34,7 +34,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/h2-console/**").permitAll()
 
-                                // ✅ Rutas reales del proyecto
+
                                 .requestMatchers("/api/clients/**").hasRole("ADMIN")
                                 .requestMatchers("/api/users/**").hasRole("ADMIN")
                                  .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
@@ -44,7 +44,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLEADO", "CLIENT")
                                 .requestMatchers("/api/orders/**").hasAnyRole("ADMIN", "EMPLEADO", "CLIENT")
                                 .requestMatchers("/api/order-details/**").hasAnyRole("ADMIN", "EMPLEADO", "CLIENT")
-
+                                
                                 .anyRequest().authenticated()
 
                 )
@@ -59,15 +59,15 @@ public class SecurityConfig {
                         })
                 )
 
-                // Política de sesión STATELESS (Sin estado): cada request debe traer su token
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
-                // Le decimos qué proveedor de autenticación usar
+
                 .authenticationProvider(authenticationProvider)
 
-                // Metemos nuestro filtro JWT antes del filtro de autenticación por defecto de Spring
+
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
                  http.headers(headers -> headers.frameOptions(frame -> frame.disable()));

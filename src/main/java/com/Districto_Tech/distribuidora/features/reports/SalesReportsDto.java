@@ -1,4 +1,4 @@
-package com.Districto_Tech.distribuidora.features.Reports;
+package com.Districto_Tech.distribuidora.features.reports;
 
 import lombok.*;
 
