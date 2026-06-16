@@ -24,14 +24,14 @@ public class OrderController {
 
     }
 
-    @DeleteMapping("/api/orders/{id}")
+    @DeleteMapping("/api/{id}")
     public ResponseEntity<Void> cancelOrderById(@PathVariable Long id) {
 
         orderService.cancelOrderById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/api/orders/{order_code}")
+    @DeleteMapping("/api/{order_code}")
     public ResponseEntity<Void> cancelOrderByCode(@PathVariable UUID orderCode) {
 
         orderService.cancelOrderByCode(orderCode);

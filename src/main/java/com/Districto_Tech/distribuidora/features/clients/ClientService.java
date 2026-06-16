@@ -18,13 +18,7 @@ public class ClientService implements IService<ClientRequestDTO, ClientResponseD
 
     @Override
     public ClientResponseDTO save(ClientRequestDTO dto) {
-
-        ClientEntity clientEntity = clientRepository.save(clientMapper.toEntity(dto));
-
-        if (clientEntity.getId() != null && clientRepository.existsById(clientEntity.getId())) {
-            throw new ResourceNotFoundException("Cliente no encontrado de nombre: " + dto.getNameAndSurname());
-        }
-
+        ClientEntity clientEntity = clientMapper.toEntity(dto);
         ClientEntity saved = clientRepository.save(clientEntity);
         return clientMapper.toDto(saved);
     }

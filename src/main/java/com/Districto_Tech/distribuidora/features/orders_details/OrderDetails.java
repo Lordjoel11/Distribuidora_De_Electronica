@@ -45,11 +45,8 @@ public class OrderDetails {
 
 
     @PrePersist
-
     protected void generateRandomCode() {
-
-        this.publicId = UUID.randomUUID();
-
+        if(this.publicId == null) this.publicId = UUID.randomUUID();
     }
 
 }

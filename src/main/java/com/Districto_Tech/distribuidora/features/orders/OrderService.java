@@ -22,17 +22,9 @@ public class OrderService {
 
 
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
-
-        OrderEntity order = orderRepository.findByOrderCode(orderRequestDto.getOrderCode()).
-                orElseThrow(() -> new NoSuchElementException("The requested order code was not found."));
-
-
         OrderEntity orderEntity = orderMapper.toEntity(orderRequestDto);
-
         orderEntity.setOrderStatus(Status.PENDING);
         orderEntity.setOrderDate(LocalDate.now());
-
-
         return orderMapper.toDto(orderRepository.save(orderEntity));
     }
 
