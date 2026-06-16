@@ -2,12 +2,15 @@ package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
+import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -36,5 +39,23 @@ public class OrderController {
 
         orderService.cancelOrderByCode(orderCode);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
+
+    @GetMapping
+    public ResponseEntity<List<OrderResponseDto>> findAll(
+            @RequestParam(required = false) Long clientId,
+            @RequestParam (required = false) Status status) {
+        return ResponseEntity.ok(orderService.findWithFilters(clientId, status));
+    }
+
+    @PatchMapping("/{id}/status")
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    public ResponseEntity<OrderResponseDto> changeStatus(
+            @PathVariable Long id,
+            @Valid @RequestBody OrderStatusDto dto
+    ) {
+        return ResponseEntity.ok(orderService.changeStatus (id, dto));
     }
 }
