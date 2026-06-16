@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @ToString
-@Table(name = "Shipping")
+@Table(name = "shipping")
 public class ShippingEntity {
 
     @Id
@@ -32,12 +32,12 @@ public class ShippingEntity {
     @Column(nullable = false,name = "deliveredDate")
     private LocalDate shippingDeliveredDate;
 
-    @Column(nullable = false,name = "state")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @OneToOne(mappedBy = "shippingEntity")
-    @JoinColumn(name = "OrderID", nullable = false)
-    private OrderEntity orderEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order", nullable = false)
+    private OrderEntity order;
 
 }
