@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
+import com.Districto_Tech.distribuidora.common.exceptions.ShippingAlreadyExistsException;
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import com.Districto_Tech.distribuidora.features.clients.ClientRepository;
 import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
@@ -75,19 +76,32 @@ public class OrderService {
     public OrderResponseDto cancelOrderById(Long id) {
         OrderEntity orderEntity = orderRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
-        orderEntity.setOrderStatus(Status.CANCELED);
+
+        switch (orderEntity.getOrderStatus()){
+            case CANCELED -> throw new ShippingAlreadyExistsException("EL envio esta CANCELADO.");
+            case COMPLETED -> throw new ShippingAlreadyExistsException("EL envio esta COMPLETADO.");
+            case CONFIRMED -> throw new ShippingAlreadyExistsException("EL envio esta CONFIRMADO.");
+            default ->  orderEntity.setOrderStatus(Status.CANCELED);
+        }
+
         orderRepository.save(orderEntity);
         return orderMapper.toDto(orderEntity);
     }
 
     public OrderResponseDto cancelOrderByCode(UUID orderCode) {
         OrderEntity orderEntity = orderRepository.findByOrderCode(orderCode)
-                .orElseThrow(() -> new NoSuchElementException("No order with this code was found."));
-        orderEntity.setOrderStatus(Status.CANCELED);
+                .orElseThrow(() -> new NoSuchElementException("No order with this ID was found."));
+
+        switch (orderEntity.getOrderStatus()){
+            case CANCELED -> throw new ShippingAlreadyExistsException("EL envio esta CANCELADO.");
+            case COMPLETED -> throw new ShippingAlreadyExistsException("EL envio esta COMPLETADO.");
+            case CONFIRMED -> throw new ShippingAlreadyExistsException("EL envio esta CONFIRMADO.");
+            default ->  orderEntity.setOrderStatus(Status.CANCELED);
+        }
+
         orderRepository.save(orderEntity);
         return orderMapper.toDto(orderEntity);
     }
-
 
     public List<OrderResponseDto> findWithFilters(Long clientId, Status status) {
         if (clientId == null && status == null)
@@ -137,9 +151,7 @@ public class OrderService {
         OrderEntity order = orderRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado: " + id));
 
-
         validateTransaction(order.getOrderStatus(), dto.getNewStatus());
-
 
         if (dto.getNewStatus() == Status.CONFIRMED) {
             descontarStock(order);
