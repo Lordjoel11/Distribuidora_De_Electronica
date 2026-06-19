@@ -1,65 +1,46 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
-import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
-import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
-import com.Districto_Tech.distribuidora.features.shipping.ShippingEntity;
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Table(name = "orders")
 
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "ordes")
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false ,unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
     private Long id;
 
-    @Column(name = "order_code", unique = true)
-    private UUID orderCode;
+    @Column(nullable = false, unique = true, updatable = false)
+    private UUID publicId;
 
+    @Column(nullable = false)
+    private LocalDateTime orderDate;
 
-    @Column(name = "order_date")
-    private LocalDate orderDate;
+    @Column(nullable = false)
+    private OrderStatus orderStatus;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_client")
+    private ClientEntity client;
 
-    @Column(name = "order_status")
-    @Enumerated (EnumType.STRING)
-    private Status orderStatus;
-
-    @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "client")
-    private ClientEntity clientId;
-
-    @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "employee")
-    private EmployeeEntity employeeId;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ShippingEntity> shippingEntities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "orderEntity", fetch = FetchType.LAZY)
-    private List<OrderDetails> orderDetailsList;
-
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<OrderDetailsEntity> orderDetails = new ArrayList<>();
 
     @PrePersist
-
-    protected void generateRandomCode() {
-
-        this.orderCode = UUID.randomUUID();
-
-    }
-
+    public void generateUUID() { if(this.publicId == null) this.publicId = UUID.randomUUID(); }
 
 }
