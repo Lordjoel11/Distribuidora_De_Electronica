@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.features.users.dto;
 
 import com.Districto_Tech.distribuidora.features.users.RoleType;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -14,16 +15,13 @@ import lombok.*;
 public class UserRequestDto {
 
     @NotBlank(message = "El email es requerido.")
-    @NotNull(message = "El email no puede ser nulo.")
+    @Email(message = "Debe ser formato Email.")
     private String email;
 
     @NotBlank(message = "La contraseña es requerido.")
-    @NotNull(message = "La contraseña no puede ser nulo.")
     private String password;
 
     @NotNull(message = "El email no puede ser nulo.")
     private RoleType roleType;
-
-
 
 }

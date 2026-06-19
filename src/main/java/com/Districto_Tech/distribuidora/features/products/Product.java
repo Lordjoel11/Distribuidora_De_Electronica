@@ -1,8 +1,12 @@
 package com.Districto_Tech.distribuidora.features.products;
 
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsEntity;
 import com.Districto_Tech.distribuidora.features.suppliers.Supplier;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -36,4 +40,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<OrderDetailsEntity> orderDetails = new ArrayList<>();
 }

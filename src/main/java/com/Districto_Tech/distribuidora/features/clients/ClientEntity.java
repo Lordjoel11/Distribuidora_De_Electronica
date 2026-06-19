@@ -1,7 +1,11 @@
 package com.Districto_Tech.distribuidora.features.clients;
+import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,5 +41,8 @@ public class ClientEntity {
     @OneToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<OrderEntity> orders = new ArrayList<>();
 
 }
