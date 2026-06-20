@@ -3,8 +3,6 @@ import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientRequestDTO;
 import com.Districto_Tech.distribuidora.features.clients.dto.ClientResponseDTO;
-import com.Districto_Tech.distribuidora.features.orders.OrderModelMapper;
-import com.Districto_Tech.distribuidora.features.orders.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

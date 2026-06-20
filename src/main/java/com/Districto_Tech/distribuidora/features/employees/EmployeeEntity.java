@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.employees;
 
+import com.Districto_Tech.distribuidora.features.clients.CountStatus;
 import com.Districto_Tech.distribuidora.features.employees.misc.Role;
 import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import jakarta.persistence.*;
@@ -34,6 +35,7 @@ public class EmployeeEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
 
     @OneToOne
     @JoinColumn(name = "user_id")
