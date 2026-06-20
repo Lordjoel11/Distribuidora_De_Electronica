@@ -38,6 +38,10 @@ public class ClientEntity {
     @Column(nullable = false)
     private boolean isVip;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CountStatus countStatus;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
