@@ -38,6 +38,10 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ApprovalStatus approvalStatus;
+
     @OneToOne(mappedBy = "user")
     private ClientEntity client;
 
@@ -47,6 +51,7 @@ public class UserEntity implements UserDetails {
     @PrePersist
     protected void generateRandomCode() {
         if(this.publicId == null) this.publicId = UUID.randomUUID();
+        if(this.approvalStatus == null) this.approvalStatus = ApprovalStatus.PENDING;
     }
 
     @Override
@@ -67,5 +72,9 @@ public class UserEntity implements UserDetails {
     public boolean isCredentialsNonExpired() { return true; }
 
     @Override
-    public boolean isEnabled() { return true; }
+    public boolean isEnabled() {
+        // ADMIN y EMPLOYEE no necesitan aprobación; solo CLIENT
+        if (roleType != RoleType.CLIENT) return true;
+        return approvalStatus == ApprovalStatus.APPROVED;
+    }
 }

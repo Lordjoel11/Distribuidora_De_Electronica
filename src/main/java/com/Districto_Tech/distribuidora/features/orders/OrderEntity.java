@@ -1,46 +1,51 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
-import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsEntity;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-@Table(name = "ordes")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "orders")
 public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true, updatable = false)
     private Long id;
 
-    @Column(nullable = false, unique = true, updatable = false)
-    private UUID publicId;
+    @Column(name = "order_code", unique = true)
+    private UUID orderCode;
 
-    @Column(nullable = false)
-    private LocalDateTime orderDate;
+    @Column(name = "order_date")
+    private LocalDate orderDate;
 
-    @Column(nullable = false)
-    private OrderStatus orderStatus;
+    @Column(name = "order_status")
+    @Enumerated(EnumType.STRING)
+    private Status orderStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "client_id")
     private ClientEntity client;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true )
-    private List<OrderDetailsEntity> orderDetails = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employee;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderDetails> orderDetailsList;
 
     @PrePersist
-    public void generateUUID() { if(this.publicId == null) this.publicId = UUID.randomUUID(); }
-
+    protected void generateRandomCode() {
+        if (this.orderCode == null) this.orderCode = UUID.randomUUID();
+    }
 }

@@ -1,7 +1,7 @@
 package com.Districto_Tech.distribuidora.features.users.auth;
 
-
 import com.Districto_Tech.distribuidora.common.config.JwtService;
+import com.Districto_Tech.distribuidora.features.users.ApprovalStatus;
 import com.Districto_Tech.distribuidora.features.users.RoleType;
 import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import com.Districto_Tech.distribuidora.features.users.UserRepository;
@@ -48,13 +48,13 @@ public class CredentialsService {
                 .email(requestUser.getEmail())
                 .password(passwordEncoder.encode(requestUser.getPassword()))
                 .publicId(java.util.UUID.randomUUID())
-                .roleType(requestUser.getRoleType())
+                .roleType(RoleType.CLIENT)
+                .approvalStatus(ApprovalStatus.PENDING)
                 .build();
 
         var savedUser = userRepository.save(userEntity);
-        var jwtToken = jwtService.generateToken(savedUser);
         return CredentialsResponse.builder()
-                .token(jwtToken)
+                .token(null)
                 .build();
     }
 }

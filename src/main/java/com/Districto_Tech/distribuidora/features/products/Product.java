@@ -1,6 +1,6 @@
 package com.Districto_Tech.distribuidora.features.products;
 
-import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsEntity;
+import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import com.Districto_Tech.distribuidora.features.suppliers.Supplier;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,5 +42,5 @@ public class Product {
     private Supplier supplier;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true )
-    private List<OrderDetailsEntity> orderDetails = new ArrayList<>();
+    private List<OrderDetails> orderDetails = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.users;
 
+import com.Districto_Tech.distribuidora.features.users.dto.AdminUserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import jakarta.validation.Valid;
@@ -19,16 +20,9 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> create(@Valid @RequestBody UserRequestDto request) {
-        UserResponseDto newUser = userService.save(request);
+    public ResponseEntity<UserResponseDto> create(@Valid @RequestBody AdminUserRequestDto request) {
+        UserResponseDto newUser = userService.saveByAdmin(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<UserResponseDto> register(
-            @RequestBody @Valid UserRequestDto request) {
-
-        return ResponseEntity.ok(userService.save(request));
     }
 
     @GetMapping
@@ -54,6 +48,11 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/approve")
+    public ResponseEntity<UserResponseDto> approve(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.approve(id));
     }
 
 
