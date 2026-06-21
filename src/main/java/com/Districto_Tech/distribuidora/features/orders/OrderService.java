@@ -1,11 +1,6 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
-import com.Districto_Tech.distribuidora.common.exceptions.ShippingAlreadyExistsException;
-import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
-import com.Districto_Tech.distribuidora.features.clients.ClientRepository;
-import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
-import com.Districto_Tech.distribuidora.features.employees.EmployeeRepository;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
@@ -16,140 +11,79 @@ import com.Districto_Tech.distribuidora.features.products.Product;
 import com.Districto_Tech.distribuidora.features.products.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final OrderModelMapper orderMapper;
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
+    private final OrderModelMapper orderMapper;
     private final ProductRepository productRepository;
-    private final ClientRepository clientRepository;
-    private final EmployeeRepository employeeRepository;
 
-    public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
+    @Transactional
+    public OrderResponseDto createOrder(OrderRequestDto dto) {
 
-        ClientEntity client = clientRepository.findById(orderRequestDto.getClientId())
-                .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado."));
+        OrderEntity savedOrder = orderRepository.save(orderMapper.toEntity(dto));
 
-        EmployeeEntity employee = employeeRepository.findById(orderRequestDto.getEmployeeId())
-                .orElseThrow(() -> new ResourceNotFoundException("Empleado no encontrado."));
-
-        OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setOrderStatus(Status.PENDING);
-        orderEntity.setOrderDate(LocalDate.now());
-        orderEntity.setClientId(client);
-        orderEntity.setEmployeeId(employee);
-        OrderEntity savedOrder = orderRepository.save(orderEntity);
-
-        for (OrderDetailsRequestDto detailDto : orderRequestDto.getOrderDetails()) {
-            Product product = productRepository.findById(detailDto.getProductId())
+        for (OrderDetailsRequestDto itemDto : dto.getItems()) {
+            Product product = productRepository.findById(itemDto.getProductId())
                     .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 
-            if (product.getStock() < detailDto.getOrderQuantity()) {
-                throw new IllegalArgumentException("Insuficiente stock del producto: " + product.getName()
-                        + ". hay: " + product.getStock()
-                        + ", necesario: " + detailDto.getOrderQuantity());
-            }
+            OrderDetails detail = OrderDetails.builder()
+                    .order(savedOrder)
+                    .product(product)
+                    .quantity(itemDto.getQuantity())
+                    .historicalPrice(product.getUnitPrice())
+                    .build();
 
-            product.setStock(product.getStock() - detailDto.getOrderQuantity());
-            productRepository.save(product);
-
-            OrderDetails detail = new OrderDetails();
-            detail.setOrderEntity(savedOrder);
-            detail.setProductEntity(product);
-            detail.setOrderDescription(detailDto.getOrderDescription());
-            detail.setOrderQuantity(detailDto.getOrderQuantity());
-            detail.setHistoricalPrice(product.getUnitPrice());
             orderDetailsRepository.save(detail);
         }
 
         return orderMapper.toDto(orderRepository.findById(savedOrder.getId()).orElseThrow());
     }
 
-    public OrderResponseDto cancelOrderById(Long id) {
-        OrderEntity orderEntity = orderRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
-
-        switch (orderEntity.getOrderStatus()){
-            case CANCELED -> throw new ShippingAlreadyExistsException("EL envio esta CANCELADO.");
-            case COMPLETED -> throw new ShippingAlreadyExistsException("EL envio esta COMPLETADO.");
-            case CONFIRMED -> throw new ShippingAlreadyExistsException("EL envio esta CONFIRMADO.");
-            default ->  orderEntity.setOrderStatus(Status.CANCELED);
-        }
-
-        orderRepository.save(orderEntity);
-        return orderMapper.toDto(orderEntity);
-    }
-
-    public OrderResponseDto cancelOrderByCode(UUID orderCode) {
-        OrderEntity orderEntity = orderRepository.findByOrderCode(orderCode)
-                .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado."));
-
-        switch (orderEntity.getOrderStatus()){
-            case CANCELED -> throw new ShippingAlreadyExistsException("EL envio esta CANCELADO.");
-            case COMPLETED -> throw new ShippingAlreadyExistsException("EL envio esta COMPLETADO.");
-            case CONFIRMED -> throw new ShippingAlreadyExistsException("EL envio esta CONFIRMADO.");
-            default ->  orderEntity.setOrderStatus(Status.CANCELED);
-        }
-
-        orderRepository.save(orderEntity);
-        return orderMapper.toDto(orderEntity);
-    }
-
     public List<OrderResponseDto> findWithFilters(Long clientId, Status status) {
-        if (clientId == null && status == null)
+        if (clientId == null && status == null) {
             return orderRepository.findAll().stream().map(orderMapper::toDto).toList();
-
-        if (clientId == null)
+        }
+        if (clientId == null) {
             return orderRepository.findByOrderStatus(status).stream().map(orderMapper::toDto).toList();
-
-        if (status == null)
-            return orderRepository.findByClientId(clientId).stream().map(orderMapper::toDto).toList();
-
-        return orderRepository.findByClientIdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
+        }
+        if (status == null) {
+            return orderRepository.findByClient_Id(clientId).stream().map(orderMapper::toDto).toList();
+        }
+        return orderRepository.findByClient_IdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
     }
 
-    private void validateTransaction(Status currentStatus, Status newStatus) {
-
-        if (currentStatus == Status.COMPLETED && newStatus == Status.PENDING) {
-            throw new IllegalStateException("No se puede volver a PENDIENTE desde ENTREGADO.");
-        }
-
-        if (currentStatus == Status.CANCELED) {
-            throw new IllegalStateException("No se puede modificar un pedido CANCELADO.");
-        }
-
-        if (currentStatus == Status.COMPLETED) {
-            throw new IllegalStateException("No se puede modificar un pedido COMPLETADO.");
-        }
+    public OrderResponseDto getById(Long id) {
+        return orderMapper.toDto(orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado.")));
     }
 
-    private void descontarStock(OrderEntity order) {
-        for (OrderDetails detalle : order.getOrderDetailsList()) {
-            Product producto = detalle.getProductEntity();
-            int stockActual = producto.getStock();
-            int cantidad = detalle.getOrderQuantity();
-
-            if (stockActual < cantidad) {
-                throw new IllegalStateException(
-                        "Stock insuficiente para el producto: " + producto.getName()
-                );
-            }
-            producto.setStock(stockActual - cantidad);
-            productRepository.save(producto);
-        }
+    public OrderResponseDto getByCode(UUID orderCode) {
+        return orderMapper.toDto(orderRepository.findByOrderCode(orderCode)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado.")));
     }
 
+    @Transactional
+    public OrderResponseDto cancelOrderById(Long id) {
+        OrderEntity order = orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
+
+        validateTransaction(order.getOrderStatus(), Status.CANCELED);
+        order.setOrderStatus(Status.CANCELED);
+        return orderMapper.toDto(orderRepository.save(order));
+    }
+
+    @Transactional
     public OrderResponseDto changeStatus(Long id, OrderStatusDto dto) {
         OrderEntity order = orderRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Pedido no encontrado: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         validateTransaction(order.getOrderStatus(), dto.getNewStatus());
 
@@ -159,5 +93,31 @@ public class OrderService {
 
         order.setOrderStatus(dto.getNewStatus());
         return orderMapper.toDto(orderRepository.save(order));
+    }
+
+    private void validateTransaction(Status currentStatus, Status newStatus) {
+        if (currentStatus == Status.CANCELED) {
+            throw new IllegalStateException("No se puede modificar un pedido CANCELADO.");
+        }
+        if (currentStatus == Status.COMPLETED) {
+            throw new IllegalStateException("No se puede modificar un pedido COMPLETADO.");
+        }
+        if (currentStatus == Status.COMPLETED && newStatus == Status.PENDING) {
+            throw new IllegalStateException("No se puede volver a PENDIENTE desde COMPLETADO.");
+        }
+    }
+
+    private void descontarStock(OrderEntity order) {
+        for (OrderDetails detail : order.getOrderDetailsList()) {
+            Product product = detail.getProduct();
+            int stockActual = product.getStock();
+            int cantidad = detail.getQuantity();
+
+            if (stockActual < cantidad) {
+                throw new IllegalStateException("Stock insuficiente para el producto: " + product.getName());
+            }
+            product.setStock(stockActual - cantidad);
+            productRepository.save(product);
+        }
     }
 }

@@ -21,41 +21,37 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderRequestDto orderRequestDto) {
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderRequestDto));
-
+    public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderRequestDto dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(dto));
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> cancelOrderById(@PathVariable Long id) {
-
-        orderService.cancelOrderById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @DeleteMapping("/{order_code}")
-    public ResponseEntity<Void> cancelOrderByCode(@PathVariable UUID orderCode) {
-
-        orderService.cancelOrderByCode(orderCode);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-
 
     @GetMapping
     public ResponseEntity<List<OrderResponseDto>> findAll(
             @RequestParam(required = false) Long clientId,
-            @RequestParam (required = false) Status status) {
+            @RequestParam(required = false) Status status) {
         return ResponseEntity.ok(orderService.findWithFilters(clientId, status));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponseDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getById(id));
+    }
+
+    @GetMapping("/code/{orderCode}")
+    public ResponseEntity<OrderResponseDto> getByCode(@PathVariable UUID orderCode) {
+        return ResponseEntity.ok(orderService.getByCode(orderCode));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<OrderResponseDto> cancelOrderById(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.cancelOrderById(id));
     }
 
     @PatchMapping("/{id}/status")
     @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     public ResponseEntity<OrderResponseDto> changeStatus(
             @PathVariable Long id,
-            @Valid @RequestBody OrderStatusDto dto
-    ) {
-        return ResponseEntity.ok(orderService.changeStatus (id, dto));
+            @Valid @RequestBody OrderStatusDto dto) {
+        return ResponseEntity.ok(orderService.changeStatus(id, dto));
     }
 }

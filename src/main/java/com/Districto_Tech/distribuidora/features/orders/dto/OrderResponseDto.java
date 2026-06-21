@@ -14,9 +14,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderResponseDto {
+
     private Long id;
     private UUID orderCode;
     private LocalDate orderDate;
     private Status orderStatus;
-    private List<OrderDetailsResponseDto> orderDetails;
+    private Long clientId;
+    private String clientName;
+    private Long employeeId;
+    private String employeeName;
+    private List<OrderDetailsResponseDto> items;
+    private Double total;
 }

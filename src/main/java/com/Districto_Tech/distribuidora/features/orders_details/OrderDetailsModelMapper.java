@@ -10,15 +10,24 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class OrderDetailsModelMapper implements IModelMapper<OrderDetails, OrderDetailsResponseDto, OrderDetailsRequestDto> {
-    ModelMapper modelMapper;
+
+    private final ModelMapper modelMapper;
 
     @Override
-    public OrderDetails toEntity(OrderDetailsRequestDto orderDetailsRequestDto) {
-        return modelMapper.map(orderDetailsRequestDto, OrderDetails.class);
+    public OrderDetails toEntity(OrderDetailsRequestDto dto) {
+        return modelMapper.map(dto, OrderDetails.class);
     }
 
     @Override
-    public OrderDetailsResponseDto toDto(OrderDetails orderDetails) {
-        return modelMapper.map(orderDetails, OrderDetailsResponseDto.class);
+    public OrderDetailsResponseDto toDto(OrderDetails entity) {
+        OrderDetailsResponseDto dto = modelMapper.map(entity, OrderDetailsResponseDto.class);
+        if (entity.getProduct() != null) {              // antes: getProductEntity()
+            dto.setProductId(entity.getProduct().getId());
+            dto.setProductName(entity.getProduct().getName());
+        }
+        if (entity.getOrder() != null) {                  // antes: getOrderEntity()
+            dto.setOrderId(entity.getOrder().getId());
+        }
+        return dto;
     }
 }

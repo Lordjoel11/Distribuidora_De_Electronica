@@ -1,9 +1,6 @@
 package com.Districto_Tech.distribuidora.features.orders_details.dto;
 
-import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
-import com.Districto_Tech.distribuidora.features.products.Product;
 import lombok.*;
-import org.hibernate.query.Order;
 
 @Builder
 @AllArgsConstructor
@@ -12,7 +9,10 @@ import org.hibernate.query.Order;
 @Setter
 public class OrderDetailsResponseDto {
 
-    private String description;
+    private Long id;
     private Integer quantity;
     private Double historicalPrice;
+    private Long productId;
+    private String productName;
+    private Long orderId;
 }

@@ -2,6 +2,7 @@ package com.Districto_Tech.distribuidora.features.users;
 
 import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
+import com.Districto_Tech.distribuidora.features.users.dto.AdminUserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -20,19 +21,24 @@ public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto
 
     @Override
     public UserResponseDto save(UserRequestDto dto) {
+        throw new UnsupportedOperationException("Use /api/users con AdminUserRequestDto o /api/v1/auth/register.");
+    }
+
+    public UserResponseDto saveByAdmin(AdminUserRequestDto dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalArgumentException("Usuario no encontrado de Gmail: " + dto.getEmail());
+            throw new IllegalArgumentException("El email ya está registrado: " + dto.getEmail());
         }
 
-        UserEntity userEntity = userMapper.toEntity(dto);
-        userEntity.setRoleType(dto.getRoleType());
-        userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        UserEntity userEntity = UserEntity.builder()
+                .email(dto.getEmail())
+                .password(passwordEncoder.encode(dto.getPassword()))
+                .roleType(dto.getRoleType())
+                .approvalStatus(ApprovalStatus.APPROVED)
+                .build();
 
         userEntity = userRepository.save(userEntity);
         return userMapper.toDto(userEntity);
     }
-
-
 
     @Override
     public List<UserResponseDto> getAll() {
@@ -66,5 +72,18 @@ public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto
             throw new ResourceNotFoundException("No se puede eliminar. El Usuario no existe.");
         }
         userRepository.deleteById(id);
+    }
+
+    public UserResponseDto approve(Long id) {
+        UserEntity userEntity = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + id));
+
+        if (userEntity.getRoleType() != RoleType.CLIENT) {
+            throw new IllegalArgumentException("Solo los usuarios CLIENT requieren aprobación.");
+        }
+
+        userEntity.setApprovalStatus(ApprovalStatus.APPROVED);
+        userRepository.save(userEntity);
+        return userMapper.toDto(userEntity);
     }
 }

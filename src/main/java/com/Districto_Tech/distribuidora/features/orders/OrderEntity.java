@@ -3,12 +3,10 @@ package com.Districto_Tech.distribuidora.features.orders;
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
-import com.Districto_Tech.distribuidora.features.shipping.ShippingEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,47 +17,35 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "orders")
-
 public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false ,unique = true)
     private Long id;
 
     @Column(name = "order_code", unique = true)
     private UUID orderCode;
 
-
     @Column(name = "order_date")
     private LocalDate orderDate;
 
-
     @Column(name = "order_status")
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Status orderStatus;
 
-    @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "client")
-    private ClientEntity clientId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private ClientEntity client;
 
-    @ManyToOne (fetch = FetchType.LAZY)
-    @JoinColumn (name = "employee")
-    private EmployeeEntity employeeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employee;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ShippingEntity> shippingEntities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "orderEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderDetails> orderDetailsList;
 
-
     @PrePersist
-
     protected void generateRandomCode() {
-
-        this.orderCode = UUID.randomUUID();
-
+        if (this.orderCode == null) this.orderCode = UUID.randomUUID();
     }
-
-
 }

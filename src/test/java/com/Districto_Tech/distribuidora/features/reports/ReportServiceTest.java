@@ -2,7 +2,6 @@ package com.Districto_Tech.distribuidora.features.reports;
 
 import com.Districto_Tech.distribuidora.features.orders.OrderEntity;
 import com.Districto_Tech.distribuidora.features.orders.OrderRepository;
-import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

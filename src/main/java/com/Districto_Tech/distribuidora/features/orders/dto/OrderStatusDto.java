@@ -2,8 +2,7 @@ package com.Districto_Tech.distribuidora.features.orders.dto;
 
 import com.Districto_Tech.distribuidora.features.orders.Status;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter

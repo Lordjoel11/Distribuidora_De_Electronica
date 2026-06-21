@@ -1,8 +1,8 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 public enum Status {
-    COMPLETED,
-    CONFIRMED,
     PENDING,
+    CONFIRMED,
+    COMPLETED,
     CANCELED
 }

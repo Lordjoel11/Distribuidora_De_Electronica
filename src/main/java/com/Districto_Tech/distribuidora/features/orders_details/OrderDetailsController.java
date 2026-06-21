@@ -1,40 +1,32 @@
 package com.Districto_Tech.distribuidora.features.orders_details;
 
-import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsResponseDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/order-details")
+@RequiredArgsConstructor
 public class OrderDetailsController {
 
     private final OrderDetailsService orderDetailsService;
 
-    @PostMapping
-    public ResponseEntity<OrderDetailsResponseDto> createOrder(@Valid @RequestBody OrderDetailsRequestDto orderDetailsRequestDto) {
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderDetailsService.createOrder(orderDetailsRequestDto));
-
+    @GetMapping
+    public ResponseEntity<List<OrderDetailsResponseDto>> getAll() {
+        return ResponseEntity.ok(orderDetailsService.getAll());
     }
 
-    @DeleteMapping("/api/order_details/{id}")
-    public ResponseEntity<Void> cancelOrderById(@PathVariable Long id) {
-
-        orderDetailsService.cancelOrderById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderDetailsResponseDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(orderDetailsService.getById(id));
     }
 
-    @DeleteMapping("/api/order_details/{order_code}")
-    public ResponseEntity<Void> cancelOrderByCode(@PathVariable UUID publicId) {
-
-        orderDetailsService.cancelOrderByCode(publicId);
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<List<OrderDetailsResponseDto>> getByOrderId(@PathVariable Long orderId) {
+        return ResponseEntity.ok(orderDetailsService.getByOrderId(orderId));
     }
 }
