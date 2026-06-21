@@ -55,7 +55,10 @@ public class UserController {
         return ResponseEntity.ok(userService.approve(id));
     }
 
-
+    @GetMapping("/pending")
+    public ResponseEntity<List<UserResponseDto>> getPendingUsers() {
+        return ResponseEntity.ok(userService.getByApprovalStatus(ApprovalStatus.PENDING));
+    }
 
 
 

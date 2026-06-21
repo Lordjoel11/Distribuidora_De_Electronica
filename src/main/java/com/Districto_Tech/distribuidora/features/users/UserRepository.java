@@ -3,6 +3,7 @@ package com.Districto_Tech.distribuidora.features.users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,6 +13,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Override
     Optional<UserEntity> findById(Long id);
     Optional<UserEntity> findByEmail(String userEmail);
-    boolean existsByEmail (String email);
-
+    boolean existsByEmail(String email);
+    List<UserEntity> findByApprovalStatus(ApprovalStatus approvalStatus);
 }
