@@ -86,4 +86,11 @@ public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto
         userRepository.save(userEntity);
         return userMapper.toDto(userEntity);
     }
+
+    public List<UserResponseDto> getByApprovalStatus(ApprovalStatus status) {
+        return userRepository.findByApprovalStatus(status)
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }

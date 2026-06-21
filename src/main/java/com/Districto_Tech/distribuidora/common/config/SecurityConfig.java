@@ -1,6 +1,5 @@
 package com.Districto_Tech.distribuidora.common.config;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,32 +22,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-
                 .csrf(csrf -> csrf.disable())
 
-
                 .authorizeHttpRequests(auth -> auth
-
+                        // Publico
                         .requestMatchers("/test").permitAll()
-                                .requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/h2-console/**").permitAll()
-                                .requestMatchers("/api/order-details/**").permitAll()
-                                .requestMatchers("/api/orders/**").permitAll()
-                                .requestMatchers("/api/payments/**").hasRole("CLIENT")
-                                .requestMatchers("/api/clients/**").hasRole("ADMIN")
-                                .requestMatchers("/api/users/**").hasRole("ADMIN")
-                                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/api/purchases/**").hasRole("ADMIN")
-                                .requestMatchers("/api/shipping/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                                .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                                .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                                .requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                                .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
-                                .requestMatchers("/api/orders/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
-                                .requestMatchers("/api/order-details/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
 
-                                .anyRequest().authenticated()
+                        //ADMIN
+                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+                        .requestMatchers("/api/purchases/**").hasRole("ADMIN")
+                        .requestMatchers("/api/clients/**").hasRole("ADMIN")
 
+                        // ADMIN y EMPLOYEE
+                        .requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers("/api/shipping/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers("/api/invoices/**").hasAnyRole("ADMIN", "EMPLOYEE")
+
+                        // ADMIN, EMPLOYEE y CLIENT
+                        .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                        .requestMatchers("/api/orders/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                        .requestMatchers("/api/order-details/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+
+                        .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
@@ -60,19 +60,13 @@ public class SecurityConfig {
                             );
                         })
                 )
-
-
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-
-
                 .authenticationProvider(authenticationProvider)
-
-
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-                 http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
+        http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
 
         return http.build();
     }
