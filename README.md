@@ -1,4 +1,4 @@
- # 🖥️ Sistema de Gestión para Distribuidora de Electrónica
+# 🖥️ Sistema de Gestión para Distribuidora de Electrónica
 
 Backend desarrollado en Java y Spring Boot para la gestión integral de una distribuidora de productos electrónicos. El sistema permite administrar clientes, empleados, productos, pedidos, pagos, proveedores, facturación y autenticación basada en JWT.
 
