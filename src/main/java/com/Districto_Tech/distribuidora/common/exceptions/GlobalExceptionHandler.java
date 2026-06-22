@@ -67,24 +67,7 @@ public class GlobalExceptionHandler {
 
     }
 
-    @ExceptionHandler(ShippingAlreadyExistsException.class)
-    public ResponseEntity<ErrorDetails> handleShippingAlreadyExistsException(
-            ShippingAlreadyExistsException ex,
-            HttpServletRequest request) {
-
-        ErrorDetails errorDetails = new ErrorDetails(
-                LocalDateTime.now(),
-                HttpStatus.CONFLICT.value(),
-                HttpStatus.CONFLICT.getReasonPhrase(),
-                ex.getMessage(),
-                request.getRequestURI()
-        );
-
-        return new ResponseEntity<>(
-                errorDetails,
-                HttpStatus.CONFLICT
-        );
-    }
+    
 
 
 }
