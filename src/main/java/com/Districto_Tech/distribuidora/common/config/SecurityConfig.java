@@ -38,10 +38,10 @@ public class SecurityConfig {
 
                         // ADMIN y EMPLOYEE
                         .requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                        .requestMatchers("/api/shipping/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                        .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers("/api/employees/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_EMPLOYEE")
                         .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLOYEE")
                         .requestMatchers("/api/invoices/**").hasAnyRole("ADMIN", "EMPLOYEE")
+
 
                         // ADMIN, EMPLOYEE y CLIENT
                         .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")

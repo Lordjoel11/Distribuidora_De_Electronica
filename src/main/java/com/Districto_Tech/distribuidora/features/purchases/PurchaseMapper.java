@@ -8,6 +8,7 @@ import com.Districto_Tech.distribuidora.features.purchases.dto.PurchaseResponseD
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -24,10 +25,12 @@ public class PurchaseMapper implements IModelMapper<PurchaseEntity, PurchaseResp
     @Override
     public PurchaseResponseDto toDto(PurchaseEntity entity) {
         PurchaseResponseDto dto = mapperConfig.modelMapper().map(entity, PurchaseResponseDto.class);
+
         if (entity.getSupplier() != null) {
             dto.setSupplierName(entity.getSupplier().getName());
         }
-        if (entity.getPurchaseDetails() != null) {
+        
+        if (entity.getPurchaseDetails() != null && !entity.getPurchaseDetails().isEmpty()) {
             List<PurchaseDetailsResponseDto> details = entity.getPurchaseDetails().stream()
                     .map(detail -> {
                         PurchaseDetailsResponseDto d = new PurchaseDetailsResponseDto();
@@ -38,9 +41,13 @@ public class PurchaseMapper implements IModelMapper<PurchaseEntity, PurchaseResp
                             d.setProductName(detail.getProduct().getName());
                         }
                         return d;
-                    }).toList();
+                    })
+                    .toList();
             dto.setPurchaseDetails(details);
+        } else {
+            dto.setPurchaseDetails(new ArrayList<>());
         }
+
         return dto;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,22 +39,25 @@ public class PurchaseService {
                 .supplier(supplier)
                 .build();
 
-        PurchaseEntity saved = purchaseRepository.save(purchase);
+        PurchaseEntity savedPurchase = purchaseRepository.save(purchase);
+
+        List<PurchaseDetails> detailsList = new ArrayList<>();
 
         for (PurchaseDetailsRequestDto detailDto : dto.getPurchaseDetails()) {
             Product product = productRepository.findById(detailDto.getProductId())
                     .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado."));
 
             PurchaseDetails detail = PurchaseDetails.builder()
-                    .purchase(saved)
+                    .purchase(savedPurchase)
                     .product(product)
                     .quantity(detailDto.getQuantity())
                     .build();
 
-            purchaseDetailsRepository.save(detail);
+            detailsList.add(purchaseDetailsRepository.save(detail));
         }
+        savedPurchase.setPurchaseDetails(detailsList);
 
-        return purchaseMapper.toDto(purchaseRepository.findById(saved.getId()).orElseThrow());
+        return purchaseMapper.toDto(savedPurchase);
     }
 
     public List<PurchaseResponseDto> getAll() {
@@ -92,5 +96,22 @@ public class PurchaseService {
         purchase.setPurchaseStatus(PurchaseStatus.COMPLETED);
         return purchaseMapper.toDto(purchaseRepository.save(purchase));
     }
+
+    @Transactional
+    public PurchaseResponseDto cancelPurchase(Long id) {
+        PurchaseEntity purchase = purchaseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Compra no encontrada."));
+
+        if (purchase.getPurchaseStatus() == PurchaseStatus.COMPLETED) {
+            throw new IllegalStateException("No se puede cancelar una compra COMPLETADA.");
+        }
+        if (purchase.getPurchaseStatus() == PurchaseStatus.CANCELED) {
+            throw new IllegalStateException("La compra ya está cancelada.");
+        }
+
+        purchase.setPurchaseStatus(PurchaseStatus.CANCELED);
+        return purchaseMapper.toDto(purchaseRepository.save(purchase));
+    }
+
 
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,9 @@ public class PurchaseEntity {
     @JoinColumn(name = "supplier_id", nullable = false)
     private Supplier supplier;
 
-    @OneToMany(mappedBy = "purchase", fetch = FetchType.LAZY)
-    private List<PurchaseDetails> purchaseDetails;
+    @OneToMany(mappedBy = "purchase",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<PurchaseDetails> purchaseDetails = new ArrayList<>();
 }
