@@ -3,11 +3,13 @@ package com.Districto_Tech.distribuidora.features.orders;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
+import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,15 +23,18 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderRequestDto dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(dto));
+    public ResponseEntity<OrderResponseDto> createOrder(
+            @Valid @RequestBody OrderRequestDto dto,
+            @AuthenticationPrincipal UserEntity currentUser) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(dto, currentUser.getId()));
     }
 
     @GetMapping
     public ResponseEntity<List<OrderResponseDto>> findAll(
             @RequestParam(required = false) Long clientId,
-            @RequestParam(required = false) Status status) {
-        return ResponseEntity.ok(orderService.findWithFilters(clientId, status));
+            @RequestParam(required = false) Status status,
+            @RequestParam(required = false) Boolean unassigned) {
+        return ResponseEntity.ok(orderService.findWithFilters(clientId, status, unassigned));
     }
 
     @GetMapping("/{id}")
@@ -45,6 +50,14 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public ResponseEntity<OrderResponseDto> cancelOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.cancelOrderById(id));
+    }
+
+    @PatchMapping("/{id}/take")
+    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
+    public ResponseEntity<OrderResponseDto> takeOrder(
+            @PathVariable Long id,
+            @AuthenticationPrincipal UserEntity currentUser) {
+        return ResponseEntity.ok(orderService.takeOrder(id, currentUser.getId()));
     }
 
     @PatchMapping("/{id}/status")

@@ -1,6 +1,10 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
+import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
+import com.Districto_Tech.distribuidora.features.clients.ClientRepository;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeEntity;
+import com.Districto_Tech.distribuidora.features.employees.EmployeeRepository;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderRequestDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderResponseDto;
 import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
@@ -13,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,12 +29,26 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderDetailsRepository orderDetailsRepository;
     private final OrderModelMapper orderMapper;
+    private final ClientRepository clientRepository;
+    private final EmployeeRepository employeeRepository;
     private final ProductRepository productRepository;
 
     @Transactional
-    public OrderResponseDto createOrder(OrderRequestDto dto) {
+    public OrderResponseDto createOrder(OrderRequestDto dto, Long currentUserId) {
 
-        OrderEntity savedOrder = orderRepository.save(orderMapper.toEntity(dto));
+        ClientEntity client = clientRepository.findByUser_Id(currentUserId)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró un perfil de cliente para este usuario."));
+
+        OrderEntity order = OrderEntity.builder()
+                .orderStatus(Status.PENDING)
+                .orderDate(LocalDate.now())
+                .client(client)
+                .employee(null)
+                .build();
+
+        OrderEntity savedOrder = orderRepository.save(order);
+
+        List<OrderDetails> createdDetails = new ArrayList<>();
 
         for (OrderDetailsRequestDto itemDto : dto.getItems()) {
             Product product = productRepository.findById(itemDto.getProductId())
@@ -41,23 +61,48 @@ public class OrderService {
                     .historicalPrice(product.getUnitPrice())
                     .build();
 
-            orderDetailsRepository.save(detail);
+            createdDetails.add(orderDetailsRepository.save(detail));
         }
 
-        return orderMapper.toDto(orderRepository.findById(savedOrder.getId()).orElseThrow());
+        savedOrder.setOrderDetailsList(createdDetails);
+
+        return orderMapper.toDto(savedOrder);
     }
 
-    public List<OrderResponseDto> findWithFilters(Long clientId, Status status) {
-        if (clientId == null && status == null) {
-            return orderRepository.findAll().stream().map(orderMapper::toDto).toList();
+    @Transactional
+    public OrderResponseDto takeOrder(Long orderId, Long currentUserId) {
+        OrderEntity order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
+
+        if (order.getEmployee() != null) {
+            throw new IllegalStateException("Este pedido ya fue tomado por otro empleado.");
         }
-        if (clientId == null) {
-            return orderRepository.findByOrderStatus(status).stream().map(orderMapper::toDto).toList();
+
+        EmployeeEntity employee = employeeRepository.findByUser_Id(currentUserId)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró un perfil de empleado para este usuario."));
+
+        order.setEmployee(employee);
+        return orderMapper.toDto(orderRepository.save(order));
+    }
+
+    public List<OrderResponseDto> findWithFilters(Long clientId, Status status, Boolean unassigned) {
+        List<OrderEntity> result;
+
+        if (Boolean.TRUE.equals(unassigned)) {
+            result = orderRepository.findByEmployeeIsNull();
+        } else if (clientId == null && status == null) {
+            result = orderRepository.findAll();
+        } else if (clientId == null) {
+            result = orderRepository.findByOrderStatus(status);
+        } else {
+            ClientEntity client = clientRepository.findById(clientId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Cliente no encontrado."));
+            result = (status == null)
+                    ? orderRepository.findByClient(client)
+                    : orderRepository.findByClientAndOrderStatus(client, status);
         }
-        if (status == null) {
-            return orderRepository.findByClient_Id(clientId).stream().map(orderMapper::toDto).toList();
-        }
-        return orderRepository.findByClient_IdAndOrderStatus(clientId, status).stream().map(orderMapper::toDto).toList();
+
+        return result.stream().map(orderMapper::toDto).toList();
     }
 
     public OrderResponseDto getById(Long id) {
