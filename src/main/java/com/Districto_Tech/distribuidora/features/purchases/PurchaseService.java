@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.purchases;
 
+import com.Districto_Tech.distribuidora.common.exceptions.AccessDeniedException;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.products.Product;
 import com.Districto_Tech.distribuidora.features.products.ProductRepository;
@@ -71,6 +72,9 @@ public class PurchaseService {
     }
 
     public void delete(Long id) {
+        if (!purchaseRepository.existsById(id)) {
+            throw new ResourceNotFoundException("No se puede eliminar. El Recurso no existe.");
+        }
         purchaseRepository.deleteById(id);
     }
 
@@ -80,11 +84,11 @@ public class PurchaseService {
                 .orElseThrow(() -> new ResourceNotFoundException("Compra no encontrada."));
 
         if (purchase.getPurchaseStatus() == PurchaseStatus.CANCELED) {
-            throw new IllegalStateException("No se puede completar una compra cancelada.");
+            throw new AccessDeniedException("No se puede completar una compra cancelada.");
         }
 
         if (purchase.getPurchaseStatus() == PurchaseStatus.COMPLETED) {
-            throw new IllegalStateException("La compra esta actualmete compeltada.");
+            throw new AccessDeniedException("La compra esta actualmente completada.");
         }
 
         for (PurchaseDetails detail : purchase.getPurchaseDetails()) {
@@ -103,10 +107,10 @@ public class PurchaseService {
                 .orElseThrow(() -> new ResourceNotFoundException("Compra no encontrada."));
 
         if (purchase.getPurchaseStatus() == PurchaseStatus.COMPLETED) {
-            throw new IllegalStateException("No se puede cancelar una compra COMPLETADA.");
+            throw new AccessDeniedException("No se puede cancelar una compra COMPLETADA.");
         }
         if (purchase.getPurchaseStatus() == PurchaseStatus.CANCELED) {
-            throw new IllegalStateException("La compra ya está cancelada.");
+            throw new AccessDeniedException("La compra ya está cancelada.");
         }
 
         purchase.setPurchaseStatus(PurchaseStatus.CANCELED);

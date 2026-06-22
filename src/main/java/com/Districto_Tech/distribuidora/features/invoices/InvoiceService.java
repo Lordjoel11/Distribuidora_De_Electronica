@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.invoices;
 
+import com.Districto_Tech.distribuidora.common.exceptions.ResourceAlrredyExistException;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.invoices.dto.InvoiceRequestDto;
 import com.Districto_Tech.distribuidora.features.invoices.dto.InvoiceResponseDto;
@@ -24,7 +25,7 @@ public class InvoiceService {
                 .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         if (invoiceRepository.findByOrder_Id(dto.getOrderId()).isPresent()) {
-            throw new IllegalStateException("Ya tiene factura este pedido.");
+            throw new ResourceAlrredyExistException("Ya tiene factura este pedido.");
         }
 
         InvoiceEntity invoice = InvoiceEntity.builder()
@@ -53,6 +54,11 @@ public class InvoiceService {
     }
 
     public void delete(Long id) {
+        if (!invoiceRepository.existsById(id)) {
+            throw new ResourceNotFoundException("No se puede eliminar. El Recurso no existe.");
+        }
         invoiceRepository.deleteById(id);
     }
+
+
 }

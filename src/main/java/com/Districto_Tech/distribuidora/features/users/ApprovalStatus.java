@@ -2,5 +2,6 @@ package com.Districto_Tech.distribuidora.features.users;
 
 public enum ApprovalStatus {
     PENDING,
-    APPROVED
+    APPROVED,
+    SUSPENDED
 }

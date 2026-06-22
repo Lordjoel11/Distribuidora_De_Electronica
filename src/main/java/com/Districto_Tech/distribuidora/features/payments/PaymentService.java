@@ -87,6 +87,9 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
 
     @Override
     public void deleteById(Long id) {
+        if (!paymentRepository.existsById(id)) {
+            throw new ResourceNotFoundException("No se puede eliminar. El Recurso no existe.");
+        }
         paymentRepository.deleteById(id);
     }
 }
