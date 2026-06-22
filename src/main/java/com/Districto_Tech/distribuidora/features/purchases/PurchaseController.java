@@ -42,4 +42,10 @@ public class PurchaseController {
     public ResponseEntity<PurchaseResponseDto> completePurchase(@PathVariable Long id) {
         return ResponseEntity.ok(purchaseService.completePurchase(id));
     }
+
+    @PatchMapping("/{id}/cancel")
+    public ResponseEntity<PurchaseResponseDto> cancelPurchase(@PathVariable Long id) {
+        return ResponseEntity.ok(purchaseService.cancelPurchase(id));
+    }
+
 }

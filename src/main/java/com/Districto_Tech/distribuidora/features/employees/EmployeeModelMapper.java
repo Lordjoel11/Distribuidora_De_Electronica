@@ -14,8 +14,9 @@ public class EmployeeModelMapper implements IModelMapper<EmployeeEntity, Employe
     private MapperConfig mapperConfig;
 
     @Override
-    public EmployeeEntity toEntity(EmployeeRequestDTO employeeRequestDTO) {
-        return mapperConfig.modelMapper().map(employeeRequestDTO, EmployeeEntity.class);
+    public EmployeeEntity toEntity(EmployeeRequestDTO dto) {
+        EmployeeEntity entity = mapperConfig.modelMapper().map(dto, EmployeeEntity.class);
+        return entity;
     }
 
     @Override

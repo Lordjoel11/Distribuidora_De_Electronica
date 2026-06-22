@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,13 +30,24 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
             throw new EmployeeAlreadyExistsException("Ya existe un empleado con ese CUIL.");
         }
 
+        Optional<EmployeeEntity> existing = employeeRepository.findByUser_Id(request.getUserId());
+        if (existing.isPresent()) {
+            throw new IllegalStateException("Este usuario ya tiene un perfil de empleado.");
+        }
+
         UserEntity user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + request.getUserId()));
 
-        EmployeeEntity employee = employeeModelMapper.toEntity(request);
-        employee.setUser(user);
+        EmployeeEntity employee = EmployeeEntity.builder()
+                .name(request.getName())
+                .surname(request.getSurname())
+                .CUIL(request.getCUIL())
+                .phoneNumber(request.getPhoneNumber())
+                .role(request.getRole())
+                .user(user)
+                .build();
 
-        employeeRepository.save(employee);
+        employee = employeeRepository.save(employee);
 
         return employeeModelMapper.toDto(employee);
     }

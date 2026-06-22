@@ -1,3 +1,8 @@
+-- =============================================
+-- DATOS INICIALES - Distribuidora
+-- =============================================
+
+-- Métodos de pago y descuentos
 INSERT INTO payment_methods (name, description) VALUES ('CASH', 'Pago en efectivo');
 INSERT INTO payment_methods (name, description) VALUES ('CREDIT_CARD', 'Tarjeta de crédito');
 INSERT INTO payment_methods (name, description) VALUES ('DEBIT_CARD', 'Tarjeta de débito');
@@ -6,11 +11,44 @@ INSERT INTO payment_methods (name, description) VALUES ('TRANSFER', 'Transferenc
 INSERT INTO discount_types (name, percentage) VALUES ('COMMON', 0.0);
 INSERT INTO discount_types (name, percentage) VALUES ('VIP', 10.0);
 
+-- ADMIN
 INSERT INTO users (public_id, email, password, role_type, approval_status)
 VALUES (RANDOM_UUID(), 'admin@distribuidora.com', '$2b$10$ViQ7oJuHCJ7hfF37CQXscelqQZu2PvHsdDCb.lhrZC/FJ.2PWpYi6', 'ADMIN', 'APPROVED');
 
+-- CLIENTES
+INSERT INTO users (public_id, email, password, role_type, approval_status)
+VALUES (RANDOM_UUID(), 'cliente1@gmail.com', '$2b$10$ViQ7oJuHCJ7hfF37CQXscelqQZu2PvHsdDCb.lhrZC/FJ.2PWpYi6', 'CLIENT', 'APPROVED');
+
+INSERT INTO users (public_id, email, password, role_type, approval_status)
+VALUES (RANDOM_UUID(), 'cliente2@gmail.com', '$2b$10$ViQ7oJuHCJ7hfF37CQXscelqQZu2PvHsdDCb.lhrZC/FJ.2PWpYi6', 'CLIENT', 'APPROVED');
+
+INSERT INTO clients (name_and_surname, dni, email, phone_number, address, is_vip, user_id)
+VALUES ('Laura Fernández', '30123456', 'cliente1@gmail.com', '1123456789', 'Av. Corrientes 1234, CABA', true,
+        (SELECT id FROM users WHERE email = 'cliente1@gmail.com'));
+
+INSERT INTO clients (name_and_surname, dni, email, phone_number, address, is_vip, user_id)
+VALUES ('Carlos Rodríguez', '27234567', 'cliente2@gmail.com', '1198765432', 'Calle Lavalle 567, CABA', false,
+        (SELECT id FROM users WHERE email = 'cliente2@gmail.com'));
+
+-- EMPLEADOS
+INSERT INTO users (public_id, email, password, role_type, approval_status)
+VALUES (RANDOM_UUID(), 'vendedor1@distribuidora.com', '$2b$10$ViQ7oJuHCJ7hfF37CQXscelqQZu2PvHsdDCb.lhrZC/FJ.2PWpYi6', 'EMPLOYEE', 'APPROVED');
+
+INSERT INTO users (public_id, email, password, role_type, approval_status)
+VALUES (RANDOM_UUID(), 'vendedor2@distribuidora.com', '$2b$10$ViQ7oJuHCJ7hfF37CQXscelqQZu2PvHsdDCb.lhrZC/FJ.2PWpYi6', 'EMPLOYEE', 'APPROVED');
+
+INSERT INTO employees (first_name, surname, cuil, phone_number, role, user_id)
+VALUES ('Pablo', 'Gómez', '20-12345678-9', '1122334455', 'VENDOR',
+        (SELECT id FROM users WHERE email = 'vendedor1@distribuidora.com'));
+
+INSERT INTO employees (first_name, surname, cuil, phone_number, role, user_id)
+VALUES ('Ana', 'Martínez', '27-98765432-1', '1199887766', 'VENDOR',
+        (SELECT id FROM users WHERE email = 'vendedor2@distribuidora.com'));
+
+-- Proveedores y Productos (opcional pero útil)
 INSERT INTO suppliers (name, cuit, contact) VALUES ('Tech Distribuciones SA', '30-12345678-9', 'contacto@techdist.com');
 INSERT INTO suppliers (name, cuit, contact) VALUES ('Electro Insumos SRL', '30-87654321-5', 'ventas@electroinsumos.com');
+
 
 INSERT INTO products (name, description, stock, unit_price, category, supplier_id) VALUES ('Cable HDMI 2m', 'Cable HDMI alta velocidad 4K', 50, 1500.99, 'CABLES', 1);
 INSERT INTO products (name, description, stock, unit_price, category, supplier_id) VALUES ('Cable USB-C 1m', 'Cable de carga y datos USB-C', 80, 800.00, 'CABLES', 1);

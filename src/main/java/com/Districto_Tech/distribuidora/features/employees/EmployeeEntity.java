@@ -26,7 +26,7 @@ public class EmployeeEntity {
     @Column(name = "surname", length = 25, nullable = false)
     private String surname;
 
-    @Column(length = 11, nullable = false, unique = true)
+    @Column(length = 13, nullable = false, unique = true)
     private String CUIL;
 
     @Column(length = 10, nullable = false)
