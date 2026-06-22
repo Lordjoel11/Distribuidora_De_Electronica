@@ -1,5 +1,6 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
+import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,8 @@ import java.util.UUID;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     Optional<OrderEntity> findByOrderCode(UUID orderCode);
-    List<OrderEntity> findByClient_Id(Long clientId);
+    List<OrderEntity> findByClient(ClientEntity client);
     List<OrderEntity> findByOrderStatus(Status orderStatus);
-    List<OrderEntity> findByClient_IdAndOrderStatus(Long clientId, Status status);
+    List<OrderEntity> findByClientAndOrderStatus(ClientEntity client, Status status);
+    List<OrderEntity> findByEmployeeIsNull();
 }

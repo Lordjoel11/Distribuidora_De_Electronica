@@ -3,8 +3,11 @@ package com.Districto_Tech.distribuidora.features.employees;
 import com.Districto_Tech.distribuidora.common.IService;
 import com.Districto_Tech.distribuidora.common.exceptions.EmployeeAlreadyExistsException;
 import com.Districto_Tech.distribuidora.common.exceptions.EmployeeNotFoundException;
+import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeRequestDTO;
 import com.Districto_Tech.distribuidora.features.employees.dtos.EmployeeResponseDTO;
+import com.Districto_Tech.distribuidora.features.users.UserEntity;
+import com.Districto_Tech.distribuidora.features.users.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
 
     private EmployeeRepository employeeRepository;
     private EmployeeModelMapper employeeModelMapper;
+    private UserRepository userRepository;
 
     @Override
     public EmployeeResponseDTO save(EmployeeRequestDTO request) {
@@ -24,7 +28,13 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
         if (employeeRepository.existsByCUIL(request.getCUIL())) {
             throw new EmployeeAlreadyExistsException("Ya existe un empleado con ese CUIL.");
         }
+
+        UserEntity user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + request.getUserId()));
+
         EmployeeEntity employee = employeeModelMapper.toEntity(request);
+        employee.setUser(user);
+
         employeeRepository.save(employee);
 
         return employeeModelMapper.toDto(employee);
@@ -37,25 +47,29 @@ public class EmployeeService implements IService<EmployeeRequestDTO, EmployeeRes
 
     @Override
     public EmployeeResponseDTO getById(Long ID) {
-        EmployeeEntity employee=employeeRepository.findById(ID).orElseThrow(() -> new EmployeeNotFoundException("Empleado no encontrado."));
+        EmployeeEntity employee = employeeRepository.findById(ID)
+                .orElseThrow(() -> new EmployeeNotFoundException("Empleado no encontrado."));
         return employeeModelMapper.toDto(employee);
     }
 
     @Override
     public EmployeeResponseDTO update(Long ID, EmployeeRequestDTO request) {
-        if(!employeeRepository.existsById(ID)){
-            throw new EmployeeNotFoundException("Empleado no encontrado.");
-        }
+        EmployeeEntity existing = employeeRepository.findById(ID)
+                .orElseThrow(() -> new EmployeeNotFoundException("Empleado no encontrado."));
 
-        EmployeeEntity updatedEmployee = employeeModelMapper.toEntity(request);
-        updatedEmployee.setIdEmployee(ID);
-        employeeRepository.save(updatedEmployee);
-        return employeeModelMapper.toDto(updatedEmployee);
+        existing.setName(request.getName());
+        existing.setSurname(request.getSurname());
+        existing.setCUIL(request.getCUIL());
+        existing.setPhoneNumber(request.getPhoneNumber());
+        existing.setRole(request.getRole());
+
+        employeeRepository.save(existing);
+        return employeeModelMapper.toDto(existing);
     }
 
     @Override
     public void deleteById(Long ID) {
-        if(!employeeRepository.existsById(ID)){
+        if (!employeeRepository.existsById(ID)) {
             throw new EmployeeNotFoundException("Empleado no encontrado.");
         }
         employeeRepository.deleteById(ID);
