@@ -92,4 +92,11 @@ public class PaymentService implements IService<PaymentRequestDto, PaymentRespon
         }
         paymentRepository.deleteById(id);
     }
+
+    public List<PaymentResponseDto> getMyPayments(Long currentUserId) {
+        return paymentRepository.findByOrder_Client_User_Id(currentUserId)
+                .stream()
+                .map(paymentMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }
