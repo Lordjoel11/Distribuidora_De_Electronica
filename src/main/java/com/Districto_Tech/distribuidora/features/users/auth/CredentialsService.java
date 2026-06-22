@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.authentication.BadCredentialsException;
 
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ public class CredentialsService {
         );
 
         var user = userRepository.findByEmail(request.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("Usuario o contraseña incorrectos"));
+                .orElseThrow(() -> new BadCredentialsException("Usuario o contraseña incorrectos"));
 
         var jwtToken = jwtService.generateToken(user);
 
@@ -48,7 +49,7 @@ public class CredentialsService {
     @Transactional
     public CredentialsResponse register(UserRequestDto requestUser) {
         if (userRepository.existsByEmail(requestUser.getEmail())) {
-            throw new IllegalArgumentException("El email ya está registrado");
+            throw new BadCredentialsException("El email ya está registrado");
         }
 
         var userEntity = UserEntity.builder()

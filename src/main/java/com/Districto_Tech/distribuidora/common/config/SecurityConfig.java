@@ -18,6 +18,8 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -50,21 +52,16 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()
                 )
-                .exceptionHandling(ex -> ex
-                        .accessDeniedHandler((request, response, accessDeniedException) -> {
-                            response.setStatus(HttpStatus.FORBIDDEN.value());
-                            response.setContentType("application/json");
-                            response.setCharacterEncoding("UTF-8");
-                            response.getWriter().write(
-                                    "{\"status\": 403, \"error\": \"Forbidden\", \"message\": \"No tenés permisos para acceder a este recurso.\", \"path\": \"" + request.getRequestURI() + "\"}"
-                            );
-                        })
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(authenticationEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler)
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
 
         http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
 

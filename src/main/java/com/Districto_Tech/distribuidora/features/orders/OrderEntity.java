@@ -33,6 +33,9 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private Status orderStatus;
 
+    @Column(name = "stock_discounted", nullable = false)
+    private boolean stockDiscounted = false;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private ClientEntity client;

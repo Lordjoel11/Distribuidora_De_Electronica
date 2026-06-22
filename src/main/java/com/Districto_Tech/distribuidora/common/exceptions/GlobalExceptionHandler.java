@@ -3,6 +3,7 @@ package com.Districto_Tech.distribuidora.common.exceptions;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -42,7 +43,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.CONFLICT.value(),
                 HttpStatus.CONFLICT.getReasonPhrase(),
                 ex.getMessage(),
-                request.getRequestURI() // Esto te da el path dinámico
+                request.getRequestURI()
         );
         return new ResponseEntity<>(
                 errorDetails,
@@ -67,7 +68,23 @@ public class GlobalExceptionHandler {
 
     }
 
-    
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorDetails> handleBadCredentials(
+            BadCredentialsException ex,
+            HttpServletRequest request
+    ) {
+
+        ErrorDetails error = new ErrorDetails(
+                LocalDateTime.now(),
+                HttpStatus.UNAUTHORIZED.value(),
+                HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+
+
+        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+    }
 
 
 }

@@ -129,7 +129,19 @@ public class OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         validateTransaction(order.getOrderStatus(), Status.CANCELED);
+
+        if(order.getOrderStatus() == Status.CONFIRMED){
+            devolverStock(order);
+            order.setStockDiscounted(true);
+        }
+
+        if(order.isStockDiscounted()){
+            devolverStock(order);
+            order.setStockDiscounted(false);
+        }
+
         order.setOrderStatus(Status.CANCELED);
+
         return orderMapper.toDto(orderRepository.save(order));
     }
 
@@ -142,7 +154,7 @@ public class OrderService {
 
         if (dto.getNewStatus() == Status.CONFIRMED) {
             descontarStock(order);
-        }else throw new InvalidDataException("El estado de la orden debe ser CONFIRMADO");
+        }
 
         order.setOrderStatus(dto.getNewStatus());
         return orderMapper.toDto(orderRepository.save(order));
@@ -170,6 +182,19 @@ public class OrderService {
                 throw new InvalidDataException("Stock insuficiente para el producto: " + product.getName());
             }
             product.setStock(stockActual - cantidad);
+            productRepository.save(product);
+        }
+    }
+
+    private void devolverStock(OrderEntity order) {
+        for (OrderDetails detail : order.getOrderDetailsList()) {
+
+            Product product = detail.getProduct();
+
+            product.setStock(
+                    product.getStock() + detail.getQuantity()
+            );
+
             productRepository.save(product);
         }
     }
