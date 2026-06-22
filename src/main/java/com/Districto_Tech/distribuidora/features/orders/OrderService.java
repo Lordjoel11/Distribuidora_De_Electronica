@@ -13,6 +13,7 @@ import com.Districto_Tech.distribuidora.features.orders.dto.OrderStatusDto;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetails;
 import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsRepository;
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
+import com.Districto_Tech.distribuidora.features.payments.PaymentRepository;
 import com.Districto_Tech.distribuidora.features.products.Product;
 import com.Districto_Tech.distribuidora.features.products.ProductRepository;
 import com.Districto_Tech.distribuidora.features.users.ApprovalStatus;
@@ -35,6 +36,7 @@ public class OrderService {
     private final ClientRepository clientRepository;
     private final EmployeeRepository employeeRepository;
     private final ProductRepository productRepository;
+    private final PaymentRepository paymentRepository;
 
     @Transactional
     public OrderResponseDto createOrder(OrderRequestDto dto, Long currentUserId) {
@@ -145,6 +147,8 @@ public class OrderService {
         return orderMapper.toDto(orderRepository.save(order));
     }
 
+
+
     @Transactional
     public OrderResponseDto changeStatus(Long id, OrderStatusDto dto) {
         OrderEntity order = orderRepository.findById(id)
@@ -154,6 +158,13 @@ public class OrderService {
 
         if (dto.getNewStatus() == Status.CONFIRMED) {
             descontarStock(order);
+        }
+
+        if (dto.getNewStatus() == Status.COMPLETED) {
+            boolean tienePago = !paymentRepository.findByOrder_Id(order.getId()).isEmpty();
+            if (!tienePago) {
+                throw new InvalidDataException("No se puede completar el pedido sin un pago registrado.");
+            }
         }
 
         order.setOrderStatus(dto.getNewStatus());

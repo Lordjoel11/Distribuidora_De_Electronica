@@ -32,6 +32,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
 
+                        // Rutas de "mis datos"
+                        .requestMatchers("/api/payments/my").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+                        .requestMatchers("/api/invoices/my").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")
+
                         //ADMIN
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
@@ -40,10 +44,9 @@ public class SecurityConfig {
 
                         // ADMIN y EMPLOYEE
                         .requestMatchers("/api/payments/**").hasAnyRole("ADMIN", "EMPLOYEE")
-                        .requestMatchers("/api/employees/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_EMPLOYEE")
+                        .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "EMPLOYEE")
                         .requestMatchers("/api/suppliers/**").hasAnyRole("ADMIN", "EMPLOYEE")
                         .requestMatchers("/api/invoices/**").hasAnyRole("ADMIN", "EMPLOYEE")
-
 
                         // ADMIN, EMPLOYEE y CLIENT
                         .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "EMPLOYEE", "CLIENT")

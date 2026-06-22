@@ -2,6 +2,7 @@ package com.Districto_Tech.distribuidora.features.invoices;
 
 import com.Districto_Tech.distribuidora.features.invoices.dto.InvoiceRequestDto;
 import com.Districto_Tech.distribuidora.features.invoices.dto.InvoiceResponseDto;
+import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,4 +53,11 @@ public class InvoiceController {
         invoiceService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Operation(summary = "Ver mis facturas", description = "El cliente logueado ve las facturas de sus propios pedidos")
+    @GetMapping("/my")
+    public ResponseEntity<List<InvoiceResponseDto>> getMyInvoices(@AuthenticationPrincipal UserEntity currentUser) {
+        return ResponseEntity.ok(invoiceService.getMyInvoices(currentUser.getId()));
+    }
+
 }

@@ -2,6 +2,7 @@ package com.Districto_Tech.distribuidora.features.payments;
 
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentRequestDto;
 import com.Districto_Tech.distribuidora.features.payments.dto.PaymentResponseDto;
+import com.Districto_Tech.distribuidora.features.users.UserEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,5 +56,11 @@ public class PaymentController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         paymentService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Ver mis pagos", description = "El cliente logueado ve los pagos de sus propios pedidos")
+    @GetMapping("/my")
+    public ResponseEntity<List<PaymentResponseDto>> getMyPayments(@AuthenticationPrincipal UserEntity currentUser) {
+        return ResponseEntity.ok(paymentService.getMyPayments(currentUser.getId()));
     }
 }

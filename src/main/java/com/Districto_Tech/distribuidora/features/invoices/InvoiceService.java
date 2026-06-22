@@ -60,5 +60,11 @@ public class InvoiceService {
         invoiceRepository.deleteById(id);
     }
 
+    public List<InvoiceResponseDto> getMyInvoices(Long currentUserId) {
+        return invoiceRepository.findByOrder_Client_User_Id(currentUserId)
+                .stream()
+                .map(invoiceMapper::toDto)
+                .toList();
+    }
 
 }
