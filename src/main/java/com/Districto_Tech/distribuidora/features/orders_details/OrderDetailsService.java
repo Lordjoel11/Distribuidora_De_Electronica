@@ -15,6 +15,7 @@ public class OrderDetailsService {
     private final OrderDetailsRepository orderDetailsRepository;
     private final OrderDetailsModelMapper orderDetailsMapper;
 
+
     public List<OrderDetailsResponseDto> getAll() {
         return orderDetailsRepository.findAll().stream()
                 .map(orderDetailsMapper::toDto).toList();
