@@ -56,7 +56,7 @@ class GlobalExceptionHandlerTest {
     void datoInvalidoException_ShouldReturnBadRequest() {
         InvalidDataException ex = new InvalidDataException("Datos inválidos");
 
-        ResponseEntity<String> response = exceptionHandler.handleDatosProductoInvalidosException(ex);
+        ResponseEntity<ErrorDetails> response = exceptionHandler.InvalidDataException(ex,request );
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Datos inválidos", response.getBody());

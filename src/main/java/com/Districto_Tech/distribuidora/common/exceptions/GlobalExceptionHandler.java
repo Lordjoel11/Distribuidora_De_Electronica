@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND.value(),
                 HttpStatus.NOT_FOUND.getReasonPhrase(),
                 ex.getMessage(),
-                request.getRequestURI() // Esto te da el path dinámico
+                request.getRequestURI()
         );
 
         return new ResponseEntity<>(
@@ -33,12 +33,20 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<String> handleDatosProductoInvalidosException(
-            InvalidDataException ex) {
+    public ResponseEntity<ErrorDetails> InvalidDataException(
+            InvalidDataException ex,
+            HttpServletRequest request) {
 
-        return new ResponseEntity<>(
+        ErrorDetails errorDetails = new ErrorDetails(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT.value(),
+                HttpStatus.CONFLICT.getReasonPhrase(),
                 ex.getMessage(),
-                HttpStatus.BAD_REQUEST
+                request.getRequestURI() // Esto te da el path dinámico
+        );
+        return new ResponseEntity<>(
+                errorDetails,
+                HttpStatus.CONFLICT
         );
     }
 
@@ -60,19 +68,23 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ShippingAlreadyExistsException.class)
-    public ResponseEntity<String> handleShippingAlreadyExistsException(ShippingAlreadyExistsException ex) {
-        return new ResponseEntity<>(
+    public ResponseEntity<ErrorDetails> handleShippingAlreadyExistsException(
+            ShippingAlreadyExistsException ex,
+            HttpServletRequest request) {
+
+        ErrorDetails errorDetails = new ErrorDetails(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT.value(),
+                HttpStatus.CONFLICT.getReasonPhrase(),
                 ex.getMessage(),
-                HttpStatus.BAD_REQUEST
+                request.getRequestURI()
+        );
+
+        return new ResponseEntity<>(
+                errorDetails,
+                HttpStatus.CONFLICT
         );
     }
 
-    @ExceptionHandler(ShippingNotFoundException.class)
-    public ResponseEntity<String> handleShippingNotFoundException(ShippingNotFoundException ex) {
-        return new ResponseEntity<>(
-                ex.getMessage(),
-                HttpStatus.NOT_FOUND
-        );
-    }
 
 }

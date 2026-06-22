@@ -1,6 +1,7 @@
 package com.Districto_Tech.distribuidora.features.users;
 
 import com.Districto_Tech.distribuidora.common.IService;
+import com.Districto_Tech.distribuidora.common.exceptions.InvalidDataException;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.users.dto.AdminUserRequestDto;
 import com.Districto_Tech.distribuidora.features.users.dto.UserRequestDto;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto
 
     public UserResponseDto saveByAdmin(AdminUserRequestDto dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalArgumentException("El email ya está registrado: " + dto.getEmail());
+            throw new InvalidDataException("El email ya está registrado: " + dto.getEmail());
         }
 
         UserEntity userEntity = UserEntity.builder()
@@ -79,7 +80,7 @@ public class UserServiceImpl implements IService<UserRequestDto, UserResponseDto
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + id));
 
         if (userEntity.getRoleType() != RoleType.CLIENT) {
-            throw new IllegalArgumentException("Solo los usuarios CLIENT requieren aprobación.");
+            throw new InvalidDataException("Solo los usuarios CLIENT requieren aprobación.");
         }
 
         userEntity.setApprovalStatus(ApprovalStatus.APPROVED);

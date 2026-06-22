@@ -1,5 +1,7 @@
 package com.Districto_Tech.distribuidora.features.orders;
 
+import com.Districto_Tech.distribuidora.common.exceptions.AccessDeniedException;
+import com.Districto_Tech.distribuidora.common.exceptions.InvalidDataException;
 import com.Districto_Tech.distribuidora.common.exceptions.ResourceNotFoundException;
 import com.Districto_Tech.distribuidora.features.clients.ClientEntity;
 import com.Districto_Tech.distribuidora.features.clients.ClientRepository;
@@ -13,6 +15,7 @@ import com.Districto_Tech.distribuidora.features.orders_details.OrderDetailsRepo
 import com.Districto_Tech.distribuidora.features.orders_details.dto.OrderDetailsRequestDto;
 import com.Districto_Tech.distribuidora.features.products.Product;
 import com.Districto_Tech.distribuidora.features.products.ProductRepository;
+import com.Districto_Tech.distribuidora.features.users.ApprovalStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +41,11 @@ public class OrderService {
 
         ClientEntity client = clientRepository.findByUser_Id(currentUserId)
                 .orElseThrow(() -> new ResourceNotFoundException("No se encontró un perfil de cliente para este usuario."));
+
+        if(client.getUser().getApprovalStatus().equals(ApprovalStatus.SUSPENDED))
+            throw new AccessDeniedException("Su cuenta esta suspendida. No puedes accionar.");
+        if(client.getUser().getApprovalStatus().equals(ApprovalStatus.PENDING))
+            throw new AccessDeniedException("Su cuenta esta pendiente. No puedes accionar.");
 
         OrderEntity order = OrderEntity.builder()
                 .orderStatus(Status.PENDING)
@@ -75,7 +83,7 @@ public class OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado."));
 
         if (order.getEmployee() != null) {
-            throw new IllegalStateException("Este pedido ya fue tomado por otro empleado.");
+            throw new AccessDeniedException("Este pedido ya fue tomado por otro empleado.");
         }
 
         EmployeeEntity employee = employeeRepository.findByUser_Id(currentUserId)
@@ -134,7 +142,7 @@ public class OrderService {
 
         if (dto.getNewStatus() == Status.CONFIRMED) {
             descontarStock(order);
-        }
+        }else throw new InvalidDataException("El estado de la orden debe ser CONFIRMADO");
 
         order.setOrderStatus(dto.getNewStatus());
         return orderMapper.toDto(orderRepository.save(order));
@@ -142,13 +150,13 @@ public class OrderService {
 
     private void validateTransaction(Status currentStatus, Status newStatus) {
         if (currentStatus == Status.CANCELED) {
-            throw new IllegalStateException("No se puede modificar un pedido CANCELADO.");
+            throw new AccessDeniedException("No se puede modificar un pedido CANCELADO.");
         }
         if (currentStatus == Status.COMPLETED) {
-            throw new IllegalStateException("No se puede modificar un pedido COMPLETADO.");
+            throw new AccessDeniedException("No se puede modificar un pedido COMPLETADO.");
         }
         if (currentStatus == Status.COMPLETED && newStatus == Status.PENDING) {
-            throw new IllegalStateException("No se puede volver a PENDIENTE desde COMPLETADO.");
+            throw new AccessDeniedException("No se puede volver a PENDIENTE desde COMPLETADO.");
         }
     }
 
@@ -159,10 +167,17 @@ public class OrderService {
             int cantidad = detail.getQuantity();
 
             if (stockActual < cantidad) {
-                throw new IllegalStateException("Stock insuficiente para el producto: " + product.getName());
+                throw new InvalidDataException("Stock insuficiente para el producto: " + product.getName());
             }
             product.setStock(stockActual - cantidad);
             productRepository.save(product);
         }
+    }
+
+    public void deleteById(Long id) {
+        if (!orderRepository.existsById(id)) {
+            throw new ResourceNotFoundException("No se puede eliminar. El Recurso no existe.");
+        }
+        orderRepository.deleteById(id);
     }
 }

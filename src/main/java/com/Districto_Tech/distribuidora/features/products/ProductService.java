@@ -59,6 +59,9 @@ public class ProductService implements IService<ProductRequestDto, ProductRespon
 
     @Override
     public void deleteById(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new ResourceNotFoundException("No se puede eliminar. El Recurso no existe.");
+        }
         productRepository.deleteById(id);
     }
 

@@ -52,6 +52,9 @@ public class SupplierService implements IService<SupplierRequestDto, SupplierRes
 
     @Override
     public void deleteById(Long id) {
+        if (!supplierRepository.existsById(id)) {
+            throw new ResourceNotFoundException("No se puede eliminar. El Recurso no existe.");
+        }
         supplierRepository.deleteById(id);
     }
 }
